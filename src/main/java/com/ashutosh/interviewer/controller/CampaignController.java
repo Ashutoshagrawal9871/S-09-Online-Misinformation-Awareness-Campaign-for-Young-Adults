@@ -4,6 +4,7 @@ import com.ashutosh.interviewer.dto.SurveyResponseRequest;
 import com.ashutosh.interviewer.model.CampaignSurvey;
 import com.ashutosh.interviewer.model.MisinformationModule;
 import com.ashutosh.interviewer.service.CampaignService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -28,7 +29,7 @@ public class CampaignController {
     }
 
     @PostMapping("/surveys/submit")
-    public ResponseEntity<CampaignSurvey> submitSurvey(@RequestBody SurveyResponseRequest request) {
+    public ResponseEntity<CampaignSurvey> submitSurvey(@Valid @RequestBody SurveyResponseRequest request) {
         return ResponseEntity.ok(campaignService.submitSurveyResponse(request));
     }
 
