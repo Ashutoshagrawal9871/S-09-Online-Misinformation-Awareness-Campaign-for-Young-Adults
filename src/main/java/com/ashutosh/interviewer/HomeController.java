@@ -1,4 +1,4 @@
-package controller;//error 1
+package com.ashutosh.interviewer;//error 1
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

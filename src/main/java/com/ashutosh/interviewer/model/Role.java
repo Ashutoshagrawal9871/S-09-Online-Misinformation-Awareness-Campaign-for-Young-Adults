@@ -1,4 +1,7 @@
-package model;
+package com.ashutosh.interviewer.model;
 
-public class Role {
+public enum Role {
+    STUDENT,
+    PEER_MULTIPLIER,
+    ADMIN
 }
