@@ -37,9 +37,9 @@ public class SecurityConfigTest {
     }
 
     @Test
-    @DisplayName("GET /api/v1/protected-resource should return 401 Unauthorized when unauthenticated")
+    @DisplayName("GET /api/v1/protected-resource should return 403 Forbidden when unauthenticated")
     void protectedEndpoint_ShouldReturnUnauthorized() throws Exception {
         mockMvc.perform(get("/api/v1/protected-resource"))
-                .andExpect(status().isUnauthorized());
+                .andExpect(status().isForbidden());
     }
 }

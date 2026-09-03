@@ -1,6 +1,7 @@
 package com.ashutosh.interviewer.service;
 
 import com.ashutosh.interviewer.dto.SurveyResponseRequest;
+import com.ashutosh.interviewer.exception.ResourceNotFoundException;
 import com.ashutosh.interviewer.model.CampaignSurvey;
 import com.ashutosh.interviewer.model.MisinformationModule;
 import com.ashutosh.interviewer.model.User;
@@ -9,9 +10,11 @@ import com.ashutosh.interviewer.repository.MisinformationModuleRepository;
 import com.ashutosh.interviewer.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -27,19 +30,56 @@ public class CampaignServiceImpl implements CampaignService {
     }
 
     @Override
+    public Optional<MisinformationModule> getModuleById(Long id) {
+        return moduleRepository.findById(id);
+    }
+
+    @Override
     public List<MisinformationModule> getModulesByCategory(String category) {
         return moduleRepository.findByCategory(category);
     }
 
     @Override
+    @Transactional
+    public MisinformationModule createModule(MisinformationModule module) {
+        return moduleRepository.save(module);
+    }
+
+    @Override
+    @Transactional
     public CampaignSurvey submitSurveyResponse(SurveyResponseRequest request) {
-        User participant = userRepository.findById(request.getUserId())
-                .orElseThrow(() -> new RuntimeException("Participant not found with ID: " + request.getUserId()));
+        User participant = null;
+        if (request.getUserId() != null) {
+            participant = userRepository.findById(request.getUserId())
+                    .orElseGet(() -> {
+                        // Create user fallback
+                        User newUser = User.builder()
+                                .username("participant_" + request.getUserId())
+                                .email(request.getParticipantEmail() != null ? request.getParticipantEmail() : "participant" + request.getUserId() + "@truthlens.org")
+                                .password("noop")
+                                .role("STUDENT")
+                                .build();
+                        return userRepository.save(newUser);
+                    });
+        } else if (request.getParticipantEmail() != null && !request.getParticipantEmail().isBlank()) {
+            participant = userRepository.findByEmail(request.getParticipantEmail())
+                    .orElseGet(() -> {
+                        User newUser = User.builder()
+                                .username(request.getParticipantEmail().split("@")[0])
+                                .email(request.getParticipantEmail())
+                                .password("noop")
+                                .role("STUDENT")
+                                .build();
+                        return userRepository.save(newUser);
+                    });
+        }
 
         CampaignSurvey survey = CampaignSurvey.builder()
                 .participant(participant)
-                .surveyType(request.getSurveyType())
-                .score(request.getScore())
+                .surveyType(request.getSurveyType() != null ? request.getSurveyType().toUpperCase() : "BASELINE")
+                .score(request.getScore() != null ? request.getScore() : 5)
+                .verificationFrequency(request.getVerificationFrequency() != null ? request.getVerificationFrequency() : 3)
+                .primaryNewsSource(request.getPrimaryNewsSource() != null ? request.getPrimaryNewsSource() : "WHATSAPP")
                 .feedback(request.getFeedback())
                 .completedAt(LocalDateTime.now())
                 .build();
@@ -50,5 +90,15 @@ public class CampaignServiceImpl implements CampaignService {
     @Override
     public List<CampaignSurvey> getUserSurveyHistory(Long userId) {
         return surveyRepository.findByParticipantId(userId);
+    }
+
+    @Override
+    public List<CampaignSurvey> getSurveysByType(String surveyType) {
+        return surveyRepository.findBySurveyType(surveyType.toUpperCase());
+    }
+
+    @Override
+    public List<CampaignSurvey> getAllSurveys() {
+        return surveyRepository.findAll();
     }
 }
