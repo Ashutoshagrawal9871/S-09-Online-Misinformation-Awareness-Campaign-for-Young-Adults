@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">WhatsApp Rumor Radar Card</title>
+  <desc id="desc">Anti-rumor response card for WhatsApp groups with a pause, verify, respond checklist and a sample reply.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#052e16"/>
+      <stop offset="0.6" stop-color="#064e3b"/>
+      <stop offset="1" stop-color="#0f766e"/>
+    </linearGradient>
+    <linearGradient id="lime" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#a3e635"/>
+      <stop offset="1" stop-color="#22d3ee"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="900" fill="url(#bg)"/>
+  <circle cx="1030" cy="120" r="240" fill="#22c55e" opacity="0.14"/>
+  <circle cx="100" cy="800" r="220" fill="#14b8a6" opacity="0.12"/>
+
+  <g font-family="Segoe UI, Arial, sans-serif">
+    <text x="64" y="86" fill="#a3e635" font-size="22" font-weight="700" letter-spacing="5">TRUTHLENS · WHATSAPP RUMOR RADAR</text>
+    <text x="64" y="158" fill="#f0fdf4" font-size="64" font-weight="800">Pause. Verify. Respond.</text>
+    <text x="64" y="204" fill="#bbf7d0" font-size="25">Counter a fake forward without starting a family group war.</text>
+
+    <g transform="translate(64,258)">
+      <rect width="520" height="330" rx="24" fill="#052e16" stroke="#166534" stroke-width="2"/>
+      <text x="28" y="46" fill="#86efac" font-size="18" font-weight="700" letter-spacing="3">FORWARDED MANY TIMES</text>
+      <rect x="28" y="70" width="464" height="120" rx="16" fill="#14532d"/>
+      <text x="48" y="106" fill="#ecfccb" font-size="20" font-weight="600">URGENT: Drinking boiled garlic water</text>
+      <text x="48" y="136" fill="#ecfccb" font-size="20" font-weight="600">cures pneumonia in 24 hours.</text>
+      <text x="48" y="166" fill="#d9f99d" font-size="18">Forward to 10 people before midnight!</text>
+
+      <text x="28" y="238" fill="#fbbf24" font-size="20" font-weight="700">Red flags</text>
+      <text x="28" y="268" fill="#fef3c7" font-size="18">Emotional urgency · No source · Instant miracle cure</text>
+      <text x="28" y="296" fill="#fef3c7" font-size="18">"Forward to 10 people" chain hook</text>
+    </g>
+
+    <g transform="translate(616,258)">
+      <rect width="520" height="330" rx="24" fill="#ecfdf5"/>
+      <text x="28" y="46" fill="#047857" font-size="18" font-weight="700" letter-spacing="3">A CALM REPLY YOU CAN COPY</text>
+      <rect x="28" y="70" width="464" height="156" rx="16" fill="#d1fae5"/>
+      <text x="48" y="106" fill="#065f46" font-size="20" font-weight="600">I checked this one — garlic does not</text>
+      <text x="48" y="136" fill="#065f46" font-size="20" font-weight="600">cure pneumonia. WHO and PIB Fact</text>
+      <text x="48" y="166" fill="#065f46" font-size="20" font-weight="600">Check have debunked it. Sharing the</text>
+      <text x="48" y="196" fill="#065f46" font-size="20" font-weight="600">verified link so we all stay safe.</text>
+      <text x="28" y="268" fill="#047857" font-size="18">Stay gentle. Correct the claim, not the person.</text>
+      <text x="28" y="296" fill="#047857" font-size="18">Offer a trusted source, not a lecture.</text>
+    </g>
+
+    <g transform="translate(64,626)">
+      <circle cx="28" cy="28" r="24" fill="#a3e635"/>
+      <text x="28" y="37" fill="#052e16" font-size="24" font-weight="800" text-anchor="middle">1</text>
+      <text x="70" y="37" fill="#ecfccb" font-size="24" font-weight="700">Do not forward the original message.</text>
+
+      <circle cx="548" cy="28" r="24" fill="#a3e635"/>
+      <text x="548" y="37" fill="#052e16" font-size="24" font-weight="800" text-anchor="middle">2</text>
+      <text x="590" y="37" fill="#ecfccb" font-size="24" font-weight="700">Search the claim on PIB Fact Check.</text>
+
+      <circle cx="28" cy="94" r="24" fill="#a3e635"/>
+      <text x="28" y="103" fill="#052e16" font-size="24" font-weight="800" text-anchor="middle">3</text>
+      <text x="70" y="103" fill="#ecfccb" font-size="24" font-weight="700">Reply once with the corrected link.</text>
+
+      <circle cx="548" cy="94" r="24" fill="#a3e635"/>
+      <text x="548" y="103" fill="#052e16" font-size="24" font-weight="800" text-anchor="middle">4</text>
+      <text x="590" y="103" fill="#ecfccb" font-size="24" font-weight="700">Mute the thread and move on.</text>
+    </g>
+
+    <rect x="64" y="796" width="1072" height="3" fill="url(#lime)"/>
+    <text x="64" y="850" fill="#86efac" font-size="20">Sources: WHO · PIB Fact Check · BOOM Live · Alt News</text>
+    <text x="1136" y="850" fill="#a3e635" font-size="20" text-anchor="end" font-weight="700">truthlens · cusoc 2026</text>
+  </g>
+</svg>

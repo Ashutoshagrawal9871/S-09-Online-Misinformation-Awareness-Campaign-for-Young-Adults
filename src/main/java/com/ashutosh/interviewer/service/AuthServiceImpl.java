@@ -32,8 +32,8 @@ public class AuthServiceImpl implements AuthService {
             throw new IllegalArgumentException("Username already taken: " + request.getUsername());
         }
 
-        String role = (request.getRole() != null && !request.getRole().isBlank()) ?
-                request.getRole().toUpperCase() : "STUDENT";
+        // Public sign-up must never be able to grant elevated privileges.
+        String role = "STUDENT";
 
         User user = User.builder()
                 .username(request.getUsername())
@@ -67,7 +67,7 @@ public class AuthServiceImpl implements AuthService {
                 .or(() -> userRepository.findByUsername(request.getUsername()))
                 .orElseThrow(() -> new IllegalArgumentException("Invalid username or password"));
 
-        if (!passwordEncoder.matches(request.getPassword(), user.getPassword()) && !user.getPassword().equals(request.getPassword())) {
+        if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
             throw new IllegalArgumentException("Invalid username or password");
         }
 

@@ -2,6 +2,12 @@ FROM maven:3.9.9-eclipse-temurin-17 AS build
 WORKDIR /workspace
 COPY pom.xml .
 COPY src src
+COPY docs docs
+COPY report report
+COPY presentation presentation
+COPY assets assets
+COPY tests tests
+COPY CHANGELOG.md PROJECT_PLAN.md ./
 RUN mvn -B -DskipTests package
 
 FROM eclipse-temurin:17-jre

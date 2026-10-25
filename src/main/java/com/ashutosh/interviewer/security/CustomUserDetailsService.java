@@ -1,21 +1,29 @@
 package com.ashutosh.interviewer.security;
 
-import org.springframework.security.core.userdetails.User;
+import com.ashutosh.interviewer.model.User;
+import com.ashutosh.interviewer.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
-
 @Service
+@RequiredArgsConstructor
 public class CustomUserDetailsService implements UserDetailsService {
 
+    private final UserRepository userRepository;
+
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        if ("admin@interviewer.com".equals(username) || "user@interviewer.com".equals(username)) {
-            return new User(username, "{noop}password123", Collections.emptyList());
-        }
-        throw new UsernameNotFoundException("User not found with email: " + username);
+    public UserDetails loadUserByUsername(String usernameOrEmail) throws UsernameNotFoundException {
+        User user = userRepository.findByEmail(usernameOrEmail)
+                .or(() -> userRepository.findByUsername(usernameOrEmail))
+                .orElseThrow(() -> new UsernameNotFoundException("User not found: " + usernameOrEmail));
+
+        return org.springframework.security.core.userdetails.User.withUsername(user.getEmail())
+                .password(user.getPassword())
+                .roles(user.getRole())
+                .disabled(!user.isActive())
+                .build();
     }
 }

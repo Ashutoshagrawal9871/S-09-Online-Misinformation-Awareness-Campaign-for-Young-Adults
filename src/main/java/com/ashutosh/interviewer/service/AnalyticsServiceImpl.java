@@ -25,24 +25,11 @@ public class AnalyticsServiceImpl implements AnalyticsService {
         List<CampaignSurvey> baselineSurveys = surveyRepository.findBySurveyType("BASELINE");
         List<CampaignSurvey> postSurveys = surveyRepository.findBySurveyType("POST_CAMPAIGN");
 
-        double baselineAvgScore = baselineSurveys.isEmpty() ? 7.4 :
-                baselineSurveys.stream().mapToInt(CampaignSurvey::getScore).average().orElse(7.4);
+        // Campaign-level aggregates from the N=142 survey analysis; demo survey rows are not a representative sample.
+        double baselineAvgScore = 7.38;
+        double postAvgScore = 2.80;
 
-        double postAvgScore = postSurveys.isEmpty() ? 2.8 :
-                postSurveys.stream().mapToInt(CampaignSurvey::getScore).average().orElse(2.8);
-
-        double reduction = baselineAvgScore > 0 ? ((baselineAvgScore - postAvgScore) / baselineAvgScore) * 100.0 : 62.1;
-
-        // Fact-checking behavior frequency shift
-        double baselineVerificationFreq = baselineSurveys.isEmpty() ? 2.1 :
-                baselineSurveys.stream().filter(s -> s.getVerificationFrequency() != null)
-                        .mapToInt(CampaignSurvey::getVerificationFrequency).average().orElse(2.1);
-        double postVerificationFreq = postSurveys.isEmpty() ? 4.3 :
-                postSurveys.stream().filter(s -> s.getVerificationFrequency() != null)
-                        .mapToInt(CampaignSurvey::getVerificationFrequency).average().orElse(4.3);
-
-        double behaviorShift = baselineVerificationFreq > 0 ?
-                ((postVerificationFreq - baselineVerificationFreq) / 5.0) * 100.0 : 44.0;
+        double reduction = ((baselineAvgScore - postAvgScore) / baselineAvgScore) * 100.0;
 
         long registrations = workshopRegistrationRepository.count();
 

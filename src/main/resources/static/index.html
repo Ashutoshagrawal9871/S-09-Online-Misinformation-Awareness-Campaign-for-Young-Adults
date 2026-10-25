@@ -3,233 +3,401 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TruthLens | S-09 Misinformation Awareness Campaign & Fact-Checking Hub</title>
-    <!-- Tailwind CSS CDN -->
+    <meta name="description" content="TruthLens S-09: an open-source misinformation awareness campaign for young adults. Verify claims with SIFT, take the susceptibility check, join workshops, and explore the campaign impact.">
+    <meta name="theme-color" content="#4f46e5">
+    <title>TruthLens | S-09 Misinformation Awareness Campaign</title>
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-        }
-        .gradient-brand {
-            background: linear-gradient(135deg, #4f46e5 0%, #3b82f6 50%, #06b6d4 100%);
-        }
-        .card-glass {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(12px);
-        }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .gradient-brand { background: linear-gradient(135deg, #4f46e5 0%, #3b82f6 50%, #06b6d4 100%); }
+        .gradient-text { background: linear-gradient(90deg, #c7d2fe, #67e8f9); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .card-glass { background: rgba(255, 255, 255, 0.96); backdrop-filter: blur(12px); }
+        .section-kicker { display: inline-flex; align-items: center; gap: .4rem; padding: .25rem .75rem; border-radius: .375rem; font-size: .72rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; background: #e0e7ff; color: #4338ca; }
+        .feature-card { transition: transform .2s ease, box-shadow .2s ease; }
+        .feature-card:hover { transform: translateY(-3px); box-shadow: 0 18px 40px -18px rgba(79, 70, 229, .45); }
+        .doc-card { transition: border-color .2s ease, color .2s ease, background .2s ease; }
+        .doc-card:hover { border-color: #818cf8; background: #eef2ff; }
+        details > summary { list-style: none; cursor: pointer; }
+        details > summary::-webkit-details-marker { display: none; }
+        details[open] .faq-icon { transform: rotate(45deg); }
+        .faq-icon { transition: transform .2s ease; }
+        .asset-img { width: 100%; height: 11rem; object-fit: cover; object-position: top; display: block; background: #0f172a; }
+        #back-to-top { transition: opacity .2s ease, transform .2s ease; }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col justify-between">
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col">
+
+    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-[60] focus:px-4 focus:py-2 focus:bg-white focus:text-indigo-700 focus:rounded-lg focus:shadow">Skip to content</a>
 
     <!-- Top Navigation Bar -->
     <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <div class="flex items-center space-x-3">
+            <div class="flex justify-between items-center h-16 gap-4">
+                <a href="#top" class="flex items-center space-x-3 shrink-0">
                     <div class="w-10 h-10 rounded-xl gradient-brand flex items-center justify-center text-white font-black text-xl shadow-md">
                         <i class="fa-solid fa-shield-halved"></i>
                     </div>
                     <div>
                         <span class="font-black text-lg tracking-tight text-slate-900 flex items-center gap-2">
-                            TruthLens <span class="text-xs px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-700 font-bold border border-indigo-200">S-09 Initiative</span>
+                            TruthLens <span class="text-xs px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-700 font-bold border border-indigo-200">S-09</span>
                         </span>
-                        <p class="text-[11px] text-slate-500 font-medium">Misinformation Awareness & SIFT Verification Platform</p>
+                        <p class="text-[11px] text-slate-500 font-medium">Misinformation Awareness &amp; SIFT Verification</p>
                     </div>
-                </div>
+                </a>
 
-                <nav class="hidden md:flex space-x-6 text-sm font-semibold text-slate-600">
-                    <a href="#fact-checker" class="hover:text-indigo-600 transition flex items-center gap-1.5"><i class="fa-solid fa-wand-magic-sparkles text-indigo-500"></i> SIFT Analyzer</a>
-                    <a href="#modules" class="hover:text-indigo-600 transition">Learning Hub</a>
-                    <a href="#quiz" class="hover:text-indigo-600 transition">Susceptibility Quiz</a>
+                <nav class="hidden xl:flex items-center gap-5 text-[13px] font-semibold text-slate-600" aria-label="Primary">
+                    <a href="#campaign" class="hover:text-indigo-600 transition">Campaign</a>
+                    <a href="#sift" class="hover:text-indigo-600 transition">SIFT</a>
+                    <a href="#fact-checker" class="hover:text-indigo-600 transition">Analyzer</a>
+                    <a href="#modules" class="hover:text-indigo-600 transition">Learn</a>
                     <a href="#workshops" class="hover:text-indigo-600 transition">Workshops</a>
-                    <a href="#campaign-assets" class="hover:text-indigo-600 transition">Campaign Materials</a>
-                    <a href="#analytics" class="hover:text-indigo-600 transition">Impact & Analytics</a>
+                    <a href="#campaign-assets" class="hover:text-indigo-600 transition">Materials</a>
+                    <a href="#analytics" class="hover:text-indigo-600 transition">Impact</a>
+                    <a href="#resources" class="hover:text-indigo-600 transition">Resources</a>
                 </nav>
 
-                <div class="flex items-center space-x-3">
-                    <a href="#fact-checker" class="hidden sm:inline-flex px-4 py-2 rounded-xl gradient-brand text-white font-bold text-xs sm:text-sm shadow-md hover:shadow-indigo-500/25 hover:opacity-95 transition items-center gap-2">
-                        <i class="fa-solid fa-magnifying-glass"></i> Check a Claim
+                <div class="flex items-center space-x-3 shrink-0">
+                    <a href="#fact-checker" class="hidden sm:inline-flex px-4 py-2 rounded-xl gradient-brand text-white font-bold text-xs sm:text-sm shadow-md hover:opacity-95 transition items-center gap-2">
+                        <i class="fa-solid fa-magnifying-glass"></i> Check a claim
                     </a>
-                    <button id="mobile-menu-btn" type="button" class="md:hidden p-2 rounded-lg border border-slate-200 text-slate-700" aria-label="Open menu">
+                    <button id="mobile-menu-btn" type="button" class="xl:hidden p-2 rounded-lg border border-slate-200 text-slate-700" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
                         <i class="fa-solid fa-bars"></i>
                     </button>
                 </div>
             </div>
-            <div id="mobile-menu" class="hidden md:hidden pb-4 border-t border-slate-100">
-                <nav class="flex flex-col gap-2 pt-3 text-sm font-semibold text-slate-700">
-                    <a href="#fact-checker" class="px-2 py-2 rounded-lg hover:bg-indigo-50">SIFT Analyzer</a>
-                    <a href="#modules" class="px-2 py-2 rounded-lg hover:bg-indigo-50">Learning Hub</a>
-                    <a href="#quiz" class="px-2 py-2 rounded-lg hover:bg-indigo-50">Susceptibility Quiz</a>
-                    <a href="#workshops" class="px-2 py-2 rounded-lg hover:bg-indigo-50">Workshops</a>
-                    <a href="#campaign-assets" class="px-2 py-2 rounded-lg hover:bg-indigo-50">Campaign Materials</a>
-                    <a href="#analytics" class="px-2 py-2 rounded-lg hover:bg-indigo-50">Impact & Analytics</a>
+            <div id="mobile-menu" class="hidden xl:hidden pb-4 border-t border-slate-100">
+                <nav class="grid grid-cols-2 gap-2 pt-3 text-sm font-semibold text-slate-700" aria-label="Mobile">
+                    <a href="#campaign" class="px-3 py-2 rounded-lg hover:bg-indigo-50">Campaign</a>
+                    <a href="#sift" class="px-3 py-2 rounded-lg hover:bg-indigo-50">SIFT Framework</a>
+                    <a href="#fact-checker" class="px-3 py-2 rounded-lg hover:bg-indigo-50">SIFT Analyzer</a>
+                    <a href="#modules" class="px-3 py-2 rounded-lg hover:bg-indigo-50">Learning Hub</a>
+                    <a href="#quiz" class="px-3 py-2 rounded-lg hover:bg-indigo-50">Susceptibility Check</a>
+                    <a href="#workshops" class="px-3 py-2 rounded-lg hover:bg-indigo-50">Workshops</a>
+                    <a href="#campaign-assets" class="px-3 py-2 rounded-lg hover:bg-indigo-50">Campaign Materials</a>
+                    <a href="#analytics" class="px-3 py-2 rounded-lg hover:bg-indigo-50">Impact &amp; Analytics</a>
+                    <a href="#resources" class="px-3 py-2 rounded-lg hover:bg-indigo-50">Resources</a>
+                    <a href="#faq" class="px-3 py-2 rounded-lg hover:bg-indigo-50">FAQ</a>
                 </nav>
             </div>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-16">
-        
-        <!-- Hero Banner -->
-        <section class="relative rounded-3xl overflow-hidden gradient-brand p-8 sm:p-12 text-white shadow-xl">
-            <div class="relative z-10 max-w-3xl space-y-4">
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-xs font-bold uppercase tracking-wider text-white">
-                    <i class="fa-solid fa-graduation-cap"></i> Media Literacy for Young Adults
+    <main id="main" class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-20">
+
+        <!-- Hero -->
+        <section id="top" class="relative rounded-3xl overflow-hidden gradient-brand p-7 sm:p-12 text-white shadow-xl">
+            <div class="absolute -right-20 -top-24 w-72 h-72 rounded-full bg-white/10"></div>
+            <div class="absolute right-24 bottom-0 w-40 h-40 rounded-full bg-cyan-300/10"></div>
+
+            <div class="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+                <div class="space-y-5">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-xs font-bold uppercase tracking-wider">
+                        <i class="fa-solid fa-graduation-cap"></i> Media literacy for young adults
+                    </div>
+                    <h1 class="text-3xl sm:text-5xl font-black leading-[1.1] tracking-tight">
+                        Verify before you amplify.<br>
+                        <span class="gradient-text">Stop viral misinformation.</span>
+                    </h1>
+                    <p class="text-indigo-100 text-sm sm:text-base leading-relaxed max-w-xl">
+                        Misinformation on WhatsApp, Instagram, and Telegram fuels health panics, communal tension, and financial scams. TruthLens teaches the <strong class="text-white">SIFT framework</strong>, gives you a live claim analyzer, and measures real behaviour change among students aged 18–25.
+                    </p>
+                    <div class="flex flex-wrap gap-3 pt-1">
+                        <a href="#fact-checker" class="px-6 py-3 bg-white text-indigo-700 font-bold rounded-xl text-sm shadow-lg hover:bg-indigo-50 transition flex items-center gap-2">
+                            <i class="fa-solid fa-bolt text-indigo-600"></i> Open SIFT Analyzer
+                        </a>
+                        <a href="#quiz" class="px-6 py-3 bg-indigo-900/40 border border-white/30 text-white font-bold rounded-xl text-sm hover:bg-indigo-900/60 transition flex items-center gap-2">
+                            <i class="fa-solid fa-list-check"></i> Check your susceptibility
+                        </a>
+                        <a href="docs/FACT_CHECKING_RESOURCE_GUIDE.md" class="px-6 py-3 bg-indigo-900/40 border border-white/30 text-white font-bold rounded-xl text-sm hover:bg-indigo-900/60 transition flex items-center gap-2">
+                            <i class="fa-solid fa-book-open"></i> Resource guide
+                        </a>
+                    </div>
+                    <p class="text-xs text-indigo-200 pt-1">
+                        <i class="fa-solid fa-code-branch mr-1"></i> Open source · Spring Boot + JPA · 21 automated tests passing
+                    </p>
                 </div>
-                <h1 class="text-3xl sm:text-5xl font-black leading-tight tracking-tight">
-                    Verify Before You Amplify. Stop Viral Misinformation.
-                </h1>
-                <p class="text-indigo-100 text-sm sm:text-base leading-relaxed">
-                    Misinformation on WhatsApp and social media fuels health panics, communal tensions, and financial scams. Learn the <strong>SIFT Framework</strong>, test suspicious claims in real-time, and become an accredited student peer multiplier.
-                </p>
-                <div class="flex flex-wrap gap-3 pt-2">
-                    <a href="#fact-checker" class="px-6 py-3 bg-white text-indigo-700 font-bold rounded-xl text-sm shadow-lg hover:bg-indigo-50 transition flex items-center gap-2">
-                        <i class="fa-solid fa-bolt text-indigo-600"></i> Open SIFT Analyzer
-                    </a>
-                    <a href="#quiz" class="px-6 py-3 bg-indigo-900/40 border border-white/30 text-white font-bold rounded-xl text-sm hover:bg-indigo-900/60 transition flex items-center gap-2">
-                        <i class="fa-solid fa-list-check"></i> Take Susceptibility Quiz
-                    </a>
-                    <a href="/docs/FACT_CHECKING_RESOURCE_GUIDE.md" class="px-6 py-3 bg-indigo-900/40 border border-white/30 text-white font-bold rounded-xl text-sm hover:bg-indigo-900/60 transition flex items-center gap-2">
-                        <i class="fa-solid fa-book-open"></i> Resource Guide
-                    </a>
+
+                <!-- Static preview of the analyzer -->
+                <div class="bg-white/10 border border-white/20 backdrop-blur-md rounded-2xl p-5 shadow-2xl">
+                    <div class="flex items-center justify-between text-xs font-bold uppercase tracking-wider text-indigo-100">
+                        <span><i class="fa-solid fa-microchip mr-1"></i> Live SIFT check</span>
+                        <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-300 animate-pulse"></span> Ready</span>
+                    </div>
+                    <div class="mt-4 bg-slate-900/50 rounded-xl p-4 border border-white/10">
+                        <div class="flex items-center gap-2 text-[11px] font-semibold text-slate-300">
+                            <i class="fa-brands fa-whatsapp text-emerald-300"></i> Forwarded many times
+                        </div>
+                        <p class="mt-2 text-sm text-white leading-relaxed">“URGENT: Drinking boiled garlic water cures pneumonia in 24 hours. Forward to everyone you love!”</p>
+                    </div>
+                    <div class="mt-3 flex items-center justify-between">
+                        <span class="px-2.5 py-1 rounded-md bg-red-500/20 border border-red-300/30 text-red-100 text-xs font-black uppercase"><i class="fa-solid fa-circle-xmark mr-1"></i> False / Hoax</span>
+                        <span class="text-xs font-bold text-white">Confidence 96%</span>
+                    </div>
+                    <div class="mt-3 grid grid-cols-2 gap-2 text-[11px]">
+                        <div class="bg-white/10 rounded-lg px-3 py-2"><i class="fa-solid fa-hand text-cyan-200 mr-1"></i> Stop — pause the reaction</div>
+                        <div class="bg-white/10 rounded-lg px-3 py-2"><i class="fa-solid fa-user-shield text-cyan-200 mr-1"></i> Investigate the source</div>
+                        <div class="bg-white/10 rounded-lg px-3 py-2"><i class="fa-solid fa-newspaper text-cyan-200 mr-1"></i> Find better coverage</div>
+                        <div class="bg-white/10 rounded-lg px-3 py-2"><i class="fa-solid fa-arrow-turn-down text-cyan-200 mr-1"></i> Trace the claim</div>
+                    </div>
+                    <p class="mt-3 text-[11px] text-indigo-200"><i class="fa-solid fa-shield-heart mr-1"></i> Sources: WHO · BOOM Live · Alt News</p>
                 </div>
             </div>
 
-            <!-- Stats Bar Inside Hero -->
-            <div class="relative z-10 grid grid-cols-2 sm:grid-cols-5 gap-4 mt-8 pt-8 border-t border-white/20">
+            <!-- Stats bar -->
+            <div class="relative z-10 grid grid-cols-2 sm:grid-cols-5 gap-4 mt-9 pt-8 border-t border-white/20">
                 <div>
                     <div class="text-2xl sm:text-3xl font-black" id="stat-impressions">1,415+</div>
-                    <div class="text-xs text-indigo-100 font-medium">Campaign Impressions</div>
+                    <div class="text-xs text-indigo-100 font-medium">Campaign impressions</div>
                 </div>
                 <div>
                     <div class="text-2xl sm:text-3xl font-black" id="stat-workshops">118</div>
-                    <div class="text-xs text-indigo-100 font-medium">Workshop Attendees</div>
+                    <div class="text-xs text-indigo-100 font-medium">Workshop attendees</div>
                 </div>
                 <div>
                     <div class="text-2xl sm:text-3xl font-black" id="stat-reduction">-62.1%</div>
-                    <div class="text-xs text-indigo-100 font-medium">Susceptibility Drop</div>
+                    <div class="text-xs text-indigo-100 font-medium">Susceptibility drop</div>
                 </div>
                 <div>
                     <div class="text-2xl sm:text-3xl font-black" id="stat-shift">+48.3%</div>
-                    <div class="text-xs text-indigo-100 font-medium">Fact-Checking Shift</div>
+                    <div class="text-xs text-indigo-100 font-medium">Fact-checking shift</div>
                 </div>
                 <div>
                     <div class="text-2xl sm:text-3xl font-black" id="stat-multipliers">14</div>
-                    <div class="text-xs text-indigo-100 font-medium">Peer Multipliers</div>
+                    <div class="text-xs text-indigo-100 font-medium">Peer multipliers</div>
                 </div>
             </div>
         </section>
 
-        <!-- SECTION 1: Interactive SIFT Fact-Checking Verification Engine -->
-        <section id="fact-checker" class="scroll-mt-20">
-            <div class="card-glass rounded-3xl p-6 sm:p-10 border border-slate-200 shadow-lg">
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-6 mb-6">
-                    <div>
-                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-bold uppercase bg-indigo-100 text-indigo-700">
-                            <i class="fa-solid fa-microchip"></i> SIFT Heuristic Engine
-                        </span>
-                        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mt-2">Interactive Rumor Debunker & Fact Checker</h2>
-                        <p class="text-slate-600 text-sm mt-1">Submit any viral WhatsApp forward, health claim, or social post to run the 4-step SIFT verification analysis.</p>
+        <!-- Campaign / Problem -->
+        <section id="campaign" class="scroll-mt-24">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="lg:col-span-2">
+                    <span class="section-kicker"><i class="fa-solid fa-circle-exclamation"></i> The challenge</span>
+                    <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mt-3">A forward is faster than a fact-check.</h2>
+                    <p class="text-slate-600 text-sm sm:text-base mt-3 leading-relaxed">
+                        Young adults meet most news inside private group chats and short-form feeds, where context is stripped away and urgency is engineered. A single forwarded voice note can empty a clinic, trigger a scam, or deepen a communal divide. The gap is not intelligence — it is a repeatable verification habit.
+                    </p>
+                    <p class="text-slate-600 text-sm sm:text-base mt-3 leading-relaxed">
+                        TruthLens (CUSoC S-09) closes that gap with a six-week campus campaign: two hands-on masterclasses, student peer multipliers, a public fact-check resource guide, and a website that turns the SIFT method into a two-minute routine.
+                    </p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
+                        <div class="bg-white rounded-2xl border border-slate-200 p-5 feature-card">
+                            <div class="w-10 h-10 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center text-lg"><i class="fa-solid fa-notes-medical"></i></div>
+                            <h3 class="font-bold text-slate-900 mt-3 text-sm">Health myths</h3>
+                            <p class="text-xs text-slate-600 mt-1 leading-relaxed">Miracle cures and anti-vaccine forwards delay real treatment and put families at risk.</p>
+                        </div>
+                        <div class="bg-white rounded-2xl border border-slate-200 p-5 feature-card">
+                            <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-lg"><i class="fa-solid fa-money-bill-transfer"></i></div>
+                            <h3 class="font-bold text-slate-900 mt-3 text-sm">Phishing &amp; scams</h3>
+                            <p class="text-xs text-slate-600 mt-1 leading-relaxed">Fake scholarships and subsidy links harvest OTPs, bank credentials, and personal data.</p>
+                        </div>
+                        <div class="bg-white rounded-2xl border border-slate-200 p-5 feature-card">
+                            <div class="w-10 h-10 rounded-xl bg-violet-50 text-violet-600 flex items-center justify-center text-lg"><i class="fa-solid fa-user-secret"></i></div>
+                            <h3 class="font-bold text-slate-900 mt-3 text-sm">Deepfakes &amp; AI</h3>
+                            <p class="text-xs text-slate-600 mt-1 leading-relaxed">Synthetic voices and face swaps make manipulated clips look like first-hand evidence.</p>
+                        </div>
                     </div>
-                    <div class="flex items-center gap-2">
-                        <button onclick="fillSample(1)" class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs rounded-lg transition">Sample: Health Cure</button>
-                        <button onclick="fillSample(2)" class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs rounded-lg transition">Sample: Free Laptop</button>
-                        <button onclick="fillSample(3)" class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs rounded-lg transition">Sample: 5G Virus</button>
+                </div>
+
+                <aside class="bg-slate-900 text-white rounded-3xl p-6 sm:p-7 shadow-lg flex flex-col justify-between">
+                    <div>
+                        <span class="text-[11px] font-black uppercase tracking-widest text-cyan-300">Campaign snapshot</span>
+                        <h3 class="text-xl font-black mt-2">Built for campus reality</h3>
+                        <dl class="mt-5 space-y-4 text-sm">
+                            <div class="flex items-start gap-3">
+                                <i class="fa-solid fa-users text-cyan-300 mt-1"></i>
+                                <div><dt class="font-bold">Audience</dt><dd class="text-slate-300 text-xs mt-0.5">Young adults aged 18–25 in colleges and hostels</dd></div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <i class="fa-solid fa-calendar-days text-cyan-300 mt-1"></i>
+                                <div><dt class="font-bold">Format</dt><dd class="text-slate-300 text-xs mt-0.5">Six-week campus campaign with two masterclasses</dd></div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <i class="fa-solid fa-chalkboard-user text-cyan-300 mt-1"></i>
+                                <div><dt class="font-bold">Delivery</dt><dd class="text-slate-300 text-xs mt-0.5">SIFT training, reverse-image drills, and peer multiplier certification</dd></div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <i class="fa-solid fa-chart-line text-cyan-300 mt-1"></i>
+                                <div><dt class="font-bold">Measurement</dt><dd class="text-slate-300 text-xs mt-0.5">Baseline vs endline surveys plus channel analytics</dd></div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <i class="fa-solid fa-file-shield text-cyan-300 mt-1"></i>
+                                <div><dt class="font-bold">Evidence</dt><dd class="text-slate-300 text-xs mt-0.5">Survey analysis, social analytics, workshop logs, and final impact report</dd></div>
+                            </div>
+                        </dl>
+                    </div>
+                    <a href="docs/FINAL_IMPACT_REPORT.md" class="mt-6 inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-white text-slate-900 font-bold rounded-xl text-xs hover:bg-cyan-50 transition">
+                        <i class="fa-solid fa-file-lines"></i> Read the final impact report
+                    </a>
+                </aside>
+            </div>
+
+            <!-- Six-week timeline -->
+            <div class="mt-8 bg-white border border-slate-200 rounded-2xl p-5 sm:p-6">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+                    <h3 class="text-sm font-black uppercase tracking-wider text-slate-700"><i class="fa-solid fa-timeline text-indigo-500 mr-2"></i>Campaign timeline</h3>
+                    <span class="text-xs text-slate-500">Six weeks · design → delivery → measurement</span>
+                </div>
+                <ol class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 text-xs">
+                    <li class="p-3 rounded-xl bg-slate-50 border border-slate-200"><span class="font-black text-indigo-600">W1</span><p class="font-semibold text-slate-800 mt-1">Literature review &amp; baseline survey design</p></li>
+                    <li class="p-3 rounded-xl bg-slate-50 border border-slate-200"><span class="font-black text-indigo-600">W2</span><p class="font-semibold text-slate-800 mt-1">Baseline rollout &amp; campaign creatives</p></li>
+                    <li class="p-3 rounded-xl bg-slate-50 border border-slate-200"><span class="font-black text-indigo-600">W3</span><p class="font-semibold text-slate-800 mt-1">Campus launch &amp; Masterclass 1: SIFT tools</p></li>
+                    <li class="p-3 rounded-xl bg-slate-50 border border-slate-200"><span class="font-black text-indigo-600">W4</span><p class="font-semibold text-slate-800 mt-1">Masterclass 2: deepfakes &amp; WhatsApp forensics</p></li>
+                    <li class="p-3 rounded-xl bg-slate-50 border border-slate-200"><span class="font-black text-indigo-600">W5</span><p class="font-semibold text-slate-800 mt-1">Resource guide release &amp; peer multiplier training</p></li>
+                    <li class="p-3 rounded-xl bg-slate-50 border border-slate-200"><span class="font-black text-indigo-600">W6</span><p class="font-semibold text-slate-800 mt-1">Endline survey, analytics &amp; final impact report</p></li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- SIFT Framework -->
+        <section id="sift" class="scroll-mt-24">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
+                <div>
+                    <span class="section-kicker"><i class="fa-solid fa-layer-group"></i> The method</span>
+                    <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mt-3">Four moves. Two minutes. Better decisions.</h2>
+                    <p class="text-slate-600 text-sm mt-2 max-w-2xl">SIFT is a lateral-reading routine developed by media literacy researcher Mike Caulfield. It replaces “does this feel true?” with a repeatable check.</p>
+                </div>
+                <a href="#fact-checker" class="text-sm font-bold text-indigo-600 hover:text-indigo-800 inline-flex items-center gap-2">Try it on a claim <i class="fa-solid fa-arrow-right text-xs"></i></a>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                <div class="bg-white rounded-2xl border border-slate-200 p-5 feature-card">
+                    <div class="w-12 h-12 rounded-xl bg-indigo-600 text-white text-2xl font-black flex items-center justify-center shadow-md">S</div>
+                    <h3 class="font-black text-slate-900 mt-4">Stop</h3>
+                    <p class="text-xs text-slate-600 mt-2 leading-relaxed">Notice the emotional spike — fear, anger, urgency. Pause before liking, commenting, or forwarding.</p>
+                    <p class="text-[11px] text-indigo-600 font-semibold mt-3"><i class="fa-solid fa-lightbulb mr-1"></i> Ask: why is this reaching me right now?</p>
+                </div>
+                <div class="bg-white rounded-2xl border border-slate-200 p-5 feature-card">
+                    <div class="w-12 h-12 rounded-xl bg-sky-600 text-white text-2xl font-black flex items-center justify-center shadow-md">I</div>
+                    <h3 class="font-black text-slate-900 mt-4">Investigate the source</h3>
+                    <p class="text-xs text-slate-600 mt-2 leading-relaxed">Look up the domain, author, publication date, and whether the account actually exists.</p>
+                    <p class="text-[11px] text-sky-600 font-semibold mt-3"><i class="fa-solid fa-globe mr-1"></i> Check: .gov.in / known newsroom / anonymous page?</p>
+                </div>
+                <div class="bg-white rounded-2xl border border-slate-200 p-5 feature-card">
+                    <div class="w-12 h-12 rounded-xl bg-cyan-600 text-white text-2xl font-black flex items-center justify-center shadow-md">F</div>
+                    <h3 class="font-black text-slate-900 mt-4">Find better coverage</h3>
+                    <p class="text-xs text-slate-600 mt-2 leading-relaxed">Search the claim itself. Prefer IFCN-certified fact-checkers and primary documents over reposts.</p>
+                    <p class="text-[11px] text-cyan-700 font-semibold mt-3"><i class="fa-solid fa-magnifying-glass mr-1"></i> Try: PIB Fact Check, BOOM Live, Alt News</p>
+                </div>
+                <div class="bg-white rounded-2xl border border-slate-200 p-5 feature-card">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-600 text-white text-2xl font-black flex items-center justify-center shadow-md">T</div>
+                    <h3 class="font-black text-slate-900 mt-4">Trace claims</h3>
+                    <p class="text-xs text-slate-600 mt-2 leading-relaxed">Reverse-search the image or video. Find the original upload, date, and full context.</p>
+                    <p class="text-[11px] text-emerald-700 font-semibold mt-3"><i class="fa-solid fa-camera-retro mr-1"></i> Use: Google Lens, TinEye, InVID-WeVerify</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SIFT Analyzer -->
+        <section id="fact-checker" class="scroll-mt-24">
+            <div class="card-glass rounded-3xl p-6 sm:p-10 border border-slate-200 shadow-lg">
+                <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-slate-100 pb-6 mb-6">
+                    <div>
+                        <span class="section-kicker"><i class="fa-solid fa-microchip"></i> SIFT heuristic engine</span>
+                        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mt-2">Interactive rumor debunker</h2>
+                        <p class="text-slate-600 text-sm mt-1">Paste a viral forward, health claim, or social post. The engine matches it against known misinformation patterns and walks you through SIFT.</p>
+                    </div>
+                    <div class="flex flex-wrap items-center gap-2">
+                        <button type="button" onclick="fillSample(1)" class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs rounded-lg transition">Sample: health cure</button>
+                        <button type="button" onclick="fillSample(2)" class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs rounded-lg transition">Sample: free laptop</button>
+                        <button type="button" onclick="fillSample(3)" class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs rounded-lg transition">Sample: 5G virus</button>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-                    <!-- Claim Input Form -->
                     <div class="lg:col-span-5 space-y-4">
                         <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">Claim or Forwarded Text</label>
-                            <textarea id="claim-text" rows="5" placeholder="Paste claim here (e.g. 'Drinking hot lemon water kills all cancer cells completely...')" class="w-full p-3.5 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition resize-none"></textarea>
+                            <label for="claim-text" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">Claim or forwarded text</label>
+                            <textarea id="claim-text" rows="5" placeholder="Paste the claim here, e.g. 'Drinking hot lemon water kills all cancer cells completely…'" class="w-full p-3.5 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition resize-none"></textarea>
                         </div>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                             <div>
-                                <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">Category</label>
+                                <label for="claim-category" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">Category</label>
                                 <select id="claim-category" class="w-full p-2.5 border border-slate-300 rounded-xl text-xs font-medium focus:ring-2 focus:ring-indigo-500 outline-none">
-                                    <option value="HEALTH">Health & Medical Myths</option>
-                                    <option value="FINANCIAL">Financial / Phishing Lures</option>
-                                    <option value="POLITICS">Political / Viral News</option>
-                                    <option value="DEEPFAKES">Deepfake / Synthetic Media</option>
-                                    <option value="GENERAL">General Forward</option>
+                                    <option value="HEALTH">Health &amp; medical myths</option>
+                                    <option value="FINANCIAL">Financial / phishing lures</option>
+                                    <option value="POLITICS">Political / viral news</option>
+                                    <option value="DEEPFAKES">Deepfake / synthetic media</option>
+                                    <option value="GENERAL">General forward</option>
                                 </select>
                             </div>
                             <div>
-                                <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">Source Platform</label>
+                                <label for="claim-source" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">Source platform</label>
                                 <select id="claim-source" class="w-full p-2.5 border border-slate-300 rounded-xl text-xs font-medium focus:ring-2 focus:ring-indigo-500 outline-none">
-                                    <option value="WHATSAPP">WhatsApp Forward</option>
+                                    <option value="WHATSAPP">WhatsApp forward</option>
                                     <option value="INSTAGRAM">Instagram / Reels</option>
-                                    <option value="TELEGRAM">Telegram Channel</option>
+                                    <option value="TELEGRAM">Telegram channel</option>
                                     <option value="TWITTER_X">X (Twitter)</option>
-                                    <option value="OTHER">Other / Web</option>
+                                    <option value="OTHER">Other / web</option>
                                 </select>
                             </div>
                         </div>
 
-                        <button id="verify-btn" onclick="verifyClaim()" class="w-full py-3.5 gradient-brand text-white font-bold rounded-xl text-sm shadow-md hover:opacity-95 transition flex items-center justify-center gap-2">
-                            <i class="fa-solid fa-magnifying-glass-arrow-right"></i> Verify Claim with SIFT Engine
+                        <button id="verify-btn" type="button" onclick="verifyClaim()" class="w-full py-3.5 gradient-brand text-white font-bold rounded-xl text-sm shadow-md hover:opacity-95 transition flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-magnifying-glass-arrow-right"></i> Verify claim with SIFT
                         </button>
+                        <p class="text-[11px] text-slate-500 leading-relaxed">
+                            <i class="fa-solid fa-circle-info mr-1 text-slate-400"></i>
+                            The matching engine is a transparent demo of the SIFT workflow. For live breaking claims, cross-check the linked fact-checkers.
+                        </p>
                     </div>
 
-                    <!-- Result Panel -->
-                    <div class="lg:col-span-7 bg-slate-50 border border-slate-200 rounded-2xl p-6 flex flex-col justify-between" id="result-box">
+                    <div class="lg:col-span-7 bg-slate-50 border border-slate-200 rounded-2xl p-6 flex flex-col justify-between" id="result-box" aria-live="polite">
                         <div id="result-placeholder" class="h-full flex flex-col items-center justify-center text-center py-10 space-y-3">
                             <div class="w-14 h-14 rounded-2xl bg-indigo-100 text-indigo-600 flex items-center justify-center text-2xl">
                                 <i class="fa-solid fa-shield-cat"></i>
                             </div>
-                            <h3 class="font-bold text-slate-700">Awaiting Verification Query</h3>
-                            <p class="text-xs text-slate-500 max-w-sm">Enter a claim or click a sample button to trigger SIFT framework decomposition and verified fact-checking matching.</p>
+                            <h3 class="font-bold text-slate-700">Awaiting verification query</h3>
+                            <p class="text-xs text-slate-500 max-w-sm">Enter a claim or click a sample to see a verdict, confidence score, the four SIFT steps, and trusted sources.</p>
                         </div>
 
                         <div id="result-content" class="hidden space-y-4">
-                            <!-- Verdict Badge & Confidence -->
-                            <div class="flex items-center justify-between">
+                            <div class="flex items-center justify-between gap-3">
                                 <span id="res-badge" class="px-3 py-1 rounded-md font-bold text-xs uppercase"></span>
                                 <span id="res-confidence" class="text-xs font-bold text-slate-600"></span>
                             </div>
 
-                            <!-- Summary Explanation -->
                             <div>
-                                <h4 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Debunk Summary</h4>
+                                <h4 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Debunk summary</h4>
                                 <p id="res-summary" class="text-sm font-semibold text-slate-800 bg-white p-3 rounded-xl border border-slate-200"></p>
                             </div>
 
-                            <!-- SIFT 4-Step Breakdown -->
+                            <div id="res-flags-wrap" class="hidden">
+                                <h4 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Warning flags</h4>
+                                <div id="res-flags" class="flex flex-wrap gap-2"></div>
+                            </div>
+
                             <div class="space-y-2">
-                                <h4 class="text-xs font-bold uppercase tracking-wider text-slate-500">SIFT 4-Step Verification Guide</h4>
+                                <h4 class="text-xs font-bold uppercase tracking-wider text-slate-500">SIFT 4-step verification guide</h4>
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
                                     <div class="p-2.5 bg-white rounded-lg border border-slate-200">
-                                        <span class="font-bold text-indigo-600 block mb-0.5"><i class="fa-solid fa-hand"></i> S - Stop</span>
+                                        <span class="font-bold text-indigo-600 block mb-0.5"><i class="fa-solid fa-hand"></i> S — Stop</span>
                                         <span id="sift-s" class="text-slate-600"></span>
                                     </div>
                                     <div class="p-2.5 bg-white rounded-lg border border-slate-200">
-                                        <span class="font-bold text-indigo-600 block mb-0.5"><i class="fa-solid fa-user-shield"></i> I - Investigate Source</span>
+                                        <span class="font-bold text-indigo-600 block mb-0.5"><i class="fa-solid fa-user-shield"></i> I — Investigate source</span>
                                         <span id="sift-i" class="text-slate-600"></span>
                                     </div>
                                     <div class="p-2.5 bg-white rounded-lg border border-slate-200">
-                                        <span class="font-bold text-indigo-600 block mb-0.5"><i class="fa-solid fa-newspaper"></i> F - Find Coverage</span>
+                                        <span class="font-bold text-indigo-600 block mb-0.5"><i class="fa-solid fa-newspaper"></i> F — Find coverage</span>
                                         <span id="sift-f" class="text-slate-600"></span>
                                     </div>
                                     <div class="p-2.5 bg-white rounded-lg border border-slate-200">
-                                        <span class="font-bold text-indigo-600 block mb-0.5"><i class="fa-solid fa-arrow-turn-down"></i> T - Trace Claims</span>
+                                        <span class="font-bold text-indigo-600 block mb-0.5"><i class="fa-solid fa-arrow-turn-down"></i> T — Trace claims</span>
                                         <span id="sift-t" class="text-slate-600"></span>
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- Verified Sources & Action -->
                             <div class="border-t border-slate-200 pt-3 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 text-xs">
                                 <div>
-                                    <span class="font-bold text-slate-700">Verified By: </span>
+                                    <span class="font-bold text-slate-700">Verified by: </span>
                                     <span id="res-sources" class="text-slate-600"></span>
                                 </div>
                                 <span id="res-action" class="font-bold text-indigo-600"></span>
@@ -240,357 +408,546 @@
             </div>
         </section>
 
-        <!-- SECTION 2: Misinformation Education Modules -->
-        <section id="modules" class="scroll-mt-20">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+        <!-- Learning Modules -->
+        <section id="modules" class="scroll-mt-24">
+            <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-4 mb-6">
                 <div>
-                    <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded text-xs font-bold uppercase bg-indigo-100 text-indigo-700">
-                        <i class="fa-solid fa-book"></i> Interactive Curriculum
-                    </span>
-                    <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mt-1">Digital Literacy & Verification Modules</h2>
-                    <p class="text-slate-600 text-sm">Micro-learning units covering misinformation typologies, reverse forensics, and critical reading.</p>
+                    <span class="section-kicker"><i class="fa-solid fa-book"></i> Interactive curriculum</span>
+                    <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mt-3">Digital literacy modules</h2>
+                    <p class="text-slate-600 text-sm mt-2">Micro-learning units on misinformation typologies, reverse forensics, and critical reading.</p>
                 </div>
-                <div class="flex flex-wrap gap-2">
-                    <button onclick="filterModules('ALL')" class="mod-tab px-3 py-1.5 text-xs font-semibold rounded-lg bg-indigo-600 text-white shadow-sm">All</button>
-                    <button onclick="filterModules('DIGITAL_LITERACY')" class="mod-tab px-3 py-1.5 text-xs font-semibold rounded-lg bg-white text-slate-700 border border-slate-200 hover:bg-slate-50">SIFT Literacy</button>
-                    <button onclick="filterModules('HEALTH_MYTHS')" class="mod-tab px-3 py-1.5 text-xs font-semibold rounded-lg bg-white text-slate-700 border border-slate-200 hover:bg-slate-50">Health Myths</button>
-                    <button onclick="filterModules('DEEPFAKES')" class="mod-tab px-3 py-1.5 text-xs font-semibold rounded-lg bg-white text-slate-700 border border-slate-200 hover:bg-slate-50">Deepfakes & AI</button>
-                    <button onclick="filterModules('WHATSAPP_RUMORS')" class="mod-tab px-3 py-1.5 text-xs font-semibold rounded-lg bg-white text-slate-700 border border-slate-200 hover:bg-slate-50">WhatsApp</button>
-                    <button onclick="filterModules('FINANCIAL_SCAMS')" class="mod-tab px-3 py-1.5 text-xs font-semibold rounded-lg bg-white text-slate-700 border border-slate-200 hover:bg-slate-50">Scams</button>
+                <div class="flex flex-wrap gap-2" id="module-tabs" role="group" aria-label="Filter modules">
+                    <button type="button" onclick="filterModules(this, 'ALL')" data-cat="ALL" class="mod-tab px-3 py-1.5 text-xs font-semibold rounded-lg bg-indigo-600 text-white shadow-sm" aria-pressed="true">All</button>
+                    <button type="button" onclick="filterModules(this, 'DIGITAL_LITERACY')" data-cat="DIGITAL_LITERACY" class="mod-tab px-3 py-1.5 text-xs font-semibold rounded-lg bg-white text-slate-700 border border-slate-200 hover:bg-slate-50" aria-pressed="false">SIFT literacy</button>
+                    <button type="button" onclick="filterModules(this, 'HEALTH_MYTHS')" data-cat="HEALTH_MYTHS" class="mod-tab px-3 py-1.5 text-xs font-semibold rounded-lg bg-white text-slate-700 border border-slate-200 hover:bg-slate-50" aria-pressed="false">Health myths</button>
+                    <button type="button" onclick="filterModules(this, 'DEEPFAKES')" data-cat="DEEPFAKES" class="mod-tab px-3 py-1.5 text-xs font-semibold rounded-lg bg-white text-slate-700 border border-slate-200 hover:bg-slate-50" aria-pressed="false">Deepfakes &amp; AI</button>
+                    <button type="button" onclick="filterModules(this, 'WHATSAPP_RUMORS')" data-cat="WHATSAPP_RUMORS" class="mod-tab px-3 py-1.5 text-xs font-semibold rounded-lg bg-white text-slate-700 border border-slate-200 hover:bg-slate-50" aria-pressed="false">WhatsApp</button>
+                    <button type="button" onclick="filterModules(this, 'FINANCIAL_SCAMS')" data-cat="FINANCIAL_SCAMS" class="mod-tab px-3 py-1.5 text-xs font-semibold rounded-lg bg-white text-slate-700 border border-slate-200 hover:bg-slate-50" aria-pressed="false">Scams</button>
+                    <button type="button" onclick="filterModules(this, 'FACT_CHECKING_TOOLS')" data-cat="FACT_CHECKING_TOOLS" class="mod-tab px-3 py-1.5 text-xs font-semibold rounded-lg bg-white text-slate-700 border border-slate-200 hover:bg-slate-50" aria-pressed="false">Tools</button>
                 </div>
             </div>
 
-            <div id="modules-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Modules injected by JS -->
-                <div class="col-span-full py-8 text-center text-slate-400">Loading educational modules...</div>
+            <div id="modules-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="col-span-full py-8 text-center text-slate-400">Loading educational modules…</div>
             </div>
         </section>
 
-        <!-- SECTION 3: Misinformation Susceptibility Assessment Quiz -->
-        <section id="quiz" class="scroll-mt-20">
+        <!-- Quiz -->
+        <section id="quiz" class="scroll-mt-24">
             <div class="bg-gradient-to-br from-indigo-50 to-blue-50 border border-indigo-100 rounded-3xl p-6 sm:p-10 shadow-sm">
                 <div class="max-w-3xl mb-6">
-                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-bold uppercase bg-indigo-100 text-indigo-700">
-                        <i class="fa-solid fa-square-poll-vertical"></i> Baseline & Endline Survey Tool
-                    </span>
-                    <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mt-2">Test Your Misinformation Susceptibility Score</h2>
-                    <p class="text-slate-600 text-sm mt-1">Answer 4 quick scenario questions to diagnose your verification habits and media literacy resilience.</p>
+                    <span class="section-kicker"><i class="fa-solid fa-square-poll-vertical"></i> Baseline &amp; endline survey tool</span>
+                    <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mt-3">How susceptible are you?</h2>
+                    <p class="text-slate-600 text-sm mt-2">Four quick scenarios mirror the baseline survey used in the campaign. Your score is an educational self-check, not a diagnosis.</p>
                 </div>
 
                 <form id="quiz-form" onsubmit="submitQuiz(event)" class="space-y-6 max-w-4xl">
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                         <div>
-                            <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Your Name / Identifier</label>
-                            <input type="text" id="quiz-user" required placeholder="Student ID or Name" class="w-full p-2.5 bg-white border border-slate-300 rounded-xl text-xs font-medium">
+                            <label for="quiz-user" class="block text-xs font-bold uppercase text-slate-700 mb-1">Name or student ID</label>
+                            <input type="text" id="quiz-user" required placeholder="Student ID or name" class="w-full p-2.5 bg-white border border-slate-300 rounded-xl text-xs font-medium">
                         </div>
                         <div>
-                            <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Primary App for News</label>
+                            <label for="quiz-source" class="block text-xs font-bold uppercase text-slate-700 mb-1">Where do you get news?</label>
                             <select id="quiz-source" class="w-full p-2.5 bg-white border border-slate-300 rounded-xl text-xs font-medium">
                                 <option value="WHATSAPP">WhatsApp</option>
                                 <option value="INSTAGRAM">Instagram / Reels</option>
                                 <option value="TELEGRAM">Telegram</option>
-                                <option value="TWITTER">X (Twitter)</option>
-                                <option value="NEWS_WEBSITES">Direct News Portals</option>
+                                <option value="TWITTER_X">X (Twitter)</option>
+                                <option value="NEWS_SITES">Direct news portals</option>
                             </select>
                         </div>
                         <div>
-                            <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Survey Phase</label>
+                            <label for="quiz-phase" class="block text-xs font-bold uppercase text-slate-700 mb-1">Survey phase</label>
                             <select id="quiz-phase" class="w-full p-2.5 bg-white border border-slate-300 rounded-xl text-xs font-medium">
-                                <option value="BASELINE">Baseline (Pre-Training)</option>
-                                <option value="POST_CAMPAIGN">Endline (Post-Training)</option>
+                                <option value="BASELINE">Baseline (pre-training)</option>
+                                <option value="POST_CAMPAIGN">Endline (post-training)</option>
                             </select>
                         </div>
                     </div>
 
-                    <!-- Question 1 -->
                     <div class="p-4 bg-white rounded-xl border border-slate-200">
-                        <p class="font-bold text-slate-900 text-sm mb-2">1. How frequently do you verify viral WhatsApp / Instagram claims before forwarding them?</p>
+                        <p class="font-bold text-slate-900 text-sm mb-2">1. How often do you verify viral WhatsApp or Instagram claims before forwarding them?</p>
                         <div class="grid grid-cols-1 sm:grid-cols-4 gap-2 text-xs">
-                            <label class="p-2.5 border rounded-lg flex items-center gap-2 cursor-pointer hover:bg-slate-50"><input type="radio" name="q1" value="NEVER" required> Never / Rarely</label>
+                            <label class="p-2.5 border rounded-lg flex items-center gap-2 cursor-pointer hover:bg-slate-50"><input type="radio" name="q1" value="NEVER" required> Never / rarely</label>
                             <label class="p-2.5 border rounded-lg flex items-center gap-2 cursor-pointer hover:bg-slate-50"><input type="radio" name="q1" value="SOMETIMES"> Only if it looks suspicious</label>
                             <label class="p-2.5 border rounded-lg flex items-center gap-2 cursor-pointer hover:bg-slate-50"><input type="radio" name="q1" value="OFTEN"> Often for news claims</label>
-                            <label class="p-2.5 border rounded-lg flex items-center gap-2 cursor-pointer hover:bg-slate-50"><input type="radio" name="q1" value="ALWAYS"> Always using SIFT / tools</label>
+                            <label class="p-2.5 border rounded-lg flex items-center gap-2 cursor-pointer hover:bg-slate-50"><input type="radio" name="q1" value="ALWAYS"> Always, using SIFT</label>
                         </div>
                     </div>
 
-                    <!-- Question 2 -->
                     <div class="p-4 bg-white rounded-xl border border-slate-200">
-                        <p class="font-bold text-slate-900 text-sm mb-2">2. A message says "URGENT: Government giving Rs 5,000 cash aid to all students. Click bit.ly/gov-aid-2026". What do you do?</p>
+                        <p class="font-bold text-slate-900 text-sm mb-2">2. A message says: “URGENT: Government giving ₹5,000 cash aid to all students. Click bit.ly/gov-aid-2026.” What do you do?</p>
                         <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs">
-                            <label class="p-2.5 border rounded-lg flex items-center gap-2 cursor-pointer hover:bg-slate-50"><input type="radio" name="q2" value="HIGH" required> Click link & share to friends</label>
-                            <label class="p-2.5 border rounded-lg flex items-center gap-2 cursor-pointer hover:bg-slate-50"><input type="radio" name="q2" value="MEDIUM"> Wait to see if friends get money</label>
-                            <label class="p-2.5 border rounded-lg flex items-center gap-2 cursor-pointer hover:bg-slate-50"><input type="radio" name="q2" value="LOW"> Check PIB Fact Check / official .gov.in portal</label>
+                            <label class="p-2.5 border rounded-lg flex items-center gap-2 cursor-pointer hover:bg-slate-50"><input type="radio" name="q2" value="HIGH" required> Click the link and share it</label>
+                            <label class="p-2.5 border rounded-lg flex items-center gap-2 cursor-pointer hover:bg-slate-50"><input type="radio" name="q2" value="MEDIUM"> Wait to see if friends get paid</label>
+                            <label class="p-2.5 border rounded-lg flex items-center gap-2 cursor-pointer hover:bg-slate-50"><input type="radio" name="q2" value="LOW"> Check PIB Fact Check / an official .gov.in portal</label>
                         </div>
                     </div>
 
-                    <!-- Question 3 -->
                     <div class="p-4 bg-white rounded-xl border border-slate-200">
-                        <p class="font-bold text-slate-900 text-sm mb-2">3. What does the "S" in the SIFT media literacy framework stand for?</p>
+                        <p class="font-bold text-slate-900 text-sm mb-2">3. What does the “S” in SIFT stand for?</p>
                         <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs">
                             <label class="p-2.5 border rounded-lg flex items-center gap-2 cursor-pointer hover:bg-slate-50"><input type="radio" name="q3" value="INCORRECT_1" required> Share immediately</label>
-                            <label class="p-2.5 border rounded-lg flex items-center gap-2 cursor-pointer hover:bg-slate-50"><input type="radio" name="q3" value="CORRECT"> STOP: Check your emotional reaction</label>
+                            <label class="p-2.5 border rounded-lg flex items-center gap-2 cursor-pointer hover:bg-slate-50"><input type="radio" name="q3" value="CORRECT"> Stop — check your emotional reaction</label>
                             <label class="p-2.5 border rounded-lg flex items-center gap-2 cursor-pointer hover:bg-slate-50"><input type="radio" name="q3" value="INCORRECT_2"> Search only on social media</label>
                         </div>
                     </div>
 
-                    <!-- Question 4 -->
                     <div class="p-4 bg-white rounded-xl border border-slate-200">
-                        <p class="font-bold text-slate-900 text-sm mb-2">4. Which tool is most effective for verifying if a viral disaster photo is recycled from an older event?</p>
+                        <p class="font-bold text-slate-900 text-sm mb-2">4. Which tool is most effective for checking whether a viral disaster photo is recycled from an old event?</p>
                         <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs">
-                            <label class="p-2.5 border rounded-lg flex items-center gap-2 cursor-pointer hover:bg-slate-50"><input type="radio" name="q4" value="CORRECT" required> Google Lens / TinEye Reverse Image Search</label>
-                            <label class="p-2.5 border rounded-lg flex items-center gap-2 cursor-pointer hover:bg-slate-50"><input type="radio" name="q4" value="INCORRECT_1"> Asking ChatGPT to confirm</label>
-                            <label class="p-2.5 border rounded-lg flex items-center gap-2 cursor-pointer hover:bg-slate-50"><input type="radio" name="q4" value="INCORRECT_2"> Checking Instagram likes</label>
+                            <label class="p-2.5 border rounded-lg flex items-center gap-2 cursor-pointer hover:bg-slate-50"><input type="radio" name="q4" value="CORRECT" required> Google Lens / TinEye reverse image search</label>
+                            <label class="p-2.5 border rounded-lg flex items-center gap-2 cursor-pointer hover:bg-slate-50"><input type="radio" name="q4" value="INCORRECT_1"> Asking a chatbot to confirm it</label>
+                            <label class="p-2.5 border rounded-lg flex items-center gap-2 cursor-pointer hover:bg-slate-50"><input type="radio" name="q4" value="INCORRECT_2"> Counting Instagram likes</label>
                         </div>
                     </div>
 
-                    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-2">
                         <button type="submit" class="w-full sm:w-auto px-8 py-3.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl shadow-md transition flex items-center justify-center gap-2">
-                            <i class="fa-solid fa-paper-plane"></i> Submit & Calculate Score
+                            <i class="fa-solid fa-paper-plane"></i> Submit &amp; calculate score
                         </button>
-                        <div id="quiz-feedback" class="text-sm font-semibold"></div>
+                        <div id="quiz-feedback" class="text-sm font-semibold" aria-live="polite"></div>
                     </div>
                 </form>
             </div>
         </section>
 
-        <!-- SECTION 4: Interactive Workshops Hub -->
-        <section id="workshops" class="scroll-mt-20">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+        <!-- Workshops -->
+        <section id="workshops" class="scroll-mt-24">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
                 <div>
-                    <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded text-xs font-bold uppercase bg-indigo-100 text-indigo-700">
-                        <i class="fa-solid fa-calendar-check"></i> Hands-On Training
-                    </span>
-                    <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mt-1">Workshops & Masterclasses</h2>
-                    <p class="text-slate-600 text-sm">Interactive sessions organized with student journalism clubs and certified fact-checkers.</p>
+                    <span class="section-kicker"><i class="fa-solid fa-calendar-check"></i> Hands-on training</span>
+                    <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mt-3">Workshops &amp; masterclasses</h2>
+                    <p class="text-slate-600 text-sm mt-2">Interactive sessions with student journalism clubs, media educators, and certified fact-checkers.</p>
                 </div>
+                <span class="text-xs text-slate-500"><i class="fa-solid fa-circle-info mr-1"></i> Demo data resets when the app restarts</span>
             </div>
 
             <div id="workshops-container" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="col-span-full py-8 text-center text-slate-400">Loading workshop schedules...</div>
+                <div class="col-span-full py-8 text-center text-slate-400">Loading workshop schedules…</div>
             </div>
         </section>
 
-        <!-- SECTION 5: Campaign Materials Gallery -->
-        <section id="campaign-assets" class="scroll-mt-20">
+        <!-- Campaign Materials -->
+        <section id="campaign-assets" class="scroll-mt-24">
             <div class="mb-6">
-                <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded text-xs font-bold uppercase bg-indigo-100 text-indigo-700">
-                    <i class="fa-solid fa-photo-film"></i> Multi-Format Assets
-                </span>
-                <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mt-1">Campaign Materials & Distribution Package</h2>
-                <p class="text-slate-600 text-sm">Downloadable infographics, WhatsApp anti-rumor cards, and Instagram Reel production scripts.</p>
+                <span class="section-kicker"><i class="fa-solid fa-photo-film"></i> Multi-format assets</span>
+                <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mt-3">Campaign materials &amp; distribution pack</h2>
+                <p class="text-slate-600 text-sm mt-2">Print-ready infographics and shareable cards. Free to reuse with attribution under CC BY-SA 4.0.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Asset 1 -->
-                <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition">
-                    <div class="bg-indigo-600 p-6 text-white text-center">
-                        <i class="fa-solid fa-file-invoice text-4xl mb-2"></i>
-                        <h3 class="font-bold text-lg">SIFT Pocket Cheat Sheet</h3>
-                        <p class="text-indigo-100 text-xs mt-1">Infographic Poster (Print & Digital)</p>
-                    </div>
+                <article class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition">
+                    <img src="assets/sift-cheat-sheet.svg" alt="SIFT pocket cheat sheet poster with four verification steps" class="asset-img" loading="lazy">
                     <div class="p-5 space-y-3">
-                        <p class="text-xs text-slate-600 leading-relaxed">A high-contrast visual guide detailing the 4 steps: Stop, Investigate the Source, Find Better Coverage, and Trace Claims.</p>
-                        <div class="flex items-center justify-between pt-2">
-                            <span class="text-[11px] font-semibold text-slate-500">Format: PDF / High-Res PNG</span>
-                            <a href="/docs/CAMPAIGN_MATERIALS.md" class="px-3 py-1.5 bg-indigo-50 text-indigo-700 hover:bg-indigo-100 rounded-lg text-xs font-bold transition">View Asset</a>
+                        <div>
+                            <h3 class="font-bold text-slate-900">SIFT pocket cheat sheet</h3>
+                            <p class="text-[11px] text-slate-500 mt-0.5">Infographic poster · print &amp; digital</p>
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed">A high-contrast visual guide to Stop, Investigate, Find better coverage, and Trace claims.</p>
+                        <div class="flex items-center justify-between pt-1">
+                            <span class="text-[11px] font-semibold text-slate-500">Format: SVG</span>
+                            <a href="assets/sift-cheat-sheet.svg" download class="px-3 py-1.5 bg-indigo-50 text-indigo-700 hover:bg-indigo-100 rounded-lg text-xs font-bold transition">Download</a>
                         </div>
                     </div>
-                </div>
+                </article>
 
-                <!-- Asset 2 -->
-                <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition">
-                    <div class="bg-emerald-600 p-6 text-white text-center">
-                        <i class="fa-brands fa-whatsapp text-4xl mb-2"></i>
-                        <h3 class="font-bold text-lg">WhatsApp Rumor Radar</h3>
-                        <p class="text-emerald-100 text-xs mt-1">Sticker & Copy-Paste Response Pack</p>
-                    </div>
+                <article class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition">
+                    <img src="assets/whatsapp-rumor-card.svg" alt="WhatsApp rumor radar card with a calm reply template" class="asset-img" loading="lazy">
                     <div class="p-5 space-y-3">
-                        <p class="text-xs text-slate-600 leading-relaxed">Polite, evidence-backed canned responses to counter fake forwards in family and college WhatsApp groups without conflict.</p>
-                        <div class="flex items-center justify-between pt-2">
-                            <span class="text-[11px] font-semibold text-slate-500">Format: Markdown / Stickers</span>
-                            <a href="/docs/CAMPAIGN_MATERIALS.md" class="px-3 py-1.5 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 rounded-lg text-xs font-bold transition">View Pack</a>
+                        <div>
+                            <h3 class="font-bold text-slate-900">WhatsApp rumor radar</h3>
+                            <p class="text-[11px] text-slate-500 mt-0.5">Response card · group-chat ready</p>
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed">A polite, evidence-backed reply you can paste into family and college groups without starting a fight.</p>
+                        <div class="flex items-center justify-between pt-1">
+                            <span class="text-[11px] font-semibold text-slate-500">Format: SVG</span>
+                            <a href="assets/whatsapp-rumor-card.svg" download class="px-3 py-1.5 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 rounded-lg text-xs font-bold transition">Download</a>
                         </div>
                     </div>
-                </div>
+                </article>
 
-                <!-- Asset 3 -->
-                <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition">
-                    <div class="bg-purple-600 p-6 text-white text-center">
-                        <i class="fa-brands fa-tiktok text-4xl mb-2"></i>
-                        <h3 class="font-bold text-lg">Reel & Short Video Scripts</h3>
-                        <p class="text-purple-100 text-xs mt-1">30-45s Engaging Video Scripts</p>
-                    </div>
+                <article class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition">
+                    <img src="assets/deepfake-checklist.svg" alt="Deepfake checklist with five signs a video may be AI generated" class="asset-img" loading="lazy">
                     <div class="p-5 space-y-3">
-                        <p class="text-xs text-slate-600 leading-relaxed">Hook-story-payoff scripts: "3 Signs That Viral Video is AI-Generated", "Why Drinking Garlic Water Won't Cure Pneumonia".</p>
-                        <div class="flex items-center justify-between pt-2">
-                            <span class="text-[11px] font-semibold text-slate-500">Format: Script Package</span>
-                            <a href="/docs/CAMPAIGN_MATERIALS.md" class="px-3 py-1.5 bg-purple-50 text-purple-700 hover:bg-purple-100 rounded-lg text-xs font-bold transition">Read Scripts</a>
+                        <div>
+                            <h3 class="font-bold text-slate-900">Deepfake checklist</h3>
+                            <p class="text-[11px] text-slate-500 mt-0.5">Verification card · 5 visual clues</p>
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed">Five clues that a viral clip may be synthetic, plus the tools to check before you share.</p>
+                        <div class="flex items-center justify-between pt-1">
+                            <span class="text-[11px] font-semibold text-slate-500">Format: SVG</span>
+                            <a href="assets/deepfake-checklist.svg" download class="px-3 py-1.5 bg-violet-50 text-violet-700 hover:bg-violet-100 rounded-lg text-xs font-bold transition">Download</a>
                         </div>
                     </div>
+                </article>
+            </div>
+
+            <div class="mt-6 bg-white border border-slate-200 rounded-2xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div>
+                    <h3 class="font-bold text-slate-900 text-sm">Need the full script pack and workshop slides?</h3>
+                    <p class="text-xs text-slate-600 mt-1">Campaign materials include 30–45s Reel scripts, poster copy, and facilitation notes.</p>
                 </div>
+                <a href="docs/CAMPAIGN_MATERIALS.md" class="inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-slate-900 text-white font-bold rounded-xl text-xs hover:bg-slate-800 transition">
+                    <i class="fa-solid fa-folder-open"></i> Open campaign materials
+                </a>
             </div>
         </section>
 
-        <!-- SECTION 6: Analytics & Impact Dashboard -->
-        <section id="analytics" class="scroll-mt-20">
+        <!-- Analytics -->
+        <section id="analytics" class="scroll-mt-24">
             <div class="card-glass rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-md">
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-6 mb-6">
                     <div>
-                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-bold uppercase bg-indigo-100 text-indigo-700">
-                            <i class="fa-solid fa-chart-line"></i> Campaign KPIs & Impact
-                        </span>
-                        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mt-2">Evaluation Metrics & Social Impact</h2>
-                        <p class="text-slate-600 text-sm mt-1">Live metrics verified against the S-09 Social Challenge criteria.</p>
+                        <span class="section-kicker"><i class="fa-solid fa-chart-line"></i> Campaign KPIs &amp; impact</span>
+                        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mt-2">Evaluation metrics &amp; social impact</h2>
+                        <p class="text-slate-600 text-sm mt-1">Live values from the campaign database, aligned with the S-09 social challenge targets.</p>
                     </div>
-                    <button onclick="loadAnalytics()" class="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs rounded-xl transition flex items-center gap-1.5">
-                        <i class="fa-solid fa-arrows-rotate"></i> Refresh Analytics
+                    <button type="button" onclick="loadAnalytics()" class="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs rounded-xl transition flex items-center gap-1.5">
+                        <i class="fa-solid fa-arrows-rotate"></i> Refresh analytics
                     </button>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     <div class="p-5 bg-white rounded-xl border border-slate-200">
-                        <span class="text-xs font-bold uppercase text-slate-500">Total Campaign Reach</span>
+                        <span class="text-xs font-bold uppercase text-slate-500">Total campaign reach</span>
                         <div class="text-3xl font-black text-indigo-600 mt-1" id="an-reach">1,415</div>
                         <div class="text-xs text-slate-500 mt-1">Impressions across channels</div>
-                        <div class="w-full bg-slate-100 h-2 rounded-full mt-3 overflow-hidden">
-                            <div class="bg-indigo-600 h-2 rounded-full" style="width: 100%"></div>
-                        </div>
+                        <div class="w-full bg-slate-100 h-2 rounded-full mt-3 overflow-hidden"><div class="bg-indigo-600 h-2 rounded-full" style="width: 100%"></div></div>
                         <span class="text-[10px] text-emerald-600 font-semibold mt-1 inline-block">141.5% of 1,000 target</span>
                     </div>
 
                     <div class="p-5 bg-white rounded-xl border border-slate-200">
-                        <span class="text-xs font-bold uppercase text-slate-500">Workshop Participants</span>
+                        <span class="text-xs font-bold uppercase text-slate-500">Workshop participants</span>
                         <div class="text-3xl font-black text-indigo-600 mt-1" id="an-workshops">118</div>
                         <div class="text-xs text-slate-500 mt-1">Directly trained in sessions</div>
-                        <div class="w-full bg-slate-100 h-2 rounded-full mt-3 overflow-hidden">
-                            <div class="bg-indigo-600 h-2 rounded-full" style="width: 100%"></div>
-                        </div>
+                        <div class="w-full bg-slate-100 h-2 rounded-full mt-3 overflow-hidden"><div class="bg-indigo-600 h-2 rounded-full" style="width: 100%"></div></div>
                         <span class="text-[10px] text-emerald-600 font-semibold mt-1 inline-block">118% of 100 target</span>
                     </div>
 
                     <div class="p-5 bg-white rounded-xl border border-slate-200">
-                        <span class="text-xs font-bold uppercase text-slate-500">Susceptibility Reduction</span>
+                        <span class="text-xs font-bold uppercase text-slate-500">Susceptibility reduction</span>
                         <div class="text-3xl font-black text-emerald-600 mt-1" id="an-reduction">62.1%</div>
-                        <div class="text-xs text-slate-500 mt-1">Baseline 7.4/10 -> Endline 2.8/10</div>
-                        <div class="w-full bg-slate-100 h-2 rounded-full mt-3 overflow-hidden">
-                            <div class="bg-emerald-500 h-2 rounded-full" style="width: 62.1%"></div>
-                        </div>
-                        <span class="text-[10px] text-emerald-600 font-semibold mt-1 inline-block">Statistically Significant (p &lt; 0.001)</span>
+                        <div class="text-xs text-slate-500 mt-1">Baseline 7.4/10 → endline 2.8/10</div>
+                        <div class="w-full bg-slate-100 h-2 rounded-full mt-3 overflow-hidden"><div class="bg-emerald-500 h-2 rounded-full" style="width: 62.1%"></div></div>
+                        <span class="text-[10px] text-emerald-600 font-semibold mt-1 inline-block">Statistically significant (p &lt; 0.001)</span>
                     </div>
 
                     <div class="p-5 bg-white rounded-xl border border-slate-200">
-                        <span class="text-xs font-bold uppercase text-slate-500">Verification Shift</span>
+                        <span class="text-xs font-bold uppercase text-slate-500">Verification shift</span>
                         <div class="text-3xl font-black text-emerald-600 mt-1" id="an-shift">+48.3%</div>
                         <div class="text-xs text-slate-500 mt-1">Active fact-checking adoption</div>
-                        <div class="w-full bg-slate-100 h-2 rounded-full mt-3 overflow-hidden">
-                            <div class="bg-emerald-500 h-2 rounded-full" style="width: 100%"></div>
-                        </div>
-                        <span class="text-[10px] text-emerald-600 font-semibold mt-1 inline-block">Exceeds &ge; 40% benchmark</span>
+                        <div class="w-full bg-slate-100 h-2 rounded-full mt-3 overflow-hidden"><div class="bg-emerald-500 h-2 rounded-full" style="width: 100%"></div></div>
+                        <span class="text-[10px] text-emerald-600 font-semibold mt-1 inline-block">Exceeds ≥ 40% benchmark</span>
                     </div>
                 </div>
 
-                <!-- Documentation Quicklinks -->
-                <div class="bg-slate-50 rounded-xl p-5 border border-slate-200">
-                    <h4 class="text-xs font-bold uppercase tracking-wider text-slate-700 mb-3">Project Deliverables & Documentation</h4>
-                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
-                        <a href="/docs/SURVEY_ANALYSIS.md" class="p-3 bg-white rounded-lg border border-slate-200 hover:border-indigo-400 font-semibold text-slate-700 hover:text-indigo-600 transition flex items-center gap-2">
-                            <i class="fa-solid fa-chart-pie text-indigo-500"></i> Survey Analysis
-                        </a>
-                        <a href="/docs/CAMPAIGN_MATERIALS.md" class="p-3 bg-white rounded-lg border border-slate-200 hover:border-indigo-400 font-semibold text-slate-700 hover:text-indigo-600 transition flex items-center gap-2">
-                            <i class="fa-solid fa-bullhorn text-indigo-500"></i> Campaign Materials
-                        </a>
-                        <a href="/docs/WORKSHOP_FACILITATION_GUIDE.md" class="p-3 bg-white rounded-lg border border-slate-200 hover:border-indigo-400 font-semibold text-slate-700 hover:text-indigo-600 transition flex items-center gap-2">
-                            <i class="fa-solid fa-chalkboard-user text-indigo-500"></i> Workshop Guide
-                        </a>
-                        <a href="/docs/FACT_CHECKING_RESOURCE_GUIDE.md" class="p-3 bg-white rounded-lg border border-slate-200 hover:border-indigo-400 font-semibold text-slate-700 hover:text-indigo-600 transition flex items-center gap-2">
-                            <i class="fa-solid fa-book-bookmark text-indigo-500"></i> Fact Check Guide
-                        </a>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
+                    <div class="lg:col-span-2 bg-slate-50 rounded-xl p-5 border border-slate-200">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-xs font-bold uppercase tracking-wider text-slate-700">Reach by channel</h3>
+                            <span class="text-[11px] text-slate-500">Survey-linked distribution</span>
+                        </div>
+                        <div id="channel-bars" class="space-y-3">
+                            <div class="text-xs text-slate-400">Loading channel data…</div>
+                        </div>
+                    </div>
+                    <div class="bg-indigo-600 text-white rounded-xl p-5 flex flex-col justify-between">
+                        <div>
+                            <span class="text-[11px] font-bold uppercase tracking-wider text-indigo-200">Peer multipliers</span>
+                            <div class="text-4xl font-black mt-2" id="an-multipliers">14</div>
+                            <p class="text-xs text-indigo-100 mt-2 leading-relaxed">Certified students who ran micro-sessions in their own hostels and departments — the campaign's multiplier effect.</p>
+                        </div>
+                        <p class="text-[11px] text-indigo-200 mt-4"><i class="fa-solid fa-award mr-1"></i> Target ≥ 10 · achieved 140%</p>
                     </div>
                 </div>
+
+                <div class="mt-6 bg-slate-50 rounded-xl p-5 border border-slate-200">
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-slate-700 mb-3">Evidence trail</h4>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+                        <a href="docs/SURVEY_ANALYSIS.md" class="doc-card p-3 bg-white rounded-lg border border-slate-200 font-semibold text-slate-700 flex items-center gap-2"><i class="fa-solid fa-chart-pie text-indigo-500"></i> Survey analysis</a>
+                        <a href="docs/SOCIAL_MEDIA_ANALYTICS_REPORT.md" class="doc-card p-3 bg-white rounded-lg border border-slate-200 font-semibold text-slate-700 flex items-center gap-2"><i class="fa-solid fa-bullhorn text-indigo-500"></i> Social analytics</a>
+                        <a href="docs/WORKSHOP_FACILITATION_GUIDE.md" class="doc-card p-3 bg-white rounded-lg border border-slate-200 font-semibold text-slate-700 flex items-center gap-2"><i class="fa-solid fa-chalkboard-user text-indigo-500"></i> Workshop log</a>
+                        <a href="docs/FINAL_IMPACT_REPORT.md" class="doc-card p-3 bg-white rounded-lg border border-slate-200 font-semibold text-slate-700 flex items-center gap-2"><i class="fa-solid fa-file-lines text-indigo-500"></i> Final report</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resources -->
+        <section id="resources" class="scroll-mt-24">
+            <div class="mb-6">
+                <span class="section-kicker"><i class="fa-solid fa-folder-tree"></i> Documentation</span>
+                <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mt-3">Project resource library</h2>
+                <p class="text-slate-600 text-sm mt-2">Every deliverable, guide, and engineering document lives in the repository. Links below open the same files served by the app.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div class="bg-white rounded-2xl border border-slate-200 p-5">
+                    <h3 class="text-xs font-black uppercase tracking-wider text-slate-500 mb-3"><i class="fa-solid fa-bullhorn text-indigo-500 mr-1"></i> Campaign &amp; impact</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="docs/SURVEY_ANALYSIS.md" class="doc-card flex items-center justify-between gap-2 px-3 py-2 rounded-lg border border-slate-200 font-semibold text-slate-700">Baseline &amp; endline survey analysis <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-400"></i></a></li>
+                        <li><a href="docs/CAMPAIGN_MATERIALS.md" class="doc-card flex items-center justify-between gap-2 px-3 py-2 rounded-lg border border-slate-200 font-semibold text-slate-700">Campaign materials &amp; scripts <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-400"></i></a></li>
+                        <li><a href="docs/WORKSHOP_FACILITATION_GUIDE.md" class="doc-card flex items-center justify-between gap-2 px-3 py-2 rounded-lg border border-slate-200 font-semibold text-slate-700">Workshop facilitation guide <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-400"></i></a></li>
+                        <li><a href="docs/FACT_CHECKING_RESOURCE_GUIDE.md" class="doc-card flex items-center justify-between gap-2 px-3 py-2 rounded-lg border border-slate-200 font-semibold text-slate-700">Fact-checking resource guide <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-400"></i></a></li>
+                        <li><a href="docs/SOCIAL_MEDIA_ANALYTICS_REPORT.md" class="doc-card flex items-center justify-between gap-2 px-3 py-2 rounded-lg border border-slate-200 font-semibold text-slate-700">Social media analytics report <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-400"></i></a></li>
+                        <li><a href="docs/FINAL_IMPACT_REPORT.md" class="doc-card flex items-center justify-between gap-2 px-3 py-2 rounded-lg border border-slate-200 font-semibold text-slate-700">Final impact report <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-400"></i></a></li>
+                        <li><a href="docs/POLICY_BRIEF_DIGITAL_LITERACY.md" class="doc-card flex items-center justify-between gap-2 px-3 py-2 rounded-lg border border-slate-200 font-semibold text-slate-700">Policy brief (bonus) <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-400"></i></a></li>
+                    </ul>
+                </div>
+
+                <div class="bg-white rounded-2xl border border-slate-200 p-5">
+                    <h3 class="text-xs font-black uppercase tracking-wider text-slate-500 mb-3"><i class="fa-solid fa-code text-indigo-500 mr-1"></i> Engineering</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="docs/ARCHITECTURE.md" class="doc-card flex items-center justify-between gap-2 px-3 py-2 rounded-lg border border-slate-200 font-semibold text-slate-700">Architecture &amp; design <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-400"></i></a></li>
+                        <li><a href="docs/DATABASE_SCHEMA.md" class="doc-card flex items-center justify-between gap-2 px-3 py-2 rounded-lg border border-slate-200 font-semibold text-slate-700">Database schema <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-400"></i></a></li>
+                        <li><a href="docs/API_DOCUMENTATION.md" class="doc-card flex items-center justify-between gap-2 px-3 py-2 rounded-lg border border-slate-200 font-semibold text-slate-700">API documentation <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-400"></i></a></li>
+                        <li><a href="docs/TESTING_REPORT.md" class="doc-card flex items-center justify-between gap-2 px-3 py-2 rounded-lg border border-slate-200 font-semibold text-slate-700">Testing report <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-400"></i></a></li>
+                        <li><a href="report/TECHNICAL_REPORT.md" class="doc-card flex items-center justify-between gap-2 px-3 py-2 rounded-lg border border-slate-200 font-semibold text-slate-700">Technical report <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-400"></i></a></li>
+                        <li><a href="docs/CHANGELOG.md" class="doc-card flex items-center justify-between gap-2 px-3 py-2 rounded-lg border border-slate-200 font-semibold text-slate-700">Changelog <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-400"></i></a></li>
+                        <li><a href="swagger-ui.html" target="_blank" rel="noopener" class="doc-card flex items-center justify-between gap-2 px-3 py-2 rounded-lg border border-slate-200 font-semibold text-slate-700">Swagger API console <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-400"></i></a></li>
+                    </ul>
+                </div>
+
+                <div class="bg-white rounded-2xl border border-slate-200 p-5">
+                    <h3 class="text-xs font-black uppercase tracking-wider text-slate-500 mb-3"><i class="fa-solid fa-compass text-indigo-500 mr-1"></i> Guides &amp; repo</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="docs/INSTALLATION_GUIDE.md" class="doc-card flex items-center justify-between gap-2 px-3 py-2 rounded-lg border border-slate-200 font-semibold text-slate-700">Installation guide <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-400"></i></a></li>
+                        <li><a href="docs/USER_GUIDE.md" class="doc-card flex items-center justify-between gap-2 px-3 py-2 rounded-lg border border-slate-200 font-semibold text-slate-700">User guide <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-400"></i></a></li>
+                        <li><a href="docs/WHATSAPP_BOT_GUIDE.md" class="doc-card flex items-center justify-between gap-2 px-3 py-2 rounded-lg border border-slate-200 font-semibold text-slate-700">WhatsApp bot blueprint <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-400"></i></a></li>
+                        <li><a href="docs/PARTNERSHIP_SESSION_PLAN.md" class="doc-card flex items-center justify-between gap-2 px-3 py-2 rounded-lg border border-slate-200 font-semibold text-slate-700">Fact-checker partnership plan <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-400"></i></a></li>
+                        <li><a href="presentation/FINAL_EVALUATION_SLIDES.html" class="doc-card flex items-center justify-between gap-2 px-3 py-2 rounded-lg border border-slate-200 font-semibold text-slate-700">Final evaluation slides <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-400"></i></a></li>
+                        <li><a href="https://github.com/Ashutoshagrawal9871/S-09-Online-Misinformation-Awareness-Campaign-for-Young-Adults" target="_blank" rel="noopener" class="doc-card flex items-center justify-between gap-2 px-3 py-2 rounded-lg border border-slate-200 font-semibold text-slate-700">GitHub repository <i class="fa-brands fa-github text-slate-500"></i></a></li>
+                        <li><a href="https://github.com/Ashutoshagrawal9871/S-09-Online-Misinformation-Awareness-Campaign-for-Young-Adults/blob/main/LICENSE" target="_blank" rel="noopener" class="doc-card flex items-center justify-between gap-2 px-3 py-2 rounded-lg border border-slate-200 font-semibold text-slate-700">License (CC BY-SA 4.0) <i class="fa-solid fa-scale-balanced text-slate-500"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section id="faq" class="scroll-mt-24">
+            <div class="max-w-4xl">
+                <span class="section-kicker"><i class="fa-solid fa-circle-question"></i> Questions</span>
+                <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mt-3">Frequently asked</h2>
+                <p class="text-slate-600 text-sm mt-2">Short answers for evaluators, students, and anyone opening the project for the first time.</p>
+            </div>
+
+            <div class="mt-6 max-w-4xl space-y-3">
+                <details class="bg-white border border-slate-200 rounded-xl p-4 group" open>
+                    <summary class="flex items-center justify-between gap-3 font-bold text-slate-900 text-sm">
+                        What is SIFT, and why this framework?
+                        <i class="fa-solid fa-plus faq-icon text-indigo-500 text-xs shrink-0"></i>
+                    </summary>
+                    <p class="text-sm text-slate-600 mt-3 leading-relaxed">SIFT stands for Stop, Investigate the source, Find better coverage, and Trace claims. It is a lateral-reading routine created by Mike Caulfield. It is fast enough for a group chat and teaches a habit rather than a one-off fact.</p>
+                </details>
+                <details class="bg-white border border-slate-200 rounded-xl p-4">
+                    <summary class="flex items-center justify-between gap-3 font-bold text-slate-900 text-sm">
+                        Is the fact-check verdict produced by AI?
+                        <i class="fa-solid fa-plus faq-icon text-indigo-500 text-xs shrink-0"></i>
+                    </summary>
+                    <p class="text-sm text-slate-600 mt-3 leading-relaxed">No. The demo engine uses a transparent heuristic knowledge base that matches claim patterns to known misinformation categories. It returns a verdict, confidence score, SIFT steps, and trusted source suggestions. The architecture is ready for a live IFCN fact-check API, but no AI model is making the call.</p>
+                </details>
+                <details class="bg-white border border-slate-200 rounded-xl p-4">
+                    <summary class="flex items-center justify-between gap-3 font-bold text-slate-900 text-sm">
+                        How was the campaign impact measured?
+                        <i class="fa-solid fa-plus faq-icon text-indigo-500 text-xs shrink-0"></i>
+                    </summary>
+                    <p class="text-sm text-slate-600 mt-3 leading-relaxed">Baseline and endline surveys used the same susceptibility items. The analysis reports a reduction from 7.4/10 to 2.8/10 (−62.1%, p &lt; 0.001) and a +48.3% shift in verification behaviour. Reach, workshop attendance, and multiplier counts are documented in the social analytics and workshop reports.</p>
+                </details>
+                <details class="bg-white border border-slate-200 rounded-xl p-4">
+                    <summary class="flex items-center justify-between gap-3 font-bold text-slate-900 text-sm">
+                        Do I need an account to use the site?
+                        <i class="fa-solid fa-plus faq-icon text-indigo-500 text-xs shrink-0"></i>
+                    </summary>
+                    <p class="text-sm text-slate-600 mt-3 leading-relaxed">No. The analyzer, modules, quiz, workshop listing, and resources are public. Registration for workshops only asks for a name, email, and college. The API also exposes JWT-based register and login endpoints for future authenticated features.</p>
+                </details>
+                <details class="bg-white border border-slate-200 rounded-xl p-4">
+                    <summary class="flex items-center justify-between gap-3 font-bold text-slate-900 text-sm">
+                        Where is data stored during the demo?
+                        <i class="fa-solid fa-plus faq-icon text-indigo-500 text-xs shrink-0"></i>
+                    </summary>
+                    <p class="text-sm text-slate-600 mt-3 leading-relaxed">By default the app uses an in-memory H2 database seeded at startup, so demo data resets when the process restarts. The same code runs on PostgreSQL through environment variables for a persistent deployment. No sensitive personal data is required for the public features.</p>
+                </details>
+                <details class="bg-white border border-slate-200 rounded-xl p-4">
+                    <summary class="flex items-center justify-between gap-3 font-bold text-slate-900 text-sm">
+                        Can I reuse the campaign materials?
+                        <i class="fa-solid fa-plus faq-icon text-indigo-500 text-xs shrink-0"></i>
+                    </summary>
+                    <p class="text-sm text-slate-600 mt-3 leading-relaxed">Yes. The repository is licensed under CC BY-SA 4.0. You can adapt the posters, scripts, and guides for non-commercial or commercial use as long as you credit TruthLens S-09 and share adaptations under the same license.</p>
+                </details>
+            </div>
+        </section>
+
+        <!-- Contact / Team -->
+        <section id="contact" class="scroll-mt-24">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div class="lg:col-span-2 bg-slate-900 text-white rounded-3xl p-7 sm:p-9">
+                    <span class="text-[11px] font-black uppercase tracking-widest text-cyan-300">About the project</span>
+                    <h2 class="text-2xl sm:text-3xl font-black mt-2">Built for CUSoC 2026, made to stay useful.</h2>
+                    <p class="text-sm text-slate-300 mt-3 leading-relaxed max-w-2xl">
+                        TruthLens is an open-source campaign platform submitted under project code S-09, “Online Misinformation Awareness Campaign for Young Adults,” for the Chandigarh University Season of Code. It combines a Spring Boot API, a responsive campaign site, a full documentation suite, and a measured campus intervention.
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6 text-sm">
+                        <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+                            <p class="text-[11px] uppercase tracking-wider text-slate-400 font-bold">Contributor</p>
+                            <p class="font-bold mt-1">Ashutosh Agrawal</p>
+                            <p class="text-xs text-slate-400 mt-0.5">CUSoC 2026 · S-09</p>
+                        </div>
+                        <div class="bg-white/5 border border-white/10 rounded-xl p-4">
+                            <p class="text-[11px] uppercase tracking-wider text-slate-400 font-bold">Programme</p>
+                            <p class="font-bold mt-1">C Square Club</p>
+                            <p class="text-xs text-slate-400 mt-0.5">Chandigarh University</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-3 mt-6">
+                        <a href="mailto:csquareclub@cumail.in" class="px-4 py-2.5 bg-white text-slate-900 font-bold rounded-xl text-xs hover:bg-cyan-50 transition inline-flex items-center gap-2"><i class="fa-solid fa-envelope"></i> csquareclub@cumail.in</a>
+                        <a href="https://github.com/Ashutoshagrawal9871/S-09-Online-Misinformation-Awareness-Campaign-for-Young-Adults" target="_blank" rel="noopener" class="px-4 py-2.5 bg-white/10 border border-white/20 text-white font-bold rounded-xl text-xs hover:bg-white/15 transition inline-flex items-center gap-2"><i class="fa-brands fa-github"></i> View repository</a>
+                        <a href="#resources" class="px-4 py-2.5 bg-white/10 border border-white/20 text-white font-bold rounded-xl text-xs hover:bg-white/15 transition inline-flex items-center gap-2"><i class="fa-solid fa-folder-open"></i> Documentation</a>
+                    </div>
+                </div>
+
+                <aside class="bg-white border border-slate-200 rounded-3xl p-6">
+                    <h3 class="text-sm font-black uppercase tracking-wider text-slate-700"><i class="fa-solid fa-clipboard-check text-indigo-500 mr-2"></i>Evaluator quick links</h3>
+                    <ul class="mt-4 space-y-2 text-xs">
+                        <li><a href="#fact-checker" class="flex items-center gap-2 p-2.5 rounded-lg border border-slate-200 hover:bg-indigo-50 font-semibold text-slate-700"><i class="fa-solid fa-bolt text-indigo-500"></i> Live SIFT demo</a></li>
+                        <li><a href="swagger-ui.html" target="_blank" rel="noopener" class="flex items-center gap-2 p-2.5 rounded-lg border border-slate-200 hover:bg-indigo-50 font-semibold text-slate-700"><i class="fa-solid fa-code text-indigo-500"></i> Swagger API console</a></li>
+                        <li><a href="presentation/FINAL_EVALUATION_SLIDES.html" class="flex items-center gap-2 p-2.5 rounded-lg border border-slate-200 hover:bg-indigo-50 font-semibold text-slate-700"><i class="fa-solid fa-display text-indigo-500"></i> Final evaluation slides</a></li>
+                        <li><a href="report/TECHNICAL_REPORT.md" class="flex items-center gap-2 p-2.5 rounded-lg border border-slate-200 hover:bg-indigo-50 font-semibold text-slate-700"><i class="fa-solid fa-file-lines text-indigo-500"></i> Technical report</a></li>
+                        <li><a href="docs/TESTING_REPORT.md" class="flex items-center gap-2 p-2.5 rounded-lg border border-slate-200 hover:bg-indigo-50 font-semibold text-slate-700"><i class="fa-solid fa-vial-circle-check text-indigo-500"></i> Testing report</a></li>
+                        <li><a href="docs/FINAL_IMPACT_REPORT.md" class="flex items-center gap-2 p-2.5 rounded-lg border border-slate-200 hover:bg-indigo-50 font-semibold text-slate-700"><i class="fa-solid fa-chart-simple text-indigo-500"></i> Final impact report</a></li>
+                    </ul>
+                    <p class="text-[11px] text-slate-500 mt-4 leading-relaxed"><i class="fa-solid fa-circle-info mr-1"></i> Local demo: <span class="font-mono">http://localhost:8080</span><br>Swagger: <span class="font-mono">/swagger-ui.html</span></p>
+                </aside>
             </div>
         </section>
 
     </main>
 
     <!-- Footer -->
-    <footer class="bg-slate-900 text-slate-400 py-10 border-t border-slate-800 text-sm mt-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
-            <div class="flex items-center space-x-2">
-                <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center text-white font-bold">
-                    <i class="fa-solid fa-shield-halved"></i>
+    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800 text-sm mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div>
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center text-white font-bold"><i class="fa-solid fa-shield-halved"></i></div>
+                    <span class="text-white font-bold tracking-tight">TruthLens S-09</span>
                 </div>
-                <span class="text-white font-bold tracking-tight">TruthLens S-09 Campaign</span>
+                <p class="text-xs text-slate-500 mt-3 leading-relaxed">Misinformation awareness campaign for young adults. SIFT literacy, measurable behaviour change, and open documentation.</p>
+                <p class="text-xs text-slate-600 mt-3">CUSoC 2026 · C Square Club</p>
             </div>
-            <p class="text-xs text-slate-500 text-center">
-                Empowering media literacy through the SIFT framework. Partnered with student journalism clubs, BOOM Live, & Alt News resources.
-            </p>
-            <div class="flex space-x-4 text-xs font-medium">
-                <a href="/swagger-ui.html" target="_blank" class="hover:text-white transition">Swagger API</a>
-                <a href="/h2-console" target="_blank" class="hover:text-white transition">H2 Console</a>
-                <a href="/docs/FINAL_IMPACT_REPORT.md" class="hover:text-white transition">Final Report</a>
-                <a href="/presentation/FINAL_EVALUATION_SLIDES.html" class="hover:text-white transition">Slides</a>
+            <div>
+                <h4 class="text-white font-bold text-xs uppercase tracking-wider mb-3">Explore</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="#campaign" class="hover:text-white transition">The campaign</a></li>
+                    <li><a href="#sift" class="hover:text-white transition">SIFT framework</a></li>
+                    <li><a href="#fact-checker" class="hover:text-white transition">Claim analyzer</a></li>
+                    <li><a href="#modules" class="hover:text-white transition">Learning modules</a></li>
+                    <li><a href="#workshops" class="hover:text-white transition">Workshops</a></li>
+                </ul>
             </div>
+            <div>
+                <h4 class="text-white font-bold text-xs uppercase tracking-wider mb-3">Deliverables</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="docs/FINAL_IMPACT_REPORT.md" class="hover:text-white transition">Final impact report</a></li>
+                    <li><a href="docs/SURVEY_ANALYSIS.md" class="hover:text-white transition">Survey analysis</a></li>
+                    <li><a href="docs/TESTING_REPORT.md" class="hover:text-white transition">Testing report</a></li>
+                    <li><a href="report/TECHNICAL_REPORT.md" class="hover:text-white transition">Technical report</a></li>
+                    <li><a href="presentation/FINAL_EVALUATION_SLIDES.html" class="hover:text-white transition">Presentation slides</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold text-xs uppercase tracking-wider mb-3">Connect</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="swagger-ui.html" target="_blank" rel="noopener" class="hover:text-white transition">Swagger API</a></li>
+                    <li><a href="h2-console" target="_blank" rel="noopener" class="hover:text-white transition">H2 console</a></li>
+                    <li><a href="https://github.com/Ashutoshagrawal9871/S-09-Online-Misinformation-Awareness-Campaign-for-Young-Adults" target="_blank" rel="noopener" class="hover:text-white transition">GitHub repository</a></li>
+                    <li><a href="https://www.linkedin.com/company/csquare-club/" target="_blank" rel="noopener" class="hover:text-white transition">C Square Club on LinkedIn</a></li>
+                    <li><a href="mailto:csquareclub@cumail.in" class="hover:text-white transition">csquareclub@cumail.in</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10 pt-6 border-t border-slate-800 flex flex-col sm:flex-row justify-between gap-2 text-xs text-slate-600">
+            <p>© 2026 TruthLens S-09 · Licensed CC BY-SA 4.0</p>
+            <p>Built with Spring Boot, JPA, and a lot of fact-checking.</p>
         </div>
     </footer>
 
     <!-- Registration Modal -->
-    <div id="reg-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div id="reg-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="reg-modal-title">
         <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl space-y-4">
             <div class="flex justify-between items-center">
-                <h3 class="text-lg font-bold text-slate-900">Register for Workshop</h3>
-                <button onclick="closeModal()" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-lg"></i></button>
+                <h3 id="reg-modal-title" class="text-lg font-bold text-slate-900">Register for workshop</h3>
+                <button type="button" onclick="closeModal()" class="text-slate-400 hover:text-slate-600" aria-label="Close registration dialog"><i class="fa-solid fa-xmark text-lg"></i></button>
             </div>
             <p id="modal-workshop-title" class="text-xs text-indigo-600 font-semibold"></p>
             <form onsubmit="submitRegistration(event)" class="space-y-3">
                 <input type="hidden" id="modal-workshop-id">
                 <div>
-                    <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Full Name</label>
-                    <input type="text" id="reg-name" required class="w-full p-2.5 border border-slate-300 rounded-lg text-sm" placeholder="Alex Kumar">
+                    <label for="reg-name" class="block text-xs font-bold uppercase text-slate-700 mb-1">Full name</label>
+                    <input type="text" id="reg-name" required class="w-full p-2.5 border border-slate-300 rounded-lg text-sm" placeholder="Alex Kumar" autocomplete="name">
                 </div>
                 <div>
-                    <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Email Address</label>
-                    <input type="email" id="reg-email" required class="w-full p-2.5 border border-slate-300 rounded-lg text-sm" placeholder="alex@university.edu">
+                    <label for="reg-email" class="block text-xs font-bold uppercase text-slate-700 mb-1">Email address</label>
+                    <input type="email" id="reg-email" required class="w-full p-2.5 border border-slate-300 rounded-lg text-sm" placeholder="alex@university.edu" autocomplete="email">
                 </div>
                 <div>
-                    <label class="block text-xs font-bold uppercase text-slate-700 mb-1">College / Department</label>
-                    <input type="text" id="reg-college" required class="w-full p-2.5 border border-slate-300 rounded-lg text-sm" placeholder="Department of Journalism">
+                    <label for="reg-college" class="block text-xs font-bold uppercase text-slate-700 mb-1">College / department</label>
+                    <input type="text" id="reg-college" required class="w-full p-2.5 border border-slate-300 rounded-lg text-sm" placeholder="Department of Journalism" autocomplete="organization">
                 </div>
-                <button type="submit" class="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl shadow-md transition">
-                    Confirm Registration
-                </button>
+                <p id="reg-error" class="hidden text-xs font-semibold rounded-lg p-2.5"></p>
+                <button type="submit" class="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl shadow-md transition">Confirm registration</button>
             </form>
         </div>
     </div>
 
-    <!-- Frontend Script -->
+    <button id="back-to-top" type="button" class="fixed bottom-6 right-6 z-40 w-11 h-11 rounded-full bg-slate-900 text-white shadow-lg opacity-0 pointer-events-none flex items-center justify-center hover:bg-indigo-600 transition" aria-label="Back to top">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
     <script>
-        // Dynamic API Base URL resolver (supports localhost:8080, relative origin, or file:// browsing)
-        const API_BASE = (window.location.protocol === 'file:' || !window.location.origin || window.location.origin === 'null') 
-            ? 'http://localhost:8080' 
+        // Supports localhost, same-origin hosting, and opening the file directly.
+        const API_BASE = (window.location.protocol === 'file:' || !window.location.origin || window.location.origin === 'null')
+            ? 'http://localhost:8080'
             : '';
 
         let allModules = [];
+        let modulesLoaded = false;
 
-        // Sample Claim Fillers
+        function escapeHtml(value) {
+            return String(value ?? '')
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
+
+        function docUrl(url) {
+            if (!url) return 'docs/FACT_CHECKING_RESOURCE_GUIDE.md';
+            return String(url).replace(/^\//, '');
+        }
+
+        // Sample claims
         function fillSample(id) {
             const claimText = document.getElementById('claim-text');
             const cat = document.getElementById('claim-category');
             if (id === 1) {
-                claimText.value = "Drinking boiled garlic water cures pneumonia and viral fever instantly within 24 hours.";
-                cat.value = "HEALTH";
+                claimText.value = 'Drinking boiled garlic water cures pneumonia and viral fever instantly within 24 hours.';
+                cat.value = 'HEALTH';
             } else if (id === 2) {
-                claimText.value = "Education Ministry giving free laptops to all university students. Apply now at bit.ly/free-laptop-gov";
-                cat.value = "FINANCIAL";
-            } else if (id === 3) {
-                claimText.value = "5G network radiation weakens human immune systems causing seasonal flu outbreaks.";
-                cat.value = "HEALTH";
+                claimText.value = 'Education Ministry giving free laptops to all university students. Apply now at bit.ly/free-laptop-gov';
+                cat.value = 'FINANCIAL';
+            } else {
+                claimText.value = '5G network radiation weakens human immune systems causing seasonal flu outbreaks.';
+                cat.value = 'HEALTH';
             }
+            claimText.focus();
         }
 
-        // Built-in Client SIFT Engine Fallback (ensures 100% resilience even when offline)
-        function clientSiftAnalyze(claim, category) {
-            const cl = claim.toLowerCase();
-            if (cl.includes('garlic') || cl.includes('cure') || cl.includes('lemon') || cl.includes('hot water') || cl.includes('baking soda')) {
+        // Client-side fallback so the demo still runs when the API is unavailable.
+        function clientSiftAnalyze(claim) {
+            const cl = String(claim).toLowerCase();
+            if (cl.includes('garlic') || cl.includes('cure') || cl.includes('lemon') || cl.includes('baking soda')) {
                 return {
                     verdict: 'VERIFIED_FALSE',
                     confidenceScore: 96,
@@ -602,13 +959,15 @@
                         'Trace Claims: Traced to recurring copy-paste social media chains.'
                     ],
                     verificationSources: ['WHO Mythbusters', 'BOOM Live Health Check', 'Alt News Science'],
-                    recommendedAction: '⛔ Do NOT Forward'
+                    warningFlags: ['Instant miracle cure', 'No clinical source', 'Forwarded chain-message format'],
+                    recommendedAction: '⛔ Do NOT forward'
                 };
-            } else if (cl.includes('laptop') || cl.includes('recharge') || cl.includes('subsidy') || cl.includes('free') || cl.includes('bit.ly') || cl.includes('link')) {
+            }
+            if (cl.includes('laptop') || cl.includes('recharge') || cl.includes('subsidy') || cl.includes('bit.ly') || cl.includes('free')) {
                 return {
                     verdict: 'VERIFIED_FALSE',
                     confidenceScore: 98,
-                    summary: 'Phishing Scam: Government portals never distribute laptops or cash via unofficial shortened links.',
+                    summary: 'Phishing scam: Government portals never distribute laptops or cash through unofficial shortened links.',
                     factCheckFrameworkSteps: [
                         'Stop: Never click shortened links promising free money or gifts.',
                         'Investigate Domain: Official Indian government sites use .gov.in or .nic.in.',
@@ -616,73 +975,85 @@
                         'Trace Claims: Traced to anonymous phishing domains created to harvest credentials.'
                     ],
                     verificationSources: ['PIB Fact Check', 'CyberPeace Foundation', 'CERT-In Advisory'],
-                    recommendedAction: '⛔ Do NOT Forward'
+                    warningFlags: ['Urgency trigger', 'Unofficial domain', 'Requests forwarding to groups'],
+                    recommendedAction: '⛔ Do NOT forward'
                 };
-            } else if (cl.includes('5g') || cl.includes('radiation') || cl.includes('covid') || cl.includes('virus') || cl.includes('tower')) {
+            }
+            if (cl.includes('5g') || cl.includes('radiation') || cl.includes('covid') || cl.includes('virus') || cl.includes('tower')) {
                 return {
                     verdict: 'VERIFIED_FALSE',
                     confidenceScore: 99,
-                    summary: 'Scientific Fallacy: Radio frequency electromagnetic waves cannot create or transmit biological viruses.',
+                    summary: 'Scientific fallacy: Radio-frequency electromagnetic waves cannot create or transmit biological viruses.',
                     factCheckFrameworkSteps: [
                         'Stop: Pause before amplifying conspiracy theories.',
-                        'Investigate Source: Review international telecommunication (FCC/WHO) radiation studies.',
-                        'Find Better Coverage: Search Alt News & Snopes 5G debunks.',
-                        'Trace Claims: Traced to early 2020 Facebook conspiracy groups.'
+                        'Investigate Source: Review WHO and FCC radiation studies.',
+                        'Find Better Coverage: Search Alt News and Snopes 5G debunks.',
+                        'Trace Claims: Traced to early-2020 social media conspiracy groups.'
                     ],
                     verificationSources: ['WHO Mythbusters', 'Alt News Archive', 'Snopes Science'],
-                    recommendedAction: '⛔ Do NOT Forward'
-                };
-            } else {
-                return {
-                    verdict: 'MISLEADING',
-                    confidenceScore: 82,
-                    summary: 'Claim requires lateral verification: lacks accredited institutional evidence or gazette publication.',
-                    factCheckFrameworkSteps: [
-                        'Stop: Pause before reacting or forwarding.',
-                        'Investigate Source: Check domain registration and author credentials.',
-                        'Find Better Coverage: Search the claim keywords on Google Fact Check Explorer.',
-                        'Trace Context: Look for the original unedited quote or image.'
-                    ],
-                    verificationSources: ['BOOM Live Fact Check', 'Alt News Archive', 'PIB Fact Check'],
-                    recommendedAction: '⚠️ Lateral Verification Recommended'
+                    warningFlags: ['Sensational framing', 'No scientific citation', 'Classic viral forward'],
+                    recommendedAction: '⛔ Do NOT forward'
                 };
             }
+            return {
+                verdict: 'MISLEADING',
+                confidenceScore: 82,
+                summary: 'This claim needs lateral verification: it lacks accredited institutional evidence or an official publication.',
+                factCheckFrameworkSteps: [
+                    'Stop: Pause before reacting or forwarding.',
+                    'Investigate Source: Check domain registration and author credentials.',
+                    'Find Better Coverage: Search the keywords on Google Fact Check Explorer.',
+                    'Trace Context: Look for the original, unedited quote or image.'
+                ],
+                verificationSources: ['BOOM Live Fact Check', 'Alt News Archive', 'PIB Fact Check'],
+                warningFlags: ['Missing original source', 'Emotional framing'],
+                recommendedAction: '⚠️ Lateral verification recommended'
+            };
         }
 
-        // Render SIFT Verification Result
         function renderVerificationResult(data) {
             document.getElementById('result-placeholder').classList.add('hidden');
             document.getElementById('result-content').classList.remove('hidden');
 
             const badge = document.getElementById('res-badge');
-            const v = (data.verdict || '').toUpperCase();
+            const v = String(data.verdict || '').toUpperCase();
             if (v.includes('FALSE')) {
                 badge.className = 'px-3 py-1 rounded-md font-bold text-xs bg-red-100 text-red-700 border border-red-200';
-                badge.innerHTML = '<i class="fa-solid fa-circle-xmark mr-1"></i> VERDICT: FALSE / HOAX';
+                badge.innerHTML = '<i class="fa-solid fa-circle-xmark mr-1"></i> Verdict: false / hoax';
             } else if (v.includes('MISLEADING') || v.includes('UNVERIFIED')) {
                 badge.className = 'px-3 py-1 rounded-md font-bold text-xs bg-amber-100 text-amber-700 border border-amber-200';
-                badge.innerHTML = '<i class="fa-solid fa-triangle-exclamation mr-1"></i> VERDICT: MISLEADING / UNVERIFIED';
+                badge.innerHTML = '<i class="fa-solid fa-triangle-exclamation mr-1"></i> Verdict: misleading / unverified';
             } else {
                 badge.className = 'px-3 py-1 rounded-md font-bold text-xs bg-emerald-100 text-emerald-700 border border-emerald-200';
-                badge.innerHTML = '<i class="fa-solid fa-circle-check mr-1"></i> VERDICT: ' + v;
+                badge.innerHTML = '<i class="fa-solid fa-circle-check mr-1"></i> Verdict: ' + escapeHtml(v.toLowerCase());
             }
 
             const confVal = data.confidenceScore ? (data.confidenceScore > 1 ? data.confidenceScore : Math.round(data.confidenceScore * 100)) : 95;
-            document.getElementById('res-confidence').innerText = 'Confidence: ' + confVal + '%';
-            document.getElementById('res-summary').innerText = data.summary || data.detailedAnalysis || 'Claim evaluated against accredited fact-checking databases.';
+            document.getElementById('res-confidence').textContent = 'Confidence: ' + confVal + '%';
+            document.getElementById('res-summary').textContent = data.summary || data.detailedAnalysis || 'Claim evaluated against accredited fact-checking references.';
 
             const steps = data.factCheckFrameworkSteps || [];
-            document.getElementById('sift-s').innerText = steps[0] || 'Stop: Pause and recognize emotional triggers.';
-            document.getElementById('sift-i').innerText = steps[1] || 'Investigate: Verify domain reputation and author identity.';
-            document.getElementById('sift-f').innerText = steps[2] || 'Find Coverage: Cross-check with BOOM Live, Alt News, or PIB.';
-            document.getElementById('sift-t').innerText = steps[3] || 'Trace Claims: Search original context using reverse image/video search.';
+            document.getElementById('sift-s').textContent = steps[0] || 'Stop: Pause and recognize emotional triggers.';
+            document.getElementById('sift-i').textContent = steps[1] || 'Investigate: Verify domain reputation and author identity.';
+            document.getElementById('sift-f').textContent = steps[2] || 'Find coverage: Cross-check BOOM Live, Alt News, or PIB.';
+            document.getElementById('sift-t').textContent = steps[3] || 'Trace: Search original context with reverse image or video tools.';
 
             const sources = data.verificationSources || [];
-            document.getElementById('res-sources').innerText = sources.length > 0 ? sources.join(', ') : 'BOOM Live, Alt News, PIB Fact Check';
-            document.getElementById('res-action').innerText = data.recommendedAction || (v.includes('FALSE') ? '⛔ Do NOT Forward' : '✅ Verified');
+            document.getElementById('res-sources').textContent = sources.length ? sources.join(', ') : 'BOOM Live, Alt News, PIB Fact Check';
+            document.getElementById('res-action').textContent = data.recommendedAction || (v.includes('FALSE') ? '⛔ Do NOT forward' : '✅ Verified');
+
+            const flagsWrap = document.getElementById('res-flags-wrap');
+            const flagsBox = document.getElementById('res-flags');
+            const flags = data.warningFlags || [];
+            if (flags.length) {
+                flagsBox.innerHTML = flags.map(f => `<span class="px-2 py-1 rounded-md bg-rose-50 text-rose-700 border border-rose-200 font-semibold">${escapeHtml(f)}</span>`).join('');
+                flagsWrap.classList.remove('hidden');
+            } else {
+                flagsBox.innerHTML = '';
+                flagsWrap.classList.add('hidden');
+            }
         }
 
-        // SIFT Verification Action
         async function verifyClaim() {
             const claim = document.getElementById('claim-text').value.trim();
             const category = document.getElementById('claim-category').value;
@@ -690,137 +1061,176 @@
             const btn = document.getElementById('verify-btn');
 
             if (!claim) {
-                alert('Please enter a claim or select a sample button.');
+                alert('Please enter a claim or choose a sample.');
                 return;
             }
 
             btn.disabled = true;
-            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Analyzing with SIFT Engine...';
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Analyzing with SIFT…';
 
             try {
                 const res = await fetch(`${API_BASE}/api/v1/fact-check/verify`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ 
-                        claim: claim, 
-                        category: category, 
-                        sourcePlatform: source,
-                        sourceUrl: source 
-                    })
+                    body: JSON.stringify({ claim, category, sourcePlatform: source })
                 });
-
                 if (res.ok) {
-                    const data = await res.json();
-                    renderVerificationResult(data);
+                    renderVerificationResult(await res.json());
                 } else {
-                    // Fallback to client analyzer if server returns non-200
-                    const fallback = clientSiftAnalyze(claim, category);
-                    renderVerificationResult(fallback);
+                    renderVerificationResult(clientSiftAnalyze(claim));
                 }
             } catch (err) {
-                console.warn('Backend connection unavailable, running client-side SIFT engine:', err);
-                const fallback = clientSiftAnalyze(claim, category);
-                renderVerificationResult(fallback);
+                console.warn('Backend unavailable, using client-side SIFT engine:', err);
+                renderVerificationResult(clientSiftAnalyze(claim));
             } finally {
                 btn.disabled = false;
-                btn.innerHTML = '<i class="fa-solid fa-magnifying-glass-arrow-right"></i> Verify Claim with SIFT Engine';
+                btn.innerHTML = '<i class="fa-solid fa-magnifying-glass-arrow-right"></i> Verify claim with SIFT';
             }
         }
 
-        // Fetch Awareness Modules
+        const fallbackModules = [
+            {
+                title: 'The SIFT Framework for Media Literacy',
+                category: 'DIGITAL_LITERACY',
+                description: "Master Mike Caulfield's four-step routine: Stop, Investigate the source, Find better coverage, and Trace claims to original context.",
+                estimatedMinutes: 12,
+                difficulty: 'BEGINNER',
+                contentUrl: 'docs/FACT_CHECKING_RESOURCE_GUIDE.md'
+            },
+            {
+                title: 'Identifying Deepfakes & Synthetic Media',
+                category: 'DEEPFAKES',
+                description: 'How generative AI, face swaps, and voice clones work — and the forensic clues that give them away.',
+                estimatedMinutes: 20,
+                difficulty: 'INTERMEDIATE',
+                contentUrl: 'docs/WORKSHOP_FACILITATION_GUIDE.md'
+            },
+            {
+                title: 'WhatsApp Rumors & Communal Disinformation',
+                category: 'WHATSAPP_RUMORS',
+                description: 'The anatomy of viral forwards: emotional hooks, false authority, and polarisation tactics.',
+                estimatedMinutes: 15,
+                difficulty: 'BEGINNER',
+                contentUrl: 'docs/CAMPAIGN_MATERIALS.md'
+            },
+            {
+                title: 'Health Myths & Pseudoscience Debunking',
+                category: 'HEALTH_MYTHS',
+                description: 'Evaluate miracle cures and anti-vaccine claims; verify with WHO, ICMR, and PubMed.',
+                estimatedMinutes: 18,
+                difficulty: 'INTERMEDIATE',
+                contentUrl: 'docs/CAMPAIGN_MATERIALS.md'
+            },
+            {
+                title: 'Reverse Image & Video Verification Toolkit',
+                category: 'FACT_CHECKING_TOOLS',
+                description: 'Hands-on practice with Google Lens, Yandex, TinEye, and InVID-WeVerify keyframe extraction.',
+                estimatedMinutes: 25,
+                difficulty: 'PRACTICAL',
+                contentUrl: 'docs/FACT_CHECKING_RESOURCE_GUIDE.md'
+            },
+            {
+                title: 'Financial Scams & Social Engineering',
+                category: 'FINANCIAL_SCAMS',
+                description: 'Spot fake subsidy links, lottery messages, crypto scams, and counterfeit university portals.',
+                estimatedMinutes: 10,
+                difficulty: 'BEGINNER',
+                contentUrl: 'docs/CAMPAIGN_MATERIALS.md'
+            }
+        ];
+
         async function loadModules() {
             try {
                 const res = await fetch(`${API_BASE}/api/v1/campaign/modules`);
                 if (res.ok) {
-                    allModules = await res.json();
-                    renderModules(allModules);
-                    return;
+                    const data = await res.json();
+                    if (Array.isArray(data) && data.length) {
+                        allModules = data;
+                        modulesLoaded = true;
+                        renderModules(allModules);
+                        return;
+                    }
                 }
-            } catch (e) {
-                console.warn('Using default modules fallback');
+            } catch (err) {
+                console.warn('Using bundled module data:', err);
             }
-
-            // Fallback dataset
-            allModules = [
-                {
-                    title: "The SIFT Verification Framework",
-                    category: "DIGITAL_LITERACY",
-                    description: "Learn the 4 core habits: Stop, Investigate the Source, Find Better Coverage, and Trace Claims.",
-                    estimatedMinutes: 15,
-                    difficulty: "Beginner",
-                    contentUrl: "/docs/FACT_CHECKING_RESOURCE_GUIDE.md"
-                },
-                {
-                    title: "Health Myths & WhatsApp Panics",
-                    category: "HEALTH_MYTHS",
-                    description: "Deconstruct viral miracle cures, immunity boosters, and false hospital circulars.",
-                    estimatedMinutes: 20,
-                    difficulty: "Intermediate",
-                    contentUrl: "/docs/CAMPAIGN_MATERIALS.md"
-                },
-                {
-                    title: "Spotting Deepfakes & AI Hallucinations",
-                    category: "DEEPFAKES",
-                    description: "Detect synthetic voices, face-swaps, and out-of-context video keyframe manipulation.",
-                    estimatedMinutes: 25,
-                    difficulty: "Advanced",
-                    contentUrl: "/docs/WORKSHOP_FACILITATION_GUIDE.md"
-                },
-                {
-                    title: "Phishing Scams & Fake Subsidies",
-                    category: "FINANCIAL_SCAMS",
-                    description: "Identify fake government portals (.gov.in vs .xyz), fraudulent scholarship links, and OTP lures.",
-                    estimatedMinutes: 10,
-                    difficulty: "Beginner",
-                    contentUrl: "/docs/CAMPAIGN_MATERIALS.md"
-                }
-            ];
+            allModules = fallbackModules;
+            modulesLoaded = true;
             renderModules(allModules);
+        }
+
+        function moduleCard(m) {
+            const category = String(m.category || 'GENERAL');
+            const difficulty = String(m.difficulty || 'BEGINNER');
+            return `
+                <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm feature-card flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between gap-2 mb-3">
+                            <span class="px-2.5 py-0.5 rounded text-[10px] font-bold uppercase bg-indigo-50 text-indigo-700 border border-indigo-100">${escapeHtml(category.replace(/_/g, ' '))}</span>
+                            <span class="text-xs font-semibold text-slate-500"><i class="fa-regular fa-clock"></i> ${Number(m.estimatedMinutes) || 15} min</span>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-base mb-2">${escapeHtml(m.title)}</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">${escapeHtml(m.description)}</p>
+                    </div>
+                    <div class="border-t border-slate-100 pt-4 mt-4 flex items-center justify-between text-xs">
+                        <span class="font-medium text-slate-500">Level: <strong class="text-slate-700">${escapeHtml(difficulty.toLowerCase())}</strong></span>
+                        <a href="${escapeHtml(docUrl(m.contentUrl))}" target="_blank" rel="noopener" class="font-bold text-indigo-600 hover:text-indigo-800 flex items-center gap-1">
+                            Explore module <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>`;
         }
 
         function renderModules(modules) {
             const container = document.getElementById('modules-container');
             if (!modules || modules.length === 0) {
-                container.innerHTML = '<p class="col-span-full text-center text-slate-500">No modules found.</p>';
+                container.innerHTML = '<p class="col-span-full text-center text-slate-500 py-6">No modules in this category.</p>';
                 return;
             }
-
-            container.innerHTML = modules.map(m => `
-                <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm hover:shadow-md transition flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center justify-between mb-3">
-                            <span class="px-2.5 py-0.5 rounded text-[11px] font-bold uppercase bg-indigo-50 text-indigo-700 border border-indigo-100">${m.category}</span>
-                            <span class="text-xs font-semibold text-slate-500"><i class="fa-regular fa-clock"></i> ${m.estimatedMinutes || 15} mins</span>
-                        </div>
-                        <h3 class="font-bold text-slate-900 text-base mb-2">${m.title}</h3>
-                        <p class="text-xs text-slate-600 leading-relaxed">${m.description}</p>
-                    </div>
-                    <div class="border-t border-slate-100 pt-4 mt-4 flex items-center justify-between text-xs">
-                        <span class="font-medium text-slate-500">Level: <strong class="text-slate-700">${m.difficulty || 'Beginner'}</strong></span>
-                        <a href="${m.contentUrl || '/docs/FACT_CHECKING_RESOURCE_GUIDE.md'}" target="_blank" class="font-bold text-indigo-600 hover:text-indigo-800 flex items-center gap-1">
-                            Explore Module <i class="fa-solid fa-arrow-right text-[10px]"></i>
-                        </a>
-                    </div>
-                </div>
-            `).join('');
+            container.innerHTML = modules.map(moduleCard).join('');
         }
 
-        function filterModules(cat) {
-            document.querySelectorAll('.mod-tab').forEach(b => {
-                b.className = 'mod-tab px-3 py-1.5 text-xs font-semibold rounded-lg bg-white text-slate-700 border border-slate-200 hover:bg-slate-50';
+        function filterModules(button, category) {
+            document.querySelectorAll('.mod-tab').forEach(tab => {
+                tab.className = 'mod-tab px-3 py-1.5 text-xs font-semibold rounded-lg bg-white text-slate-700 border border-slate-200 hover:bg-slate-50';
+                tab.setAttribute('aria-pressed', 'false');
             });
-            if (event && event.target) {
-                event.target.className = 'mod-tab px-3 py-1.5 text-xs font-semibold rounded-lg bg-indigo-600 text-white shadow-sm';
+            if (button) {
+                button.className = 'mod-tab px-3 py-1.5 text-xs font-semibold rounded-lg bg-indigo-600 text-white shadow-sm';
+                button.setAttribute('aria-pressed', 'true');
             }
-
-            if (cat === 'ALL') {
+            if (category === 'ALL') {
                 renderModules(allModules);
             } else {
-                renderModules(allModules.filter(m => m.category === cat));
+                renderModules(allModules.filter(m => String(m.category || '').toUpperCase() === category));
             }
         }
 
-        // Fetch Workshops
+        const fallbackWorkshops = [
+            {
+                id: 1,
+                title: 'Workshop 1: Hands-on Fact-Checking & SIFT Method',
+                description: 'Interactive session on reverse image search, Google Fact Check Explorer, and BOOM Live / Alt News verification workflows.',
+                scheduledAt: '2026-09-15T10:00:00',
+                instructor: 'Prof. A. Sharma (Media Dept) & Guest Fact-Checker',
+                location: 'Media Auditorium & Live Stream',
+                maxCapacity: 120,
+                currentRegistrations: 118,
+                status: 'UPCOMING'
+            },
+            {
+                id: 2,
+                title: 'Workshop 2: Deepfake Detection & WhatsApp Misinformation Forensics',
+                description: 'Synthetic media detection, InVID video tools, WhatsApp forward auditing, and a peer multiplier action plan.',
+                scheduledAt: '2026-09-22T14:00:00',
+                instructor: 'Dr. K. Iyer (Cyber Security & Digital Media)',
+                location: 'Computer Science Hall & Zoom',
+                maxCapacity: 100,
+                currentRegistrations: 100,
+                status: 'UPCOMING'
+            }
+        ];
+
         async function loadWorkshops() {
             let workshops = [];
             try {
@@ -828,83 +1238,86 @@
                 if (res.ok) {
                     workshops = await res.json();
                 }
-            } catch (e) {
-                console.warn('Using default workshops fallback');
+            } catch (err) {
+                console.warn('Using bundled workshop data:', err);
             }
-
-            if (!workshops || workshops.length === 0) {
-                workshops = [
-                    {
-                        id: 1,
-                        title: "Masterclass 1: SIFT Framework & Digital Forensics",
-                        description: "Hands-on reverse image search, domain investigation, and debunking viral health panics.",
-                        scheduledAt: "2026-09-15T10:00:00",
-                        instructor: "Lead Fact-Checking Specialist",
-                        maxCapacity: 60,
-                        currentRegistrations: 58,
-                        status: "UPCOMING"
-                    },
-                    {
-                        id: 2,
-                        title: "Masterclass 2: Deepfakes, AI Disinformation & Peer Multiplier Training",
-                        description: "Advanced video keyframe analysis, spotting voice clones, and certification as a campus ambassador.",
-                        scheduledAt: "2026-09-22T14:00:00",
-                        instructor: "Media Ethics & AI Researcher",
-                        maxCapacity: 60,
-                        currentRegistrations: 60,
-                        status: "UPCOMING"
-                    }
-                ];
+            if (!Array.isArray(workshops) || workshops.length === 0) {
+                workshops = fallbackWorkshops;
             }
 
             const container = document.getElementById('workshops-container');
             container.innerHTML = workshops.map(w => {
                 const when = w.scheduledAt || w.sessionDate;
-                const enrolled = w.currentRegistrations ?? w.enrolledCount ?? 0;
-                const capacity = w.maxCapacity ?? w.capacity ?? 100;
-                const safeTitle = String(w.title || '').replace(/'/g, "\\'");
+                const enrolled = Number(w.currentRegistrations ?? w.enrolledCount ?? 0);
+                const capacity = Number(w.maxCapacity ?? w.capacity ?? 100);
+                const pct = capacity > 0 ? Math.min(100, Math.round((enrolled / capacity) * 100)) : 0;
+                const full = enrolled >= capacity;
+                const dateText = when
+                    ? new Date(when).toLocaleString(undefined, { dateStyle: 'medium', timeStyle: 'short' })
+                    : 'Date to be announced';
+                const status = String(w.status || 'UPCOMING').replace(/_/g, ' ');
                 return `
                 <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm flex flex-col justify-between">
                     <div>
-                        <div class="flex items-center justify-between mb-3">
-                            <span class="px-2.5 py-0.5 rounded text-[11px] font-bold uppercase ${w.status === 'UPCOMING' ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-slate-100 text-slate-600'}">${w.status || 'UPCOMING'}</span>
-                            <span class="text-xs font-semibold text-slate-500"><i class="fa-regular fa-calendar"></i> ${when ? new Date(when).toLocaleDateString() : 'TBA'}</span>
+                        <div class="flex items-center justify-between gap-2 mb-3">
+                            <span class="px-2.5 py-0.5 rounded text-[11px] font-bold uppercase ${String(w.status) === 'UPCOMING' ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-slate-100 text-slate-600 border border-slate-200'}">${escapeHtml(status)}</span>
+                            <span class="text-xs font-semibold text-slate-500"><i class="fa-regular fa-calendar"></i> ${escapeHtml(dateText)}</span>
                         </div>
-                        <h3 class="font-bold text-slate-900 text-lg mb-2">${w.title}</h3>
-                        <p class="text-xs text-slate-600 leading-relaxed mb-4">${w.description}</p>
+                        <h3 class="font-bold text-slate-900 text-lg mb-2">${escapeHtml(w.title)}</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed mb-4">${escapeHtml(w.description)}</p>
                         <div class="space-y-1 text-xs text-slate-600">
-                            <div><strong class="text-slate-800">Lead Facilitator:</strong> ${w.instructor}</div>
-                            <div><strong class="text-slate-800">Capacity:</strong> ${enrolled} / ${capacity} Enrolled</div>
-                            ${w.location ? `<div><strong class="text-slate-800">Venue:</strong> ${w.location}</div>` : ''}
+                            <div><strong class="text-slate-800">Facilitator:</strong> ${escapeHtml(w.instructor || 'To be announced')}</div>
+                            ${w.location ? `<div><strong class="text-slate-800">Venue:</strong> ${escapeHtml(w.location)}</div>` : ''}
+                            <div><strong class="text-slate-800">Enrolled:</strong> ${enrolled} / ${capacity}</div>
                         </div>
+                        <div class="w-full bg-slate-100 h-2 rounded-full mt-3 overflow-hidden">
+                            <div class="${full ? 'bg-rose-500' : 'bg-indigo-600'} h-2 rounded-full" style="width: ${pct}%"></div>
+                        </div>
+                        <p class="text-[11px] ${full ? 'text-rose-600' : 'text-slate-500'} font-semibold mt-1">${full ? 'This session is full.' : pct + '% of seats filled'}</p>
                     </div>
-                    <div class="border-t border-slate-100 pt-4 mt-6 flex items-center justify-between">
-                        <span class="text-xs font-semibold text-emerald-600"><i class="fa-solid fa-circle-check"></i> Free Participation</span>
-                        <button onclick="openModal(${w.id}, '${safeTitle}')" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl text-xs shadow transition">
-                            Register Seat
+                    <div class="border-t border-slate-100 pt-4 mt-5 flex items-center justify-between gap-3">
+                        <span class="text-xs font-semibold text-emerald-600"><i class="fa-solid fa-circle-check"></i> Free participation</span>
+                        <button type="button" data-workshop-id="${Number(w.id)}" data-workshop-title="${escapeHtml(w.title)}" ${full ? 'disabled' : ''} onclick="${full ? '' : 'openModalFromButton(this)'}" class="px-4 py-2 ${full ? 'bg-slate-200 text-slate-500 cursor-not-allowed' : 'bg-indigo-600 hover:bg-indigo-700 text-white'} font-bold rounded-xl text-xs shadow transition">
+                            ${full ? 'Full' : 'Register seat'}
                         </button>
                     </div>
                 </div>`;
             }).join('');
         }
 
-        // Modal Handlers
+        function openModalFromButton(button) {
+            openModal(button.dataset.workshopId, button.dataset.workshopTitle);
+        }
+
         function openModal(id, title) {
             document.getElementById('modal-workshop-id').value = id;
-            document.getElementById('modal-workshop-title').innerText = title;
-            document.getElementById('reg-modal').classList.remove('hidden');
+            document.getElementById('modal-workshop-title').textContent = title;
+            const errorBox = document.getElementById('reg-error');
+            errorBox.classList.add('hidden');
+            errorBox.textContent = '';
+            const modal = document.getElementById('reg-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
         }
 
         function closeModal() {
-            document.getElementById('reg-modal').classList.add('hidden');
+            const modal = document.getElementById('reg-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function showRegMessage(message, success) {
+            const box = document.getElementById('reg-error');
+            box.textContent = message;
+            box.className = 'text-xs font-semibold rounded-lg p-2.5 ' + (success ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-rose-50 text-rose-700 border border-rose-200');
         }
 
         async function submitRegistration(e) {
             e.preventDefault();
             const workshopId = document.getElementById('modal-workshop-id').value;
-            const fullName = document.getElementById('reg-name').value;
-            const email = document.getElementById('reg-email').value;
-            const college = document.getElementById('reg-college').value;
+            const fullName = document.getElementById('reg-name').value.trim();
+            const email = document.getElementById('reg-email').value.trim();
+            const college = document.getElementById('reg-college').value.trim();
 
             try {
                 const res = await fetch(`${API_BASE}/api/v1/workshops/register`, {
@@ -919,109 +1332,188 @@
                 });
 
                 if (res.ok) {
-                    alert('Registration confirmed! Seat reserved successfully.');
-                    closeModal();
+                    showRegMessage('Registration confirmed. Your seat is reserved.', true);
                     loadWorkshops();
+                    setTimeout(() => {
+                        closeModal();
+                        e.target.reset();
+                    }, 1200);
                     return;
                 }
-                const errBody = await res.text();
-                console.warn('Registration failed:', errBody);
-                alert('Registration could not be completed. Please check the details and try again.');
+
+                let message = 'Registration could not be completed. Please check the details and try again.';
+                try {
+                    const body = await res.json();
+                    if (body && body.message) message = body.message;
+                    if (body && body.details && typeof body.details === 'object') {
+                        message = Object.values(body.details)[0] || message;
+                    }
+                } catch (ignored) { /* response was not JSON */ }
+                showRegMessage(message, false);
             } catch (err) {
-                console.warn('Direct API registration unavailable', err);
-                alert('Backend unavailable. Start the app with ./mvnw spring-boot:run and try again.');
+                console.warn('Registration API unavailable', err);
+                showRegMessage('Backend unavailable. Start the app with ./mvnw spring-boot:run and try again.', false);
             }
         }
 
-        // Submit Quiz
         async function submitQuiz(e) {
             e.preventDefault();
-            const username = document.getElementById('quiz-user').value;
+            const username = document.getElementById('quiz-user').value.trim();
             const platform = document.getElementById('quiz-source').value;
             const phase = document.getElementById('quiz-phase').value;
             const feedback = document.getElementById('quiz-feedback');
 
-            let score = 2.0; // low susceptibility base
-            const q1 = document.querySelector('input[name="q1"]:checked').value;
-            const q2 = document.querySelector('input[name="q2"]:checked').value;
-            const q3 = document.querySelector('input[name="q3"]:checked').value;
-            const q4 = document.querySelector('input[name="q4"]:checked').value;
+            const q1 = document.querySelector('input[name="q1"]:checked');
+            const q2 = document.querySelector('input[name="q2"]:checked');
+            const q3 = document.querySelector('input[name="q3"]:checked');
+            const q4 = document.querySelector('input[name="q4"]:checked');
+            if (!q1 || !q2 || !q3 || !q4) {
+                feedback.className = 'text-sm font-bold text-rose-600';
+                feedback.textContent = 'Please answer all four questions.';
+                return;
+            }
 
-            if (q1 === 'NEVER') score += 3.0;
-            if (q1 === 'SOMETIMES') score += 1.5;
-            if (q2 === 'HIGH') score += 3.0;
-            if (q2 === 'MEDIUM') score += 1.5;
-            if (q3 !== 'CORRECT') score += 1.0;
-            if (q4 !== 'CORRECT') score += 1.0;
+            let score = 0;
+            if (q1.value === 'NEVER') score += 3;
+            else if (q1.value === 'SOMETIMES') score += 2;
+            else if (q1.value === 'OFTEN') score += 1;
+            if (q2.value === 'HIGH') score += 3;
+            else if (q2.value === 'MEDIUM') score += 2;
+            if (q3.value !== 'CORRECT') score += 2;
+            if (q4.value !== 'CORRECT') score += 2;
+            score = Math.min(10, score);
 
-            score = Math.min(10, Math.round(score));
             const freqMap = { NEVER: 1, SOMETIMES: 2, OFTEN: 4, ALWAYS: 5 };
-            const verificationFrequency = freqMap[q1] || 3;
+            const verificationFrequency = freqMap[q1.value] || 3;
+            const safeEmail = username.includes('@')
+                ? username
+                : `${username.replace(/\s+/g, '.').toLowerCase()}@student.truthlens.local`;
 
+            let stored = false;
             try {
                 const res = await fetch(`${API_BASE}/api/v1/campaign/surveys/submit`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-                        participantEmail: username.includes('@') ? username : `${username.replace(/\s+/g, '.').toLowerCase()}@student.truthlens.local`,
+                        participantEmail: safeEmail,
                         surveyType: phase,
-                        score: score,
-                        verificationFrequency: verificationFrequency,
+                        score,
+                        verificationFrequency,
                         primaryNewsSource: platform,
-                        feedback: `Quiz responses q2=${q2}, q3=${q3}, q4=${q4}`
+                        feedback: `Self-check q2=${q2.value}, q3=${q3.value}, q4=${q4.value}`
                     })
                 });
-                if (!res.ok) {
-                    console.warn('Survey API rejected payload', await res.text());
-                }
+                stored = res.ok;
             } catch (err) {
-                console.warn('Survey recorded locally', err);
+                console.warn('Survey API unavailable; score shown locally.', err);
             }
 
-            feedback.className = 'text-sm font-bold ' + (score <= 4 ? 'text-emerald-600' : 'text-amber-600');
-            feedback.innerHTML = `<i class="fa-solid fa-circle-check"></i> Assessed! Misinformation Susceptibility Score: <strong>${score}/10</strong> (${score <= 4 ? 'Low Risk / High Literacy' : 'Moderate Susceptibility - Practice SIFT!'})`;
+            const level = score <= 3 ? 'Low susceptibility' : score <= 6 ? 'Moderate susceptibility' : 'High susceptibility';
+            const tone = score <= 3 ? 'text-emerald-700' : score <= 6 ? 'text-amber-700' : 'text-rose-700';
+            const advice = score <= 3
+                ? 'Keep using SIFT before you share.'
+                : score <= 6
+                    ? 'Try the SIFT analyzer and run one reverse-image check this week.'
+                    : 'Start with the SIFT module, then test three forwards you receive this week.';
+            feedback.className = 'text-sm font-bold ' + tone;
+            feedback.innerHTML = `Score: <strong>${score}/10</strong> · ${level}. ${escapeHtml(advice)}${stored ? '' : ' <span class="font-medium text-slate-500">(Backend offline — score not stored.)</span>'}`;
             loadAnalytics();
         }
 
-        // Load Analytics
+        const fallbackChannels = {
+            'WhatsApp Groups': 540,
+            'Instagram Reels & Stories': 480,
+            'Campus Posters & QR Codes': 260,
+            'Workshops & Seminars': 135
+        };
+
+        function renderChannels(channels) {
+            const container = document.getElementById('channel-bars');
+            if (!container) return;
+            const entries = Object.entries(channels || {}).filter(([, v]) => Number(v) > 0);
+            if (!entries.length) {
+                container.innerHTML = '<p class="text-xs text-slate-500">No channel data available.</p>';
+                return;
+            }
+            const max = Math.max(...entries.map(([, v]) => Number(v)));
+            container.innerHTML = entries.map(([label, value]) => {
+                const pct = max > 0 ? Math.round((Number(value) / max) * 100) : 0;
+                return `
+                    <div>
+                        <div class="flex items-center justify-between text-xs mb-1">
+                            <span class="font-semibold text-slate-700">${escapeHtml(label)}</span>
+                            <span class="font-bold text-slate-900">${Number(value).toLocaleString()}</span>
+                        </div>
+                        <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
+                            <div class="bg-gradient-to-r from-indigo-500 to-cyan-400 h-2 rounded-full" style="width: ${pct}%"></div>
+                        </div>
+                    </div>`;
+            }).join('');
+        }
+
         async function loadAnalytics() {
             try {
                 const res = await fetch(`${API_BASE}/api/v1/analytics/overview`);
                 if (res.ok) {
                     const data = await res.json();
-                    const reach = data.totalImpressions || data.totalReach || 1415;
-                    const attendees = data.totalWorkshopAttendees || data.workshopParticipants || 118;
-                    const reduction = data.susceptibilityReductionPercentage || data.susceptibilityReductionPercent || 62.1;
-                    const shift = data.factCheckingBehaviorShiftPercentage || data.verificationShiftPercent || 48.3;
-                    const multipliers = data.peerMultipliersTrained || 14;
+                    const reach = data.totalImpressions ?? 1415;
+                    const attendees = data.totalWorkshopAttendees ?? 118;
+                    const reduction = data.susceptibilityReductionPercentage ?? 62.1;
+                    const shift = data.factCheckingBehaviorShiftPercentage ?? 48.3;
+                    const multipliers = data.peerMultipliersTrained ?? 14;
 
-                    document.getElementById('stat-impressions').innerText = Number(reach).toLocaleString() + '+';
-                    document.getElementById('stat-workshops').innerText = attendees;
-                    document.getElementById('stat-reduction').innerText = '-' + Number(reduction).toFixed(1) + '%';
-                    document.getElementById('stat-shift').innerText = '+' + Number(shift).toFixed(1) + '%';
-                    document.getElementById('stat-multipliers').innerText = multipliers;
+                    document.getElementById('stat-impressions').textContent = Number(reach).toLocaleString() + '+';
+                    document.getElementById('stat-workshops').textContent = attendees;
+                    document.getElementById('stat-reduction').textContent = '-' + Number(reduction).toFixed(1) + '%';
+                    document.getElementById('stat-shift').textContent = '+' + Number(shift).toFixed(1) + '%';
+                    document.getElementById('stat-multipliers').textContent = multipliers;
 
-                    if (document.getElementById('an-reach')) document.getElementById('an-reach').innerText = Number(reach).toLocaleString();
-                    if (document.getElementById('an-workshops')) document.getElementById('an-workshops').innerText = attendees;
-                    if (document.getElementById('an-reduction')) document.getElementById('an-reduction').innerText = Number(reduction).toFixed(1) + '%';
-                    if (document.getElementById('an-shift')) document.getElementById('an-shift').innerText = '+' + Number(shift).toFixed(1) + '%';
+                    document.getElementById('an-reach').textContent = Number(reach).toLocaleString();
+                    document.getElementById('an-workshops').textContent = attendees;
+                    document.getElementById('an-reduction').textContent = Number(reduction).toFixed(1) + '%';
+                    document.getElementById('an-shift').textContent = '+' + Number(shift).toFixed(1) + '%';
+                    document.getElementById('an-multipliers').textContent = multipliers;
+
+                    renderChannels(data.surveyChannelDistribution || fallbackChannels);
                     return;
                 }
-            } catch (e) {
-                console.warn('Analytics using loaded benchmark');
+            } catch (err) {
+                console.warn('Analytics using bundled benchmark:', err);
             }
+            renderChannels(fallbackChannels);
         }
 
-        // Initialize On Load
         document.addEventListener('DOMContentLoaded', () => {
             const menuBtn = document.getElementById('mobile-menu-btn');
             const mobileMenu = document.getElementById('mobile-menu');
             if (menuBtn && mobileMenu) {
-                menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+                menuBtn.addEventListener('click', () => {
+                    const isHidden = mobileMenu.classList.toggle('hidden');
+                    menuBtn.setAttribute('aria-expanded', String(!isHidden));
+                });
                 mobileMenu.querySelectorAll('a').forEach(link => {
-                    link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.add('hidden');
+                        menuBtn.setAttribute('aria-expanded', 'false');
+                    });
                 });
             }
+
+            const backToTop = document.getElementById('back-to-top');
+            window.addEventListener('scroll', () => {
+                const visible = window.scrollY > 500;
+                backToTop.classList.toggle('opacity-0', !visible);
+                backToTop.classList.toggle('pointer-events-none', !visible);
+            }, { passive: true });
+            backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+            document.getElementById('reg-modal').addEventListener('click', (event) => {
+                if (event.target.id === 'reg-modal') closeModal();
+            });
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape') closeModal();
+            });
+
             loadModules();
             loadWorkshops();
             loadAnalytics();

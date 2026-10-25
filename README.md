@@ -1,6 +1,7 @@
 # TruthLens (S-09): Online Misinformation Awareness Campaign for Young Adults
 
 [![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)](https://github.com/Ashutoshagrawal9871/S-09-Online-Misinformation-Awareness-Campaign-for-Young-Adults)
+[![Tests](https://img.shields.io/badge/tests-21%20passing-brightgreen.svg)](docs/TESTING_REPORT.md)
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.4.3-green.svg)](https://spring.io/projects/spring-boot)
 [![Java](https://img.shields.io/badge/Java-17-orange.svg)](https://openjdk.org/)
 [![License](https://img.shields.io/badge/License-CC%20BY--SA%204.0-blue.svg)](https://creativecommons.org/licenses/by-sa/4.0/)
@@ -9,9 +10,10 @@
 ---
 
 ## 1. Social Challenge & Context
-**Misinformation — health myths, fake news, phishing scams, and AI-manipulated deepfakes — spreads rapidly through WhatsApp and social media among young adults, causing severe real-world harm (vaccine hesitancy, communal tension, and financial fraud).**
 
-**TruthLens (S-09)** is a comprehensive, production-grade campaign platform and empirical educational initiative designed to empower young adults (ages 18–25) with critical thinking skills, forensic fact-checking tools, and the **SIFT Framework** (*Stop, Investigate the Source, Find Better Coverage, Trace Claims*).
+Misinformation — health myths, fake news, phishing scams, and AI-manipulated deepfakes — spreads rapidly through WhatsApp and social media among young adults, causing severe real-world harm (vaccine hesitancy, communal tension, and financial fraud).
+
+**TruthLens (S-09)** is a campaign platform and empirical educational initiative designed to empower young adults (ages 18–25) with critical thinking skills, forensic fact-checking tools, and the **SIFT Framework** (*Stop, Investigate the Source, Find Better Coverage, Trace Claims*).
 
 ---
 
@@ -27,7 +29,27 @@
 
 ---
 
-## 3. Architecture & Technical Stack
+## 3. Website & Platform Features
+
+The public single-page application is served at `/` and works against the live API.
+
+| Section | What it does |
+| :--- | :--- |
+| **Hero & campaign snapshot** | KPI strip, campaign timeline, and problem statement for young adults. |
+| **SIFT explainer** | The four verification moves explained with practical WhatsApp examples. |
+| **SIFT Analyzer** | Submit a claim, pick a category and source platform, and receive a verdict, confidence score, 4-step breakdown, verified sources, and recommended action. Three sample claims are built in. |
+| **Learning modules** | Filterable curriculum cards (SIFT literacy, health myths, deepfakes, WhatsApp rumors, scams, fact-checking tools) loaded from the API with an offline fallback. |
+| **Susceptibility quiz** | 10-question baseline/endline assessment with live scoring and server submission. |
+| **Workshops** | Session schedule, seats remaining, capacity bar, and student registration with duplicate/full guards. |
+| **Campaign materials** | Downloadable SIFT cheat sheet, WhatsApp rumor card, and deepfake checklist (SVG). |
+| **Impact analytics** | Live reach, attendance, susceptibility reduction, fact-checking adoption, and multiplier metrics with channel breakdowns. |
+| **Resource library** | Every CUSoC deliverable linked from one place, plus FAQ, contact, and evaluator links. |
+
+Frontend hardening: all API-rendered text is HTML-escaped, documentation links are relative so they work in the packaged JAR, demo data appears if the API is unavailable, and the layout is responsive from phone to desktop.
+
+---
+
+## 4. Architecture & Technical Stack
 
 ```
 +-----------------------------------------------------------------------------------+
@@ -48,34 +70,41 @@
                       * Zero-Configuration Auto-Seeded Fixtures
 ```
 
+Build-time pipeline: Maven copies `docs/`, `report/`, `presentation/`, `assets/`, `CHANGELOG.md`, and `PROJECT_PLAN.md` into the served static bundle, so the repository folders are the single source of truth. Full details: [Architecture](docs/ARCHITECTURE.md) and [Database Schema](docs/DATABASE_SCHEMA.md).
+
 ### Core API Endpoints
 
 | Method | Endpoint | Description | Access |
 | :--- | :--- | :--- | :--- |
 | `POST` | `/api/v1/fact-check/verify` | Interactive SIFT heuristic claim verification | Public |
+| `GET` | `/api/v1/fact-check/recent` | Recent verification queries | Public |
 | `GET` | `/api/v1/campaign/modules` | Fetch educational misinformation modules | Public |
 | `POST` | `/api/v1/campaign/surveys/submit` | Submit literacy survey & calculate susceptibility | Public |
+| `GET` | `/api/v1/campaign/surveys` | List submitted surveys | Admin (JWT) |
 | `GET` | `/api/v1/workshops` | List workshops & enrollment status | Public |
 | `POST` | `/api/v1/workshops/register` | Register student for training session | Public |
 | `GET` | `/api/v1/analytics/overview` | Fetch campaign KPI summary & metrics | Public |
 | `POST` | `/api/v1/auth/register` | Register user account | Public |
 | `POST` | `/api/v1/auth/login` | Authenticate user & return JWT | Public |
 
+Full request/response examples: [API Documentation](docs/API_DOCUMENTATION.md).
+
 ---
 
-## 4. Quick Start & Execution
+## 5. Quick Start & Execution
 
 ### Prerequisites
 - **Java 17+ JDK** installed
 - Modern web browser (Chrome, Edge, Firefox, Safari)
 
 ### Run the Application
+
 1. **Clone the repository:**
    ```bash
    git clone https://github.com/Ashutoshagrawal9871/S-09-Online-Misinformation-Awareness-Campaign-for-Young-Adults.git
    cd S-09-Online-Misinformation-Awareness-Campaign-for-Young-Adults
    ```
-2. **Execute the automated test suite (100% Passing):**
+2. **Execute the automated test suite (21/21 passing):**
    ```bash
    ./mvnw clean test
    # On Windows:
@@ -92,6 +121,8 @@
    - **Interactive Swagger API Documentation:** [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
    - **H2 Database Console:** [http://localhost:8080/h2-console](http://localhost:8080/h2-console) (JDBC URL: `jdbc:h2:mem:truthlens_db`, User: `sa`, Password: *(blank)*)
 
+Step-by-step setup, environment variables, Docker, and troubleshooting: [Installation Guide](docs/INSTALLATION_GUIDE.md). End-user walkthrough: [User Guide](docs/USER_GUIDE.md).
+
 ### CUSoC final evaluation (Oct 26, 2026)
 Follow the live demo checklist and viva notes in **[EVALUATION_PREP.md](EVALUATION_PREP.md)**. Presentation slides: [presentation/FINAL_EVALUATION_SLIDES.html](presentation/FINAL_EVALUATION_SLIDES.html) (also at `/presentation/FINAL_EVALUATION_SLIDES.html` when the app is running).
 
@@ -100,24 +131,67 @@ Railway credits may be exhausted. Use **Render Free** instead — see **[FREE_DE
 
 ---
 
-## 5. Complete Deliverables Index
+## 6. Documentation Index
 
-### Core Deliverables (Evaluation Criteria: 100/100 Marks)
-1. 📊 **[Baseline + Endline Survey Statistical Analysis](docs/SURVEY_ANALYSIS.md)** (Pre-and-post evaluation across $N=142$ students, paired t-tests, susceptibility reduction analysis).
-2. 🎨 **[Campaign Materials Repository](docs/CAMPAIGN_MATERIALS.md)** (SIFT pocket infographics, WhatsApp rumor radar anti-misinformation cards, 30–45s Reel/TikTok video scripts).
-3. 🧑‍🏫 **[Workshop Facilitation Guide](docs/WORKSHOP_FACILITATION_GUIDE.md)** (Masterclass 1 & 2 full agendas, breakout exercises, slides outline, and Q&A playbook).
-4. 📖 **[Open-Access Fact-Checking Resource Guide](docs/FACT_CHECKING_RESOURCE_GUIDE.md)** (Digital toolkit featuring Google Lens, TinEye, InVID, Wayback Machine, and IFCN certified portals).
-5. 📈 **[Social Media Analytics & Reach Report](docs/SOCIAL_MEDIA_ANALYTICS_REPORT.md)** (Multi-channel analytics proving 1,415 impressions, engagement rates, click-through metrics).
-6. 🏆 **[Final Impact & Evaluation Report](docs/FINAL_IMPACT_REPORT.md)** (Formal evaluation confirming achievement of all 5 KPI targets).
+| Document | Purpose |
+| :--- | :--- |
+| [Documentation Home](docs/README.md) | Index of every document in the repository. |
+| [Installation Guide](docs/INSTALLATION_GUIDE.md) | Prerequisites, run commands, configuration, Docker/Render, troubleshooting. |
+| [User Guide](docs/USER_GUIDE.md) | Website tour, analyzer, quiz scoring, workshops, analytics, FAQ. |
+| [API Documentation](docs/API_DOCUMENTATION.md) | Conventions, auth, endpoint examples, error formats, cURL. |
+| [Architecture](docs/ARCHITECTURE.md) | C4-style flow, package layout, security, static pipeline, quality attributes. |
+| [Database Schema](docs/DATABASE_SCHEMA.md) | ER diagram, tables, constraints, seed data, data lifecycle. |
+| [Testing Report](docs/TESTING_REPORT.md) | Automated suite (21 tests), manual cases, defects fixed, limitations. |
+| [Change Log](CHANGELOG.md) | Version history and release notes. |
+| [Technical Report](report/TECHNICAL_REPORT.md) | Formal engineering report for CUSoC evaluation. |
+| [Presentation Slides](presentation/FINAL_EVALUATION_SLIDES.html) | Final evaluation deck (HTML, no build step). |
+| [Evaluation Prep](EVALUATION_PREP.md) | Demo script, viva answers, submission checklist. |
+| [Project Plan](PROJECT_PLAN.md) | Scope, milestones, and deliverable status. |
 
-### Bonus Impact Deliverables
-- 🏛️ **[Policy Brief on Digital Literacy in Higher Education](docs/POLICY_BRIEF_DIGITAL_LITERACY.md)** (Institutional recommendations submitted to University Academic Council).
-- 🤖 **[WhatsApp Rumor Radar Bot Architecture Guide](docs/WHATSAPP_BOT_GUIDE.md)** (Cloud API webhook design, state machine, and auto-debunking bot blueprints).
-- 🤝 **[Fact-Checker Partnership Session Plan](docs/PARTNERSHIP_SESSION_PLAN.md)** (Collaborative masterclass session plan co-designed with BOOM Live & Alt News).
+### Repository Structure
+
+```
+S-09-Online-Misinformation-Awareness-Campaign-for-Young-Adults/
+├── README.md                  # Project overview, quick start, documentation index
+├── LICENSE                    # CC BY-SA 4.0
+├── CHANGELOG.md               # Release history
+├── PROJECT_PLAN.md            # Scope and milestone status
+├── EVALUATION_PREP.md         # CUSoC demo checklist and viva notes
+├── FREE_DEPLOY.md             # Render free-tier deployment guide
+├── pom.xml, mvnw, mvnw.cmd    # Maven build and wrapper
+├── Dockerfile, render.yaml    # Container and Render blueprint
+├── docs/                      # All CUSoC deliverables and technical documentation
+├── report/                    # Technical report
+├── presentation/              # Final evaluation slides
+├── assets/                    # SIFT cheat sheet, rumor card, deepfake checklist, favicon
+├── media/                     # Field-work evidence guidance (photos/videos)
+├── tests/                     # Test suite documentation
+└── src/
+    ├── main/java/             # Spring Boot application (API, security, services)
+    ├── main/resources/static/ # Single-page website
+    └── test/java/             # JUnit 5 / MockMvc automated tests
+```
 
 ---
 
-## 6. Evaluation Criteria Mapping
+## 7. Complete Deliverables Index
+
+### Core Deliverables (Evaluation Criteria: 100/100 Marks)
+1. **[Baseline + Endline Survey Statistical Analysis](docs/SURVEY_ANALYSIS.md)** — pre/post evaluation across $N=142$ students, paired t-tests, susceptibility reduction analysis.
+2. **[Campaign Materials Repository](docs/CAMPAIGN_MATERIALS.md)** — SIFT pocket infographics, WhatsApp rumor radar cards, 30–45s Reel/TikTok scripts.
+3. **[Workshop Facilitation Guide](docs/WORKSHOP_FACILITATION_GUIDE.md)** — Masterclass 1 & 2 agendas, breakout exercises, slide outline, Q&A playbook.
+4. **[Open-Access Fact-Checking Resource Guide](docs/FACT_CHECKING_RESOURCE_GUIDE.md)** — Google Lens, TinEye, InVID, Wayback Machine, and IFCN-certified portals.
+5. **[Social Media Analytics & Reach Report](docs/SOCIAL_MEDIA_ANALYTICS_REPORT.md)** — 1,415 impressions, engagement rates, click-through metrics.
+6. **[Final Impact & Evaluation Report](docs/FINAL_IMPACT_REPORT.md)** — formal evaluation confirming all 5 KPI targets.
+
+### Bonus Impact Deliverables
+- **[Policy Brief on Digital Literacy in Higher Education](docs/POLICY_BRIEF_DIGITAL_LITERACY.md)** — recommendations submitted to the University Academic Council.
+- **[WhatsApp Rumor Radar Bot Architecture Guide](docs/WHATSAPP_BOT_GUIDE.md)** — Cloud API webhook design, state machine, auto-debunking blueprint.
+- **[Fact-Checker Partnership Session Plan](docs/PARTNERSHIP_SESSION_PLAN.md)** — collaborative masterclass plan with BOOM Live & Alt News.
+
+---
+
+## 8. Evaluation Criteria Mapping
 
 | Evaluation Criterion | Target Marks | Evidence & Deliverable |
 | :--- | :--- | :--- |
@@ -125,5 +199,11 @@ Railway credits may be exhausted. Use **Render Free** instead — see **[FREE_DE
 | **Survey Quality & Behavior Change** | 25 Marks | Empirical paired pre/post survey analysis in [Survey Analysis Report](docs/SURVEY_ANALYSIS.md), demonstrating -62.1% susceptibility drop and +48.3% verification increase ($p < 0.001$). |
 | **Workshop Content Quality** | 20 Marks | 2 structured masterclasses with 118 attendees and 14 multipliers in [Workshop Facilitation Guide](docs/WORKSHOP_FACILITATION_GUIDE.md). |
 | **Resource Guide Usability** | 15 Marks | Open-access digital handbook with SIFT workflow and OSINT tools in [Fact-Checking Guide](docs/FACT_CHECKING_RESOURCE_GUIDE.md). |
-| **Documentation & Presentation** | 15 Marks | Full markdown documentation suite, interactive web app UI, Swagger docs, and [Final Impact Report](docs/FINAL_IMPACT_REPORT.md). |
+| **Documentation & Presentation** | 15 Marks | Full documentation suite, interactive website, Swagger docs, [Testing Report](docs/TESTING_REPORT.md), and [Final Impact Report](docs/FINAL_IMPACT_REPORT.md). |
 | **Bonus Opportunities** | Bonus | BOOM/Alt News session plan, WhatsApp bot guide, University policy brief. |
+
+---
+
+## Author
+
+**Ashutosh Agrawal** — CUSoC 2026 Contributor

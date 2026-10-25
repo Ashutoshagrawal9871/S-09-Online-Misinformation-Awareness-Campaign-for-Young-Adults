@@ -46,6 +46,13 @@ public class WorkshopServiceImpl implements WorkshopService {
         Workshop workshop = workshopRepository.findById(request.getWorkshopId())
                 .orElseThrow(() -> new ResourceNotFoundException("Workshop not found with ID: " + request.getWorkshopId()));
 
+        if (workshop.getCurrentRegistrations() >= workshop.getMaxCapacity()) {
+            throw new IllegalArgumentException("This workshop is already at full capacity.");
+        }
+        if (registrationRepository.existsByWorkshopIdAndParticipantEmail(request.getWorkshopId(), request.getParticipantEmail())) {
+            throw new IllegalArgumentException("This email is already registered for this workshop.");
+        }
+
         User participant = null;
         if (request.getUserId() != null) {
             participant = userRepository.findById(request.getUserId()).orElse(null);

@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">Deepfake Checklist</title>
+  <desc id="desc">Five visual clues for spotting AI-generated video and audio, plus verification tools.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1e1b4b"/>
+      <stop offset="0.55" stop-color="#4c1d95"/>
+      <stop offset="1" stop-color="#831843"/>
+    </linearGradient>
+    <linearGradient id="line" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#c084fc"/>
+      <stop offset="1" stop-color="#f472b6"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="900" fill="url(#bg)"/>
+  <circle cx="1080" cy="90" r="230" fill="#a855f7" opacity="0.18"/>
+  <circle cx="90" cy="810" r="250" fill="#ec4899" opacity="0.12"/>
+
+  <g font-family="Segoe UI, Arial, sans-serif">
+    <text x="64" y="86" fill="#f0abfc" font-size="22" font-weight="700" letter-spacing="5">TRUTHLENS · DEEPFAKE DEFENCE</text>
+    <text x="64" y="158" fill="#faf5ff" font-size="64" font-weight="800">5 signs a video may be AI</text>
+    <text x="64" y="204" fill="#e9d5ff" font-size="25">Slow down before you believe — or share — a viral clip.</text>
+
+    <g transform="translate(64,262)">
+      <rect width="1072" height="88" rx="18" fill="#2e1065" stroke="#6d28d9"/>
+      <circle cx="46" cy="44" r="24" fill="#c084fc"/>
+      <text x="46" y="52" fill="#2e1065" font-size="24" font-weight="900" text-anchor="middle">1</text>
+      <text x="88" y="38" fill="#ffffff" font-size="24" font-weight="700">Hands and fingers</text>
+      <text x="88" y="66" fill="#ddd6fe" font-size="19">Extra digits, melted rings, or unnatural joints during movement.</text>
+    </g>
+
+    <g transform="translate(64,366)">
+      <rect width="1072" height="88" rx="18" fill="#2e1065" stroke="#6d28d9"/>
+      <circle cx="46" cy="44" r="24" fill="#c084fc"/>
+      <text x="46" y="52" fill="#2e1065" font-size="24" font-weight="900" text-anchor="middle">2</text>
+      <text x="88" y="38" fill="#ffffff" font-size="24" font-weight="700">Teeth, eyes, and ears</text>
+      <text x="88" y="66" fill="#ddd6fe" font-size="19">Uneven teeth, missing ear detail, or a gaze that never quite lands.</text>
+    </g>
+
+    <g transform="translate(64,470)">
+      <rect width="1072" height="88" rx="18" fill="#2e1065" stroke="#6d28d9"/>
+      <circle cx="46" cy="44" r="24" fill="#c084fc"/>
+      <text x="46" y="52" fill="#2e1065" font-size="24" font-weight="900" text-anchor="middle">3</text>
+      <text x="88" y="38" fill="#ffffff" font-size="24" font-weight="700">Lighting and shadows</text>
+      <text x="88" y="66" fill="#ddd6fe" font-size="19">Shadows that disagree with the light source or flicker between frames.</text>
+    </g>
+
+    <g transform="translate(64,574)">
+      <rect width="1072" height="88" rx="18" fill="#2e1065" stroke="#6d28d9"/>
+      <circle cx="46" cy="44" r="24" fill="#c084fc"/>
+      <text x="46" y="52" fill="#2e1065" font-size="24" font-weight="900" text-anchor="middle">4</text>
+      <text x="88" y="38" fill="#ffffff" font-size="24" font-weight="700">Audio sync and breathing</text>
+      <text x="88" y="66" fill="#ddd6fe" font-size="19">Lip-sync drift, unnatural pauses, or a voice with no room echo.</text>
+    </g>
+
+    <g transform="translate(64,678)">
+      <rect width="1072" height="88" rx="18" fill="#2e1065" stroke="#6d28d9"/>
+      <circle cx="46" cy="44" r="24" fill="#c084fc"/>
+      <text x="46" y="52" fill="#2e1065" font-size="24" font-weight="900" text-anchor="middle">5</text>
+      <text x="88" y="38" fill="#ffffff" font-size="24" font-weight="700">No original source</text>
+      <text x="88" y="66" fill="#ddd6fe" font-size="19">Clip appears only on anonymous pages, with no full interview or press record.</text>
+    </g>
+
+    <rect x="64" y="796" width="1072" height="3" fill="url(#line)"/>
+    <text x="64" y="850" fill="#e9d5ff" font-size="20">Verify with: InVID-WeVerify · Google Lens · Yandex · Reverse audio search</text>
+    <text x="1136" y="850" fill="#f0abfc" font-size="20" text-anchor="end" font-weight="700">truthlens · cusoc 2026</text>
+  </g>
+</svg>

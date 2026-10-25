@@ -13,10 +13,12 @@ public class HomeController {
     public ResponseEntity<Map<String, Object>> status() {
         return ResponseEntity.ok(Map.of(
                 "application", "TruthLens - Misinformation Awareness Campaign Platform",
-                "version", "1.0.0",
+                "version", "1.2.0",
                 "status", "UP",
                 "campaign", "S-09: Online Misinformation Awareness Campaign for Young Adults",
-                "swaggerDocumentation", "/swagger-ui/index.html"
+                "website", "/",
+                "swaggerDocumentation", "/swagger-ui.html",
+                "presentation", "/presentation/FINAL_EVALUATION_SLIDES.html"
         ));
     }
 }
