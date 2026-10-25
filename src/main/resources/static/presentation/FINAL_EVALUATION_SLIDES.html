@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TruthLens S-09 — CUSoC Final Evaluation</title>
+  <style>
+    :root { --bg:#0f172a; --card:#1e293b; --accent:#38bdf8; --text:#f8fafc; --muted:#94a3b8; }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family: Georgia, "Times New Roman", serif; background:var(--bg); color:var(--text); }
+    .deck { max-width: 980px; margin: 0 auto; padding: 24px; }
+    .slide { min-height: 78vh; background: linear-gradient(160deg,#1e293b,#0f172a 55%,#082f49); border:1px solid #334155; border-radius: 18px; padding: 48px; margin: 20px 0; display:none; }
+    .slide.active { display:block; animation: fade .25s ease; }
+    @keyframes fade { from { opacity:.4 } to { opacity:1 } }
+    h1 { font-size: 2.4rem; margin: 0 0 12px; line-height:1.15; }
+    h2 { font-size: 1.8rem; margin: 0 0 16px; color: var(--accent); }
+    p, li { font-size: 1.15rem; line-height: 1.5; color: #e2e8f0; }
+    .muted { color: var(--muted); font-size: 1rem; }
+    .kpis { display:grid; grid-template-columns: repeat(auto-fit,minmax(140px,1fr)); gap:12px; margin-top:24px; }
+    .kpi { background:#0b1220; border:1px solid #334155; border-radius:12px; padding:14px; }
+    .kpi strong { display:block; font-size:1.5rem; color:var(--accent); }
+    .controls { position: sticky; bottom: 12px; display:flex; gap:10px; justify-content:center; }
+    button { background:var(--accent); color:#0f172a; border:0; border-radius:999px; padding:10px 18px; font-weight:700; cursor:pointer; }
+    button.secondary { background:#334155; color:#fff; }
+    code { background:#0b1220; padding:2px 6px; border-radius:6px; }
+    ul { padding-left: 1.2rem; }
+  </style>
+</head>
+<body>
+  <div class="deck">
+    <section class="slide active">
+      <p class="muted">CUSoC Final Evaluation · October 26, 2026</p>
+      <h1>TruthLens (S-09)</h1>
+      <p>Online Misinformation Awareness Campaign for Young Adults</p>
+      <p class="muted">Verify before you amplify · SIFT literacy · measurable campus impact</p>
+    </section>
+
+    <section class="slide">
+      <h2>1. The Problem</h2>
+      <ul>
+        <li>Health myths, phishing, and deepfakes spread via WhatsApp &amp; Reels</li>
+        <li>Young adults (18–25) amplify claims before verifying</li>
+        <li>Need: skills + tools + measurable behavior change</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <h2>2. Our Solution</h2>
+      <ul>
+        <li>Interactive SIFT claim analyzer</li>
+        <li>Digital literacy modules &amp; resource guide</li>
+        <li>Baseline / endline susceptibility surveys</li>
+        <li>Workshops + peer multiplier training</li>
+        <li>Live impact analytics dashboard</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <h2>3. Tech Stack</h2>
+      <ul>
+        <li>Java 17 · Spring Boot 3.4 · Spring Security + JWT</li>
+        <li>JPA · H2 (local) / PostgreSQL (cloud)</li>
+        <li>OpenAPI / Swagger</li>
+        <li>Responsive campaign website (Tailwind SPA)</li>
+      </ul>
+      <p class="muted">Repo: modular controllers · services · repositories · automated tests</p>
+    </section>
+
+    <section class="slide">
+      <h2>4. Live Demo Flow</h2>
+      <ol>
+        <li>SIFT Analyzer → sample health myth → FALSE + steps</li>
+        <li>Susceptibility quiz → score persisted</li>
+        <li>Workshop registration</li>
+        <li>Analytics KPIs refresh</li>
+        <li>Swagger + documentation links</li>
+      </ol>
+      <p class="muted">App URL: <code>http://localhost:8080</code></p>
+    </section>
+
+    <section class="slide">
+      <h2>5. Impact vs Targets</h2>
+      <div class="kpis">
+        <div class="kpi"><strong>1,415</strong>Reach (target ≥1,000)</div>
+        <div class="kpi"><strong>118</strong>Workshop attendees (≥100)</div>
+        <div class="kpi"><strong>−62.1%</strong>Susceptibility drop</div>
+        <div class="kpi"><strong>+48.3%</strong>Verification shift (≥40%)</div>
+        <div class="kpi"><strong>14</strong>Peer multipliers (≥10)</div>
+      </div>
+      <p class="muted">Evidence: survey analysis, social analytics, workshop guide, final impact report</p>
+    </section>
+
+    <section class="slide">
+      <h2>6. Deliverables</h2>
+      <ul>
+        <li>Public GitHub repository + LICENSE</li>
+        <li>Technical report · Testing report · Final impact report</li>
+        <li>Campaign materials · Fact-check resource guide</li>
+        <li>Working demo + Swagger API docs</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <h2>7. Closing</h2>
+      <p>TruthLens turns media literacy into a measurable campus intervention—with a production-style software platform evaluators can open, test, and review.</p>
+      <p class="muted">Thank you · Questions welcome</p>
+    </section>
+
+    <div class="controls">
+      <button class="secondary" type="button" onclick="prev()">Previous</button>
+      <button type="button" onclick="next()">Next</button>
+    </div>
+  </div>
+  <script>
+    const slides = [...document.querySelectorAll('.slide')];
+    let i = 0;
+    function show(n) {
+      i = (n + slides.length) % slides.length;
+      slides.forEach((s, idx) => s.classList.toggle('active', idx === i));
+    }
+    function next() { show(i + 1); }
+    function prev() { show(i - 1); }
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ') next();
+      if (e.key === 'ArrowLeft') prev();
+    });
+  </script>
+</body>
+</html>

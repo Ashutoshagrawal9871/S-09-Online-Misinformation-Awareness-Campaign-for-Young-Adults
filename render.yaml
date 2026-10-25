@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: truthlens-s09
+    runtime: docker
+    plan: free
+    healthCheckPath: /
+    dockerContext: .
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: JAVA_TOOL_OPTIONS
+        value: -XX:MaxRAMPercentage=70.0 -XX:+UseSerialGC -Xss512k
+      - key: H2_CONSOLE_ENABLED
+        value: "false"
+      # Must be valid Base64 (≥32 bytes). Override in Render dashboard for production.
+      - key: JWT_SECRET
+        value: c3VwZXItc2VjcmV0LWp3dC1zaWduaW5nLWtleS1mb3ItdHJ1dGhsZW5zLXJlbmRlci1kZW1vLWZyZWU=

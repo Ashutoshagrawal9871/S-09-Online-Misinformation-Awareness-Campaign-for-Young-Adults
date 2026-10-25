@@ -21,7 +21,7 @@ public class AnalyticsController {
 
     private final AnalyticsService analyticsService;
 
-    @GetMapping
+    @GetMapping({"", "/overview"})
     @Operation(summary = "Get comprehensive campaign impact metrics and analytics")
     public ResponseEntity<CampaignAnalyticsResponse> getComprehensiveAnalytics() {
         return ResponseEntity.ok(analyticsService.getComprehensiveAnalytics());

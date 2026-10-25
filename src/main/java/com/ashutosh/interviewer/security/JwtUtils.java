@@ -5,6 +5,7 @@ import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
@@ -17,11 +18,13 @@ import java.util.function.Function;
 @Component
 public class JwtUtils {
 
-    // Base64 encoded secret string (minimum 256 bits / 32 bytes for HMAC-SHA)
-    private static final String SECRET_STRING = "c3VwZXItc2VjcmV0LWp3dC1zaWduaW5nLWtleS1mb3ItaW50ZXJ2aWV3ZXItYmFja2VuZC1hcHA=";
     private static final long EXPIRATION_TIME_MS = 86_400_000L; // 24 hours
 
-    private final SecretKey key = Keys.hmacShaKeyFor(Decoders.BASE64.decode(SECRET_STRING));
+    private final SecretKey key;
+
+    public JwtUtils(@Value("${app.jwt.secret}") String secretString) {
+        this.key = Keys.hmacShaKeyFor(Decoders.BASE64.decode(secretString));
+    }
 
     /**
      * Generate a JWT token with default claims for the given UserDetails.

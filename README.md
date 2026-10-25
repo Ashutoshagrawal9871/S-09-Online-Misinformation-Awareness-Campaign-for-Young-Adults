@@ -92,6 +92,12 @@
    - **Interactive Swagger API Documentation:** [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
    - **H2 Database Console:** [http://localhost:8080/h2-console](http://localhost:8080/h2-console) (JDBC URL: `jdbc:h2:mem:truthlens_db`, User: `sa`, Password: *(blank)*)
 
+### CUSoC final evaluation (Oct 26, 2026)
+Follow the live demo checklist and viva notes in **[EVALUATION_PREP.md](EVALUATION_PREP.md)**. Presentation slides: [presentation/FINAL_EVALUATION_SLIDES.html](presentation/FINAL_EVALUATION_SLIDES.html) (also at `/presentation/FINAL_EVALUATION_SLIDES.html` when the app is running).
+
+### Free public demo (Render)
+Railway credits may be exhausted. Use **Render Free** instead — see **[FREE_DEPLOY.md](FREE_DEPLOY.md)** (`render.yaml` included). Local H2 works; no paid database required for evaluation.
+
 ---
 
 ## 5. Complete Deliverables Index

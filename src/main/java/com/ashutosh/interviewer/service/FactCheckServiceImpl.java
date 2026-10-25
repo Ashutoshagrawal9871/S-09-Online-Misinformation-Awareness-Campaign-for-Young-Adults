@@ -43,6 +43,18 @@ public class FactCheckServiceImpl implements FactCheckService {
                     "Consult an oncologist for medical advice. Report health misinformation on social channels."
             ),
             new FactKnowledge(
+                    List.of("garlic", "pneumonia", "viral fever", "boiled garlic", "miracle cure"),
+                    "HEALTH",
+                    "VERIFIED_FALSE",
+                    96,
+                    "Medical myth: Boiled garlic water does not cure pneumonia or viral fever within 24 hours.",
+                    "Garlic has mild antimicrobial compounds in lab settings, but it is not a substitute for antibiotics, antivirals, or clinical care for pneumonia. Viral WhatsApp remedies that promise instant cures delay real treatment.",
+                    List.of("Stop: Avoid delaying medical care for unverified remedies.", "Investigate Source: Check WHO and ICMR peer-reviewed medical guidance.", "Find Better Coverage: Read BOOM Live and Alt News health checks.", "Trace Claims: Traced to recurring copy-paste social media chains."),
+                    List.of("WHO Mythbusters", "BOOM Live Health Check", "Alt News Science"),
+                    List.of("Promises instant cure for serious illness", "Forwarded chain-message format", "No hospital or clinical trial citation"),
+                    "Do NOT forward. Seek licensed medical care for pneumonia symptoms."
+            ),
+            new FactKnowledge(
                     List.of("unesco", "best national anthem", "modi", "jana gana mana", "declared"),
                     "POLITICS",
                     "VERIFIED_FALSE",
