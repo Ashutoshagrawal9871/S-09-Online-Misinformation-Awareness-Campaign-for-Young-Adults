@@ -44,7 +44,7 @@ Optional: run tests once before the slot — `.\mvnw.cmd test -q` (expect **21 t
 - [x] Technical report (`report/TECHNICAL_REPORT.md`)
 - [x] Testing report (`docs/TESTING_REPORT.md`)
 - [x] Presentation slides (`presentation/FINAL_EVALUATION_SLIDES.html`)
-- [x] Final impact report (`docs/FINAL_IMPACT_REPORT.md`)
+- [x] Final impact report (`report/FINAL_IMPACT_REPORT.md`)
 - [ ] Live deployment URL (optional; local demo is enough if network is stable)
 - [ ] Field-work evidence folder (photos/videos/surveys) **if your subject is 25UCI-203**
 - [ ] Mentor approval / prior review notes if asked
@@ -53,4 +53,4 @@ Optional: run tests once before the slot — `.\mvnw.cmd test -q` (expect **21 t
 1. Refresh the page.
 2. Use sample claim buttons (client fallback still shows SIFT output).
 3. Switch to Swagger and call `/api/v1/fact-check/verify` + `/api/v1/analytics/overview`.
-4. Show GitHub docs/`FINAL_IMPACT_REPORT.md` as backup evidence.
+4. Show GitHub `report/FINAL_IMPACT_REPORT.md` as backup evidence.

@@ -6,8 +6,9 @@ COPY docs docs
 COPY report report
 COPY presentation presentation
 COPY assets assets
+COPY media media
 COPY tests tests
-COPY CHANGELOG.md PROJECT_PLAN.md ./
+COPY README.md LICENSE ./
 RUN mvn -B -DskipTests package
 
 FROM eclipse-temurin:17-jre

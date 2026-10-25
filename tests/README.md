@@ -1,6 +1,17 @@
 # Tests
 
-The automated test suite follows the standard Maven layout and lives in [`src/test/java`](https://github.com/Ashutoshagrawal9871/S-09-Online-Misinformation-Awareness-Campaign-for-Young-Adults/tree/main/src/test/java). This folder exists so the repository matches the CUSoC recommended structure (`src/`, `tests/`, `docs/`, ...).
+The automated test suite lives in this folder, in [`tests/java`](https://github.com/Ashutoshagrawal9871/S-09-Online-Misinformation-Awareness-Campaign-for-Young-Adults/tree/main/tests/java), following the CUSoC recommended structure (`src/`, `tests/`, `docs/`, ...). Maven is configured with `<testSourceDirectory>tests/java</testSourceDirectory>`, so the standard commands below compile and run it.
+
+```
+tests/
+├── README.md
+└── java/com/ashutosh/interviewer/
+    ├── InterviewerBackendApplicationTests.java
+    ├── config/SecurityConfigTest.java
+    ├── controller/   (Analytics, Campaign, FactCheck, Workshop)
+    ├── security/AuthAndJwtIntegrationTest.java
+    └── service/      (CampaignServiceTest, WorkshopServiceTest)
+```
 
 ## Run the suite
 

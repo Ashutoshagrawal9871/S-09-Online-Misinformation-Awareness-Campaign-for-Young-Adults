@@ -89,7 +89,7 @@ com.ashutosh.interviewer
 
 ## 6. Static content pipeline
 
-`docs/`, `report/`, `presentation/`, `assets/`, `CHANGELOG.md`, and `PROJECT_PLAN.md` are copied into `target/classes/static/` by the Maven resources plugin. This gives a single source of truth in the repository while serving the same files at:
+`docs/`, `report/`, `presentation/`, `assets/`, `media/`, `tests/README.md`, and the root `README.md`/`LICENSE` are copied into `target/classes/static/` by the Maven resources plugin. This gives a single source of truth in the repository while serving the same files at:
 
 - `/docs/**`
 - `/report/**`

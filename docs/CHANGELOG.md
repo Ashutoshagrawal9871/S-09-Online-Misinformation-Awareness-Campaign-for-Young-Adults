@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.2.1] — 2026-10-26
+
+### Changed
+- Repository arranged to the CUSoC recommended layout: only `README.md`, `LICENSE`, and required build/deploy files stay at the root.
+- Automated tests moved from `src/test/java` to `tests/java` (Maven `testSourceDirectory`).
+- `CHANGELOG.md`, `PROJECT_PLAN.md`, `EVALUATION_PREP.md`, and deployment guides (`DEPLOYMENT_RENDER.md`, `DEPLOYMENT_RAILWAY.md`) moved into `docs/`.
+- Survey analysis, social media analytics, policy brief, and CUSoC change summary moved into `report/`; duplicate `docs/FINAL_IMPACT_REPORT.md` removed.
+- All README, documentation, and website links updated to the new paths.
+
 ## [1.2.0] — 2026-10-26
 
 ### Added

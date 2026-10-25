@@ -21,9 +21,9 @@ Misinformation — health myths, fake news, phishing scams, and AI-manipulated d
 
 | Metric | Target KPI | Achieved Metric | Verification Evidence | Status |
 | :--- | :--- | :--- | :--- | :--- |
-| **Campaign Reach** | $\ge \mathbf{1,000}$ impressions | **1,415 impressions** | [Social Analytics Report](docs/SOCIAL_MEDIA_ANALYTICS_REPORT.md) | **EXCEEDED (141.5%)** |
+| **Campaign Reach** | $\ge \mathbf{1,000}$ impressions | **1,415 impressions** | [Social Analytics Report](report/SOCIAL_MEDIA_ANALYTICS_REPORT.md) | **EXCEEDED (141.5%)** |
 | **Workshop Participants** | $\ge \mathbf{100}$ students | **118 certified attendees** | [Workshop Facilitation Guide](docs/WORKSHOP_FACILITATION_GUIDE.md) | **EXCEEDED (118.0%)** |
-| **Susceptibility Score Reduction** | Measurable decrease | **-62.1% reduction** ($7.38 \to 2.80/10$) | [Survey Analysis Report](docs/SURVEY_ANALYSIS.md) | **EXCEEDED ($p < 0.001$)** |
+| **Susceptibility Score Reduction** | Measurable decrease | **-62.1% reduction** ($7.38 \to 2.80/10$) | [Survey Analysis Report](report/SURVEY_ANALYSIS.md) | **EXCEEDED ($p < 0.001$)** |
 | **Fact-Checking Adoption** | $\ge \mathbf{40\%}$ positive shift | **+48.3% increase** ($18.3\% \to 66.6\%$) | Pre/Post Matched Survey DB | **EXCEEDED** |
 | **Peer Multipliers Trained** | $\ge \mathbf{10}$ students | **14 certified ambassadors** | Masterclass 2 Certification Logs | **EXCEEDED (140.0%)** |
 
@@ -70,7 +70,7 @@ Frontend hardening: all API-rendered text is HTML-escaped, documentation links a
                       * Zero-Configuration Auto-Seeded Fixtures
 ```
 
-Build-time pipeline: Maven copies `docs/`, `report/`, `presentation/`, `assets/`, `CHANGELOG.md`, and `PROJECT_PLAN.md` into the served static bundle, so the repository folders are the single source of truth. Full details: [Architecture](docs/ARCHITECTURE.md) and [Database Schema](docs/DATABASE_SCHEMA.md).
+Build-time pipeline: Maven copies `docs/`, `report/`, `presentation/`, `assets/`, `media/`, and `tests/README.md` into the served static bundle, so the repository folders are the single source of truth. Full details: [Architecture](docs/ARCHITECTURE.md) and [Database Schema](docs/DATABASE_SCHEMA.md).
 
 ### Core API Endpoints
 
@@ -124,10 +124,10 @@ Full request/response examples: [API Documentation](docs/API_DOCUMENTATION.md).
 Step-by-step setup, environment variables, Docker, and troubleshooting: [Installation Guide](docs/INSTALLATION_GUIDE.md). End-user walkthrough: [User Guide](docs/USER_GUIDE.md).
 
 ### CUSoC final evaluation (Oct 26, 2026)
-Follow the live demo checklist and viva notes in **[EVALUATION_PREP.md](EVALUATION_PREP.md)**. Presentation slides: [presentation/FINAL_EVALUATION_SLIDES.html](presentation/FINAL_EVALUATION_SLIDES.html) (also at `/presentation/FINAL_EVALUATION_SLIDES.html` when the app is running).
+Follow the live demo checklist and viva notes in **[Evaluation Prep](docs/EVALUATION_PREP.md)**. Presentation slides: [presentation/FINAL_EVALUATION_SLIDES.html](presentation/FINAL_EVALUATION_SLIDES.html) (also at `/presentation/FINAL_EVALUATION_SLIDES.html` when the app is running).
 
 ### Free public demo (Render)
-Railway credits may be exhausted. Use **Render Free** instead — see **[FREE_DEPLOY.md](FREE_DEPLOY.md)** (`render.yaml` included). Local H2 works; no paid database required for evaluation.
+Railway credits may be exhausted. Use **Render Free** instead — see **[Render Deployment Guide](docs/DEPLOYMENT_RENDER.md)** (`render.yaml` included). Local H2 works; no paid database required for evaluation.
 
 ---
 
@@ -142,34 +142,29 @@ Railway credits may be exhausted. Use **Render Free** instead — see **[FREE_DE
 | [Architecture](docs/ARCHITECTURE.md) | C4-style flow, package layout, security, static pipeline, quality attributes. |
 | [Database Schema](docs/DATABASE_SCHEMA.md) | ER diagram, tables, constraints, seed data, data lifecycle. |
 | [Testing Report](docs/TESTING_REPORT.md) | Automated suite (21 tests), manual cases, defects fixed, limitations. |
-| [Change Log](CHANGELOG.md) | Version history and release notes. |
+| [Change Log](docs/CHANGELOG.md) | Version history and release notes. |
 | [Technical Report](report/TECHNICAL_REPORT.md) | Formal engineering report for CUSoC evaluation. |
 | [Presentation Slides](presentation/FINAL_EVALUATION_SLIDES.html) | Final evaluation deck (HTML, no build step). |
-| [Evaluation Prep](EVALUATION_PREP.md) | Demo script, viva answers, submission checklist. |
-| [Project Plan](PROJECT_PLAN.md) | Scope, milestones, and deliverable status. |
+| [Evaluation Prep](docs/EVALUATION_PREP.md) | Demo script, viva answers, submission checklist. |
+| [Project Plan](docs/PROJECT_PLAN.md) | Scope, milestones, and deliverable status. |
+| [Deployment (Render / Railway)](docs/DEPLOYMENT_RENDER.md) | Free cloud deployment; Railway alternative in [DEPLOYMENT_RAILWAY.md](docs/DEPLOYMENT_RAILWAY.md). |
 
 ### Repository Structure
+
+Arranged per the CUSoC recommended layout (`README.md LICENSE docs/ src/ tests/ assets/ presentation/ report/ media/`):
 
 ```
 S-09-Online-Misinformation-Awareness-Campaign-for-Young-Adults/
 ├── README.md                  # Project overview, quick start, documentation index
 ├── LICENSE                    # CC BY-SA 4.0
-├── CHANGELOG.md               # Release history
-├── PROJECT_PLAN.md            # Scope and milestone status
-├── EVALUATION_PREP.md         # CUSoC demo checklist and viva notes
-├── FREE_DEPLOY.md             # Render free-tier deployment guide
-├── pom.xml, mvnw, mvnw.cmd    # Maven build and wrapper
-├── Dockerfile, render.yaml    # Container and Render blueprint
-├── docs/                      # All CUSoC deliverables and technical documentation
-├── report/                    # Technical report
-├── presentation/              # Final evaluation slides
+├── docs/                      # Installation, user, API, architecture, schema, testing, changelog, plan, guides
+├── src/                       # Spring Boot application (API, security, services) + website (main/resources/static)
+├── tests/                     # JUnit 5 / MockMvc automated test suite (tests/java) + test docs
 ├── assets/                    # SIFT cheat sheet, rumor card, deepfake checklist, favicon
+├── presentation/              # Final evaluation slides
+├── report/                    # Technical, impact, survey, social analytics reports + policy brief
 ├── media/                     # Field-work evidence guidance (photos/videos)
-├── tests/                     # Test suite documentation
-└── src/
-    ├── main/java/             # Spring Boot application (API, security, services)
-    ├── main/resources/static/ # Single-page website
-    └── test/java/             # JUnit 5 / MockMvc automated tests
+└── pom.xml, mvnw*, Dockerfile, render.yaml, railway.json   # Build & deploy config (must stay at root)
 ```
 
 ---
@@ -177,15 +172,15 @@ S-09-Online-Misinformation-Awareness-Campaign-for-Young-Adults/
 ## 7. Complete Deliverables Index
 
 ### Core Deliverables (Evaluation Criteria: 100/100 Marks)
-1. **[Baseline + Endline Survey Statistical Analysis](docs/SURVEY_ANALYSIS.md)** — pre/post evaluation across $N=142$ students, paired t-tests, susceptibility reduction analysis.
+1. **[Baseline + Endline Survey Statistical Analysis](report/SURVEY_ANALYSIS.md)** — pre/post evaluation across $N=142$ students, paired t-tests, susceptibility reduction analysis.
 2. **[Campaign Materials Repository](docs/CAMPAIGN_MATERIALS.md)** — SIFT pocket infographics, WhatsApp rumor radar cards, 30–45s Reel/TikTok scripts.
 3. **[Workshop Facilitation Guide](docs/WORKSHOP_FACILITATION_GUIDE.md)** — Masterclass 1 & 2 agendas, breakout exercises, slide outline, Q&A playbook.
 4. **[Open-Access Fact-Checking Resource Guide](docs/FACT_CHECKING_RESOURCE_GUIDE.md)** — Google Lens, TinEye, InVID, Wayback Machine, and IFCN-certified portals.
-5. **[Social Media Analytics & Reach Report](docs/SOCIAL_MEDIA_ANALYTICS_REPORT.md)** — 1,415 impressions, engagement rates, click-through metrics.
-6. **[Final Impact & Evaluation Report](docs/FINAL_IMPACT_REPORT.md)** — formal evaluation confirming all 5 KPI targets.
+5. **[Social Media Analytics & Reach Report](report/SOCIAL_MEDIA_ANALYTICS_REPORT.md)** — 1,415 impressions, engagement rates, click-through metrics.
+6. **[Final Impact & Evaluation Report](report/FINAL_IMPACT_REPORT.md)** — formal evaluation confirming all 5 KPI targets.
 
 ### Bonus Impact Deliverables
-- **[Policy Brief on Digital Literacy in Higher Education](docs/POLICY_BRIEF_DIGITAL_LITERACY.md)** — recommendations submitted to the University Academic Council.
+- **[Policy Brief on Digital Literacy in Higher Education](report/POLICY_BRIEF_DIGITAL_LITERACY.md)** — recommendations submitted to the University Academic Council.
 - **[WhatsApp Rumor Radar Bot Architecture Guide](docs/WHATSAPP_BOT_GUIDE.md)** — Cloud API webhook design, state machine, auto-debunking blueprint.
 - **[Fact-Checker Partnership Session Plan](docs/PARTNERSHIP_SESSION_PLAN.md)** — collaborative masterclass plan with BOOM Live & Alt News.
 
@@ -195,11 +190,11 @@ S-09-Online-Misinformation-Awareness-Campaign-for-Young-Adults/
 
 | Evaluation Criterion | Target Marks | Evidence & Deliverable |
 | :--- | :--- | :--- |
-| **Campaign Reach & Engagement** | 25 Marks | 1,415 impressions (>1,000 KPI), multi-channel campaign in [Social Analytics Report](docs/SOCIAL_MEDIA_ANALYTICS_REPORT.md) & [Campaign Materials](docs/CAMPAIGN_MATERIALS.md). |
-| **Survey Quality & Behavior Change** | 25 Marks | Empirical paired pre/post survey analysis in [Survey Analysis Report](docs/SURVEY_ANALYSIS.md), demonstrating -62.1% susceptibility drop and +48.3% verification increase ($p < 0.001$). |
+| **Campaign Reach & Engagement** | 25 Marks | 1,415 impressions (>1,000 KPI), multi-channel campaign in [Social Analytics Report](report/SOCIAL_MEDIA_ANALYTICS_REPORT.md) & [Campaign Materials](docs/CAMPAIGN_MATERIALS.md). |
+| **Survey Quality & Behavior Change** | 25 Marks | Empirical paired pre/post survey analysis in [Survey Analysis Report](report/SURVEY_ANALYSIS.md), demonstrating -62.1% susceptibility drop and +48.3% verification increase ($p < 0.001$). |
 | **Workshop Content Quality** | 20 Marks | 2 structured masterclasses with 118 attendees and 14 multipliers in [Workshop Facilitation Guide](docs/WORKSHOP_FACILITATION_GUIDE.md). |
 | **Resource Guide Usability** | 15 Marks | Open-access digital handbook with SIFT workflow and OSINT tools in [Fact-Checking Guide](docs/FACT_CHECKING_RESOURCE_GUIDE.md). |
-| **Documentation & Presentation** | 15 Marks | Full documentation suite, interactive website, Swagger docs, [Testing Report](docs/TESTING_REPORT.md), and [Final Impact Report](docs/FINAL_IMPACT_REPORT.md). |
+| **Documentation & Presentation** | 15 Marks | Full documentation suite, interactive website, Swagger docs, [Testing Report](docs/TESTING_REPORT.md), and [Final Impact Report](report/FINAL_IMPACT_REPORT.md). |
 | **Bonus Opportunities** | Bonus | BOOM/Alt News session plan, WhatsApp bot guide, University policy brief. |
 
 ---

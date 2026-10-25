@@ -40,20 +40,23 @@ TruthLens is a production-grade open-source platform and community initiative de
 
 | Deliverable | File Path | Status |
 | :--- | :--- | :--- |
-| **Baseline & Endline Survey Analysis** | `docs/SURVEY_ANALYSIS.md` | ✅ Complete |
+| **Baseline & Endline Survey Analysis** | `report/SURVEY_ANALYSIS.md` | ✅ Complete |
 | **Campaign Materials Repository** | `docs/CAMPAIGN_MATERIALS.md` | ✅ Complete |
 | **Workshop Facilitation Guide** | `docs/WORKSHOP_FACILITATION_GUIDE.md` | ✅ Complete |
 | **Fact-Checking Resource Guide** | `docs/FACT_CHECKING_RESOURCE_GUIDE.md` | ✅ Complete |
-| **Social Media Analytics Report** | `docs/SOCIAL_MEDIA_ANALYTICS_REPORT.md` | ✅ Complete |
-| **Final Impact & Evaluation Report** | `docs/FINAL_IMPACT_REPORT.md` | ✅ Complete |
+| **Social Media Analytics Report** | `report/SOCIAL_MEDIA_ANALYTICS_REPORT.md` | ✅ Complete |
+| **Final Impact & Evaluation Report** | `report/FINAL_IMPACT_REPORT.md` | ✅ Complete |
+| **Technical Report** | `report/TECHNICAL_REPORT.md` | ✅ Complete |
+| **Presentation Slides** | `presentation/FINAL_EVALUATION_SLIDES.html` | ✅ Complete |
 | **Installation Guide** | `docs/INSTALLATION_GUIDE.md` | ✅ Complete |
 | **User Guide** | `docs/USER_GUIDE.md` | ✅ Complete |
 | **API Documentation** | `docs/API_DOCUMENTATION.md` | ✅ Complete |
 | **Architecture Diagram & Description** | `docs/ARCHITECTURE.md` | ✅ Complete |
 | **Database Schema** | `docs/DATABASE_SCHEMA.md` | ✅ Complete |
 | **Testing Report** | `docs/TESTING_REPORT.md` | ✅ Complete (21/21) |
-| **Change Log** | `CHANGELOG.md` | ✅ Complete |
-| **Policy Brief to University (Bonus)** | `docs/POLICY_BRIEF_DIGITAL_LITERACY.md` | ✅ Complete |
+| **Automated Test Suite** | `tests/java/` | ✅ Complete (21/21) |
+| **Change Log** | `docs/CHANGELOG.md` | ✅ Complete |
+| **Policy Brief to University (Bonus)** | `report/POLICY_BRIEF_DIGITAL_LITERACY.md` | ✅ Complete |
 | **WhatsApp Bot Integration Guide (Bonus)** | `docs/WHATSAPP_BOT_GUIDE.md` | ✅ Complete |
 | **Fact-Checker Partnership Session Plan (Bonus)** | `docs/PARTNERSHIP_SESSION_PLAN.md` | ✅ Complete |
 

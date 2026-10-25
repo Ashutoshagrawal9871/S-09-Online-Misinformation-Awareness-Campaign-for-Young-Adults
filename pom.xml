@@ -109,6 +109,8 @@
     </dependencies>
 
     <build>
+        <!-- CUSoC layout: automated tests live in the top-level tests/ folder. -->
+        <testSourceDirectory>tests/java</testSourceDirectory>
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
@@ -131,25 +133,23 @@
                 <targetPath>static/assets</targetPath>
             </resource>
             <resource>
-                <directory>${project.basedir}</directory>
-                <includes>
-                    <include>CHANGELOG.md</include>
-                    <include>PROJECT_PLAN.md</include>
-                </includes>
-                <targetPath>static/docs</targetPath>
-            </resource>
-            <!-- Keep root-level links in docs/README.md working when served from the app. -->
-            <resource>
-                <directory>${project.basedir}</directory>
-                <includes>
-                    <include>CHANGELOG.md</include>
-                    <include>PROJECT_PLAN.md</include>
-                </includes>
-                <targetPath>static</targetPath>
+                <directory>media</directory>
+                <targetPath>static/media</targetPath>
             </resource>
             <resource>
                 <directory>tests</directory>
+                <includes>
+                    <include>README.md</include>
+                </includes>
                 <targetPath>static/tests</targetPath>
+            </resource>
+            <resource>
+                <directory>${project.basedir}</directory>
+                <includes>
+                    <include>README.md</include>
+                    <include>LICENSE</include>
+                </includes>
+                <targetPath>static</targetPath>
             </resource>
         </resources>
         <plugins>

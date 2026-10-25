@@ -33,14 +33,14 @@ Young adults (18–25) rapidly amplify health myths, phishing lures, and deepfak
 Entities: `User`, `MisinformationModule`, `CampaignSurvey`, `Workshop`, `WorkshopRegistration`, `FactCheckQuery`, `CampaignMetric`.
 
 ## 6. Testing & Quality
-See `docs/TESTING_REPORT.md`. Maven Surefire suite covers controllers, security, and campaign service logic.
+See `docs/TESTING_REPORT.md`. Maven Surefire suite (21 tests in `tests/java`) covers controllers, security/JWT, and campaign and workshop service logic.
 
 ## 7. Deployment
 - Local: `./mvnw.cmd spring-boot:run` → `http://localhost:8080`
-- Cloud: Railway/Docker with PostgreSQL env overrides (`RAILWAY_DEPLOYMENT.md`)
+- Cloud: Render (free, `docs/DEPLOYMENT_RENDER.md`) or Railway/Docker with PostgreSQL env overrides (`docs/DEPLOYMENT_RAILWAY.md`)
 
 ## 8. Outcomes
-All primary KPIs exceeded (reach 1,415; workshops 118; susceptibility −62.1%; verification +48.3%; multipliers 14). Full narrative in `docs/FINAL_IMPACT_REPORT.md`.
+All primary KPIs exceeded (reach 1,415; workshops 118; susceptibility −62.1%; verification +48.3%; multipliers 14). Full narrative in `report/FINAL_IMPACT_REPORT.md`.
 
 ## 9. Future Work
 Integrate live IFCN fact-check APIs, persistent production DB, WhatsApp Cloud API bot (blueprint in `docs/WHATSAPP_BOT_GUIDE.md`), and LMS embedding for first-year orientation.

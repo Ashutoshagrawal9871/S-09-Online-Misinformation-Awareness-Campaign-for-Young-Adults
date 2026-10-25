@@ -60,7 +60,7 @@ Expected result: **21 tests, 0 failures, 0 errors** (see [TESTING_REPORT.md](TES
 java -jar target/interviewer-backend-0.0.1-SNAPSHOT.jar
 ```
 
-During the Maven build, `docs/`, `report/`, `presentation/`, `assets/`, `CHANGELOG.md`, and `PROJECT_PLAN.md` are copied into the servable static bundle. This keeps a single source of truth in the repository while making the files available at `/docs/**`, `/report/**`, `/presentation/**`, and `/assets/**`.
+During the Maven build, `docs/`, `report/`, `presentation/`, `assets/`, `media/`, and `tests/README.md` are copied into the servable static bundle. This keeps a single source of truth in the repository while making the files available at `/docs/**`, `/report/**`, `/presentation/**`, and `/assets/**`. Automated tests compile from `tests/java` (configured via `testSourceDirectory` in `pom.xml`).
 
 ## 5. Configuration
 
@@ -101,7 +101,7 @@ docker build -t truthlens-s09 .
 docker run -p 8080:8080 -e H2_CONSOLE_ENABLED=false truthlens-s09
 ```
 
-The repository includes `Dockerfile` and `render.yaml` for a free Render web service. Step-by-step instructions are in `FREE_DEPLOY.md`. Note that free instances sleep after idle periods; open the URL a few minutes before a demo.
+The repository includes `Dockerfile` and `render.yaml` for a free Render web service. Step-by-step instructions are in [DEPLOYMENT_RENDER.md](DEPLOYMENT_RENDER.md) (Railway alternative: [DEPLOYMENT_RAILWAY.md](DEPLOYMENT_RAILWAY.md)). Note that free instances sleep after idle periods; open the URL a few minutes before a demo.
 
 ## 8. Seeded demo accounts
 
@@ -131,18 +131,17 @@ These accounts exist only for the demo and are recreated when the H2 database st
 S-09-Online-Misinformation-Awareness-Campaign-for-Young-Adults/
 ├── README.md                  # Project overview and deliverables
 ├── LICENSE                    # CC BY-SA 4.0
-├── CHANGELOG.md               # Version history
-├── PROJECT_PLAN.md            # Scope, milestones, timeline
-├── docs/                      # All campaign and engineering documentation
-├── src/                       # Spring Boot application and tests
+├── docs/                      # Guides, API, architecture, schema, testing report, changelog, project plan
+├── src/                       # Spring Boot application
 │   ├── main/java/             # Controllers, services, repositories, entities
-│   ├── main/resources/static/ # Website (index.html)
-│   └── test/java/             # JUnit 5 / MockMvc test suite
-├── tests/                     # Test documentation pointer
+│   └── main/resources/static/ # Website (index.html)
+├── tests/                     # Automated test suite
+│   └── java/                  # JUnit 5 / MockMvc tests (Maven testSourceDirectory)
 ├── assets/                    # Campaign posters and favicon (served at /assets)
 ├── media/                     # Field evidence placeholder (photos/videos)
 ├── presentation/              # Final evaluation slides
-├── report/                    # Technical and impact reports
+├── report/                    # Technical, impact, survey, analytics reports and policy brief
+├── pom.xml, mvnw, mvnw.cmd    # Maven build and wrapper
 ├── Dockerfile                 # Container build
 ├── render.yaml                # Render blueprint
 └── railway.json               # Railway configuration
