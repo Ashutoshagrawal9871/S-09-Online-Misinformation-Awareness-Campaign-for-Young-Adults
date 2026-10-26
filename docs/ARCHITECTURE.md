@@ -37,8 +37,8 @@ flowchart LR
 ## 3. Package structure
 
 ```
-com.ashutosh.interviewer
-├── InterviewerBackendApplication.java   # Entry point
+com.ashutosh.truthlens
+├── TruthLensApplication.java            # Entry point
 ├── HomeController.java                  # /api/status
 ├── config/
 │   ├── DataInitializer.java             # Seeds demo data

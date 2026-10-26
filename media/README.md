@@ -2,6 +2,18 @@
 
 This folder is reserved for field-work evidence collected during the campaign (subject code 25UCI-203, where applicable): photographs, short videos, survey/interview records, and permissions from partner organisations.
 
+## Website screenshots
+
+Captured from the running application (`http://localhost:8080`, v1.2.0) on 2026-10-26.
+
+| File | Shows |
+| :--- | :--- |
+| [01-home-desktop.png](screenshots/01-home-desktop.png) | Home page hero and campaign KPIs at 1440×900 |
+| [02-swagger-api.png](screenshots/02-swagger-api.png) | Swagger UI API documentation (`/swagger-ui.html`) |
+| [03-presentation.png](screenshots/03-presentation.png) | Final evaluation slide deck (`/presentation/FINAL_EVALUATION_SLIDES.html`) |
+| [04-home-mobile.png](screenshots/04-home-mobile.png) | Responsive layout at 390×844 |
+| [05-full-page.png](screenshots/05-full-page.png) | Full-page capture of every website section |
+
 ## What belongs here
 
 | Type | Examples |

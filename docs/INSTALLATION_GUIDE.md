@@ -57,7 +57,7 @@ Expected result: **21 tests, 0 failures, 0 errors** (see [TESTING_REPORT.md](TES
 
 ```bash
 ./mvnw clean package
-java -jar target/interviewer-backend-0.0.1-SNAPSHOT.jar
+java -jar target/truthlens-0.0.1-SNAPSHOT.jar
 ```
 
 During the Maven build, `docs/`, `report/`, `presentation/`, `assets/`, `media/`, and `tests/README.md` are copied into the servable static bundle. This keeps a single source of truth in the repository while making the files available at `/docs/**`, `/report/**`, `/presentation/**`, and `/assets/**`. Automated tests compile from `tests/java` (configured via `testSourceDirectory` in `pom.xml`).
@@ -92,7 +92,7 @@ export JWT_SECRET="<unique-base64-secret>"
 ./mvnw spring-boot:run
 ```
 
-Hibernate runs with `ddl-auto=update`, so the schema is created on first connection. A reference schema is available in [DATABASE_SCHEMA.md](DATABASE_SCHEMA.md) and `src/main/resources/db/schema.sql`.
+Hibernate runs with `ddl-auto=update`, so the schema is created on first connection. A full table reference is available in [DATABASE_SCHEMA.md](DATABASE_SCHEMA.md).
 
 ## 7. Docker and Render
 

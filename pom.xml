@@ -13,7 +13,7 @@
     </parent>
 
     <groupId>com.ashutosh</groupId>
-    <artifactId>interviewer-backend</artifactId>
+    <artifactId>truthlens</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>truthlens-backend</name>
     <description>TruthLens - Misinformation Awareness &amp; Fact-Checking Campaign Platform</description>

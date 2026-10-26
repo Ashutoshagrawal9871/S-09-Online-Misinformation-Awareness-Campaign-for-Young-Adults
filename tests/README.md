@@ -5,8 +5,8 @@ The automated test suite lives in this folder, in [`tests/java`](https://github.
 ```
 tests/
 ├── README.md
-└── java/com/ashutosh/interviewer/
-    ├── InterviewerBackendApplicationTests.java
+└── java/com/ashutosh/truthlens/
+    ├── TruthLensApplicationTests.java
     ├── config/SecurityConfigTest.java
     ├── controller/   (Analytics, Campaign, FactCheck, Workshop)
     ├── security/AuthAndJwtIntegrationTest.java
@@ -29,7 +29,7 @@ Expected: **21 tests, 0 failures, 0 errors**.
 
 | Test class | Purpose |
 | :--- | :--- |
-| `InterviewerBackendApplicationTests` | Spring context loads |
+| `TruthLensApplicationTests` | Spring context loads |
 | `SecurityConfigTest` | Public routes and protected-route behaviour |
 | `AuthAndJwtIntegrationTest` | Seeded admin login, JWT enforcement, bad credentials, role-escalation guard |
 | `FactCheckControllerTest` | SIFT verify and recent-query endpoints |

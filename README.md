@@ -47,6 +47,16 @@ The public single-page application is served at `/` and works against the live A
 
 Frontend hardening: all API-rendered text is HTML-escaped, documentation links are relative so they work in the packaged JAR, demo data appears if the API is unavailable, and the layout is responsive from phone to desktop.
 
+### Screenshots
+
+| Home (desktop) | Home (mobile) |
+| :---: | :---: |
+| ![TruthLens home page](media/screenshots/01-home-desktop.png) | ![TruthLens on mobile](media/screenshots/04-home-mobile.png) |
+| **Swagger API documentation** | **Evaluation presentation** |
+| ![Swagger UI](media/screenshots/02-swagger-api.png) | ![Presentation title slide](media/screenshots/03-presentation.png) |
+
+Full-page capture of every section: [media/screenshots/05-full-page.png](media/screenshots/05-full-page.png).
+
 ---
 
 ## 4. Architecture & Technical Stack
@@ -163,7 +173,7 @@ S-09-Online-Misinformation-Awareness-Campaign-for-Young-Adults/
 ├── assets/                    # SIFT cheat sheet, rumor card, deepfake checklist, favicon
 ├── presentation/              # Final evaluation slides
 ├── report/                    # Technical, impact, survey, social analytics reports + policy brief
-├── media/                     # Field-work evidence guidance (photos/videos)
+├── media/                     # Website screenshots + field-work evidence guidance
 └── pom.xml, mvnw*, Dockerfile, render.yaml, railway.json   # Build & deploy config (must stay at root)
 ```
 

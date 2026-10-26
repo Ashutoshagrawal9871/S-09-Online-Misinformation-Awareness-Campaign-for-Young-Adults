@@ -1,2 +1,0 @@
--- TruthLens Misinformation Campaign DB Initialization
--- Note: Rich mock data and modules are initialized programmatically via DataInitializer.java

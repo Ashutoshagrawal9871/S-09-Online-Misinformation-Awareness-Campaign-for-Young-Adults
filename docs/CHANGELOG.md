@@ -8,6 +8,14 @@
 - `CHANGELOG.md`, `PROJECT_PLAN.md`, `EVALUATION_PREP.md`, and deployment guides (`DEPLOYMENT_RENDER.md`, `DEPLOYMENT_RAILWAY.md`) moved into `docs/`.
 - Survey analysis, social media analytics, policy brief, and CUSoC change summary moved into `report/`; duplicate `docs/FINAL_IMPACT_REPORT.md` removed.
 - All README, documentation, and website links updated to the new paths.
+- Java package renamed from `com.ashutosh.interviewer` to `com.ashutosh.truthlens`; main class is now `TruthLensApplication` and the build produces `truthlens-0.0.1-SNAPSHOT.jar`.
+- Local-development JWT default secret replaced with a TruthLens-specific value (production still uses `JWT_SECRET`).
+
+### Added
+- Website screenshots in `media/screenshots/` (desktop, mobile, Swagger UI, presentation, full page).
+
+### Removed
+- Unused `src/main/resources/data.sql` and stale `db/schema.sql`; Hibernate generates the schema from the entities and `DataInitializer` seeds the data.
 
 ## [1.2.0] — 2026-10-26
 

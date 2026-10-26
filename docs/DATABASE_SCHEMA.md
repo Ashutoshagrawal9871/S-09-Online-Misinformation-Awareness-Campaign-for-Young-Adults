@@ -4,7 +4,7 @@ TruthLens uses Spring Data JPA with Hibernate. The default profile runs an H2 in
 
 - Schema management: `spring.jpa.hibernate.ddl-auto=update`
 - Default H2 URL: `jdbc:h2:mem:truthlens_db;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;MODE=PostgreSQL`
-- Seed data: `src/main/java/com/ashutosh/interviewer/config/DataInitializer.java`
+- Seed data: `src/main/java/com/ashutosh/truthlens/config/DataInitializer.java`
 - No migration tool (Flyway/Liquibase) is included; this is a demo-grade schema.
 
 ## 1. Entity relationship diagram
@@ -202,9 +202,9 @@ Survey responses contain an identifier (`participantEmail` is converted into an 
 | `campaign_metrics` | 5 | Reach, workshop participants, susceptibility reduction, verification adoption, multipliers |
 | `campaign_surveys` | 4 | 2 baseline and 2 post-campaign samples |
 
-## 4. Reference DDL
+## 4. Schema management
 
-`src/main/resources/db/schema.sql` contains a PostgreSQL reference for the `users` table. It is not executed automatically (`spring.sql.init.mode=never`); Hibernate creates the actual schema from the entities. Treat it as documentation rather than a migration.
+There are no hand-written SQL migrations. Hibernate generates the schema from the JPA entities in `src/main/java/com/ashutosh/truthlens/model/` (`spring.jpa.hibernate.ddl-auto=update`), and `DataInitializer` inserts the seed rows above. The tables in this document are the authoritative reference.
 
 ## 5. Data lifecycle and privacy
 

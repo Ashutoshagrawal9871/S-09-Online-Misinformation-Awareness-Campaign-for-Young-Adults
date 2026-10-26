@@ -21,7 +21,7 @@ Command:
 
 | Test Class | Focus | Tests | Result |
 | :--- | :--- | :---: | :--- |
-| `InterviewerBackendApplicationTests` | Spring context loads | 1 | PASS |
+| `TruthLensApplicationTests` | Spring context loads | 1 | PASS |
 | `SecurityConfigTest` | Public API & Swagger access rules | 3 | PASS |
 | `AuthAndJwtIntegrationTest` | Seeded admin login, JWT enforcement, bad credentials, role-escalation guard | 5 | PASS |
 | `FactCheckControllerTest` | SIFT verify & recent-queries endpoints | 2 | PASS |
